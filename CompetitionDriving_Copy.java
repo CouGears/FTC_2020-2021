@@ -20,8 +20,8 @@ import android.graphics.Color;
 @TeleOp
 
 public class CompetitionDriving_Copy extends LinearOpMode{
-    private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, intakeFR, intakeM, intakeB, shooter;
-    private Servo servoLS, servoRS, clamp, marker;
+    private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, lifter;
+    private Servo shooterServo, armServo;
     private DistanceSensor sensorDistance;
     private ColorSensor sensorColor1, sensorColor2;
     
@@ -40,6 +40,10 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         motorFR = hardwareMap.get(DcMotor.class, "motorFR");
         intakeFL = hardwareMap.get(DcMotor.class, "intake");
         shooter = hardwareMap.get(DcMotor.class, "shooter");
+        lifter = hardwareMap.get(DcMotor.class, "lifter");
+        armServo = hardwareMap.get(Servo.class, "armServo");
+        shooterServo = hardwareMap.get(Servo.class, "shooterServo");
+        
         
         
         motorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -133,7 +137,27 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             shooter.setPower(0);
             intakeFL.setPower(0);
             }
-            
+            if (gamepad2.dpad_up) {
+            	lifter.setPower(1);
+            }
+            else if(gamepad2.dpad_down){
+            	lifter.setPower(-1);
+            }
+            else {
+            	lifter.setPower(0);
+            }
+            // if(gamepad2.dpad_left){
+            //     shooterServo.setPosition(.75);
+            // }
+            // else {
+            //     shooterServo.setPosition(.5);
+            // }
+            // if(gamepad2.dpad_right){
+            //     armServo.setPosition(.5);
+            // }
+            // else{
+            //     armServo.setPosition(.3);
+            // }
         }
     }
 }
