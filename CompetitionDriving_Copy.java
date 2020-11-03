@@ -20,7 +20,7 @@ import android.graphics.Color;
 @TeleOp
 
 public class CompetitionDriving_Copy extends LinearOpMode{
-    private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, lifter;
+    private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, lifter, arm;
     private Servo shooterServo, armServo;
     private DistanceSensor sensorDistance;
     private ColorSensor sensorColor1, sensorColor2;
@@ -41,6 +41,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         intakeFL = hardwareMap.get(DcMotor.class, "intake");
         shooter = hardwareMap.get(DcMotor.class, "shooter");
         lifter = hardwareMap.get(DcMotor.class, "lifter");
+        arm = hardwareMap.get(DcMotor.class, "arm");
         armServo = hardwareMap.get(Servo.class, "armServo");
         shooterServo = hardwareMap.get(Servo.class, "shooterServo");
         
@@ -133,31 +134,37 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             } else {
                 intakeFL.setPower(0);
             }
-            if(gamepad2.a){
-            shooter.setPower(0);
-            intakeFL.setPower(0);
+            if (gamepad2.b) {
+            	arm.setPower(1);
             }
+            else if (gamepad2.a) {
+            	arm.setPower(-1);
+            }
+            else {
+            	arm.setPower(0);
+            	}
+           
             if (gamepad2.dpad_up) {
-            	lifter.setPower(1);
+            	lifter.setPower(-1);
             }
             else if(gamepad2.dpad_down){
-            	lifter.setPower(-1);
+            	lifter.setPower(1);
             }
             else {
             	lifter.setPower(0);
             }
-            // if(gamepad2.dpad_left){
-            //     shooterServo.setPosition(.75);
-            // }
-            // else {
-            //     shooterServo.setPosition(.5);
-            // }
-            // if(gamepad2.dpad_right){
-            //     armServo.setPosition(.5);
-            // }
-            // else{
-            //     armServo.setPosition(.3);
-            // }
+            if(gamepad2.dpad_left){
+                shooterServo.setPosition(.1);
+            }
+            else {
+                shooterServo.setPosition(1);
+            }
+            if(gamepad2.dpad_right){
+                armServo.setPosition(.5);
+            }
+            else{
+                armServo.setPosition(1);
+            }
         }
     }
 }
