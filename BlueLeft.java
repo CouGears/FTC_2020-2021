@@ -43,33 +43,43 @@ public class BlueLeft extends OpMode{
         switch (robot.counter) {
         case 0:
             robot.drive(3*feet+6*inch, 5*feet, .6);
+            counter++;
             break;
        case 1:
             robot.shootServ(1);
+            counter++;
             break;
         case 2:
             robot.shoot(600, .7, .7);
+            counter++;
             break;
         case 3:
         	robot.sleep(100);
+        	counter++;
         	break;
         case 4:
-        	robot.drive(-5*inch, 0, .6);
+        	robot.drive(-.5*feet, 0, .6);
+        	counter++;
         	break;
         case 5:
         	robot.shoot(600, 0, 1);
+        	counter++;
         	break;
         case 6:
         	robot.intake(2000);
+        	counter++;
         	break;
         case 7:
-        	robot.drive(-5*inch,0, .6);
-        	break;
-        case 7:
-        	robot.shootServ(.7);
+        	robot.drive(-.5*feet,0, .6);
+        	counter++;
         	break;
         case 8:
+        	robot.shootServ(.7);
+        	counter++;
+        	break;
+        case 9:
         	robot.shoot(600, 0, 1);
+        	counter++;
         	break;
     }
         

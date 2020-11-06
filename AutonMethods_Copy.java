@@ -111,7 +111,7 @@ public class AutonMethods_Copy {
         motorBL.setTargetPosition(0);
         motorFR.setTargetPosition(0);
         motorBR.setTargetPosition(0);
-        
+        lifter.setTargetPosition(0);
         int relativeLayoutId = map.appContext.getResources().getIdentifier("RelativeLayout", "id", map.appContext.getPackageName());
         
         tele.addData(">", "Gyro Calibrating. Do Not Move!");
@@ -120,7 +120,7 @@ public class AutonMethods_Copy {
     
     //Function to move the robot in any direction
     public void drive(double x, double y, double spee){
-        while(motorFR.isBusy()||motorFL.isBusy());
+//        while(motorFR.isBusy()||motorFL.isBusy());
         changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FRtpos = x+y;
         BRtpos = x-y;
@@ -132,31 +132,32 @@ public class AutonMethods_Copy {
         motorBR.setTargetPosition((int)BRtpos);
         changeRunMode(DcMotor.RunMode.RUN_TO_POSITION);
         speed(spee);
-        counter++;
+        
         
     }
     public void shootServ(double pos){
-        while(motorFR.isBusy()||motorFL.isBusy());
+//        while(motorFR.isBusy()||motorFL.isBusy());
         shooterServo.setPosition(pos);
-        counter++;
+        
         
     }
     public void armServ(double pos){
-         while(motorFR.isBusy()||motorFL.isBusy());
+//         while(motorFR.isBusy()||motorFL.isBusy());
          armServo.setPosition(pos);
-         counter++;
+         
     }
     public void arm(int pos){
-         while(motorFR.isBusy()||motorFL.isBusy());
+//         while(motorFR.isBusy()||motorFL.isBusy());
          arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
          arm.setTargetPosition(pos);
          arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         counter++;
+         
     }
     public void shoot(int pos, double beginServPos, double endServPos){
-    	
+//    	while(motorFR.isBusy()||motorFL.isBusy());
          lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
          lifter.setTargetPosition(pos);
+         speed(.6);
 //        lifter.setPower(-1);
         shooter.setPower(-1);
         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -175,14 +176,14 @@ public class AutonMethods_Copy {
         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         shooter.setPower(0);
         shooterServo.setPosition(endServPos);
-        counter++;
+        
         
     }
     public void intake(double time) {
     	robot.intakeFL.setPower(1);
     	sleep(time);
     	robot.intakeFL.setPower(0);
-    	counter++;
+    	
     }
     
     
