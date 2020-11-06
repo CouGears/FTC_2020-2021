@@ -42,21 +42,35 @@ public class BlueLeft extends OpMode{
     public void loop() {
         switch (robot.counter) {
         case 0:
-           robot.arm(300);    
-           break;
-        case 1:
-            robot.armServ(.5);
-        case 2:
-            robot.arm(600);
-        case 3:
             robot.drive(3*feet+6*inch, 5*feet, .6);
             break;
-       case 4:
-            robot.shootServ(.7);
+       case 1:
+            robot.shootServ(1);
             break;
+        case 2:
+            robot.shoot(600, .7, .7);
+            break;
+        case 3:
+        	robot.sleep(100);
+        	break;
+        case 4:
+        	robot.drive(-5*inch, 0, .6);
+        	break;
         case 5:
-            robot.shoot(600);
-            break;
+        	robot.shoot(600, 0, 1);
+        	break;
+        case 6:
+        	robot.intake(2000);
+        	break;
+        case 7:
+        	robot.drive(-5*inch,0, .6);
+        	break;
+        case 7:
+        	robot.shootServ(.7);
+        	break;
+        case 8:
+        	robot.shoot(600, 0, 1);
+        	break;
     }
         
         telemetry.addData("Case:", robot.counter);

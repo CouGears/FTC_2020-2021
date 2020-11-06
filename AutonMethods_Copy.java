@@ -153,24 +153,36 @@ public class AutonMethods_Copy {
          arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          counter++;
     }
-    public void shoot(int pos){
-        // lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lifter.setPower(-1);
+    public void shoot(int pos, double beginServPos, double endServPos){
+    	
+         lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+         lifter.setTargetPosition(pos);
+//        lifter.setPower(-1);
         shooter.setPower(-1);
+        lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         sleep(1100);
-        lifter.setPower(0);
-        // lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        lifter.setPower(0);
+        
         //speed(1);
         sleep(2000);
-        shooterServo.setPosition(0);
+        shooterServo.setPosition(beginServPos);
         sleep(250);
-        lifter.setPower(1);
-        sleep(850);
-        lifter.setPower(0);
+//        lifter.setPower(1);
+//        sleep(850);
+//        lifter.setPower(0);
+        lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lifter.setTargetPosition(-pos);
+        lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         shooter.setPower(0);
-        shooterServo.setPosition(1);
+        shooterServo.setPosition(endServPos);
         counter++;
         
+    }
+    public void intake(double time) {
+    	robot.intakeFL.setPower(1);
+    	sleep(time);
+    	robot.intakeFL.setPower(0);
+    	counter++;
     }
     
     
