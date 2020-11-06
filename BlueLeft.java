@@ -18,10 +18,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous
 
 public class BlueLeft extends OpMode{
-    boolean hi = true;
     double rev = 383.6;
-    double inchf = rev/(3.78*3.14);
-    double feetf = inchf*12;
+    double inch = 2*rev/(3.78*3.14);
+    double feet = inch*12;
         private ElapsedTime runtime = new ElapsedTime();
     private DigitalChannel DigChannel;
     AutonMethods_Copy robot = new AutonMethods_Copy();
@@ -43,12 +42,19 @@ public class BlueLeft extends OpMode{
     public void loop() {
         switch (robot.counter) {
         case 0:
-            robot.drive(-6.5*feetf, 9.5*feetf, .6);
-            break;
+           robot.arm(300);    
+           break;
         case 1:
+            robot.armServ(.5);
+        case 2:
+            robot.arm(600);
+        case 3:
+            robot.drive(3*feet+6*inch, 5*feet, .6);
+            break;
+       case 4:
             robot.shootServ(.7);
             break;
-        case 2:
+        case 5:
             robot.shoot(600);
             break;
     }
