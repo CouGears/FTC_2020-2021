@@ -41,13 +41,11 @@ public class AutonMethods_Copy {
     }
     
     //Declare and initial variables
-    double rev = 383.6;
-    double inchf = rev/3.78;
-    double foot = inchf*12;
-    private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, lifter, arm;
-    private Servo shooterServo, armServo;
-    private DistanceSensor sensorDistance;
-    private ColorSensor sensorColor1, sensorColor2;
+    double FRtpos, BRtpos, FLtpos, BLtpos;
+    private static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, lifter, arm;
+    private static Servo shooterServo, armServo, marker;
+    private static DistanceSensor sensorDistance;
+    private static ColorSensor sensorColor1, sensorColor2;
     HardwareMap map;
     Telemetry tele;
     
@@ -83,6 +81,7 @@ public class AutonMethods_Copy {
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         intakeFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         
         motorFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -90,6 +89,7 @@ public class AutonMethods_Copy {
         motorFR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         intakeFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        lifter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         
         motorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -97,6 +97,7 @@ public class AutonMethods_Copy {
         motorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         intakeFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        lifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         
         motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
         motorBL.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -104,6 +105,7 @@ public class AutonMethods_Copy {
         motorBR.setDirection(DcMotorSimple.Direction.FORWARD);
         intakeFL.setDirection(DcMotorSimple.Direction.FORWARD);
         arm.setDirection(DcMotorSimple.Direction.FORWARD);
+        lifter.setDirection(DcMotorSimple.Direction.FORWARD);
         
         motorFL.setTargetPosition(0);
         motorBL.setTargetPosition(0);
@@ -112,21 +114,66 @@ public class AutonMethods_Copy {
         
         int relativeLayoutId = map.appContext.getResources().getIdentifier("RelativeLayout", "id", map.appContext.getPackageName());
         
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
-        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
-        parameters.loggingEnabled = true;
-        parameters.loggingTag = "IMU";
-        
-        imu = map.get(BNO055IMU.class, "imu");
-        imu.initialize(parameters);
-        
         tele.addData(">", "Gyro Calibrating. Do Not Move!");
         tele.update();
     }
     
     //Function to move the robot in any direction
+    public void drive(double x, double y, double spee){
+        while(motorFR.isBusy()||motorFL.isBusy());
+        changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FRtpos = x+y;
+        BRtpos = x-y;
+        FLtpos = x-y;
+        BLtpos = x+y;
+        motorFL.setTargetPosition(-(int)FLtpos);
+        motorBL.setTargetPosition((int)BLtpos);
+        motorFR.setTargetPosition(-(int)FRtpos);
+        motorBR.setTargetPosition((int)BRtpos);
+        changeRunMode(DcMotor.RunMode.RUN_TO_POSITION);
+        speed(spee);
+        counter++;
+        
+    }
+    public void shootServ(double pos){
+        while(motorFR.isBusy()||motorFL.isBusy());
+        shooterServo.setPosition(pos);
+        counter++;
+        
+    }
+    public void armServ(double pos){
+         while(motorFR.isBusy()||motorFL.isBusy());
+         armServo.setPosition(pos);
+         counter++;
+    }
+    public void arm(int pos){
+         while(motorFR.isBusy()||motorFL.isBusy());
+         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+         arm.setTargetPosition(pos);
+         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         counter++;
+    }
+    public void shoot(int pos){
+        // lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lifter.setPower(-1);
+        shooter.setPower(-1);
+        sleep(1100);
+        lifter.setPower(0);
+        // lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //speed(1);
+        sleep(2000);
+        shooterServo.setPosition(0);
+        sleep(250);
+        lifter.setPower(1);
+        sleep(850);
+        lifter.setPower(0);
+        shooter.setPower(0);
+        shooterServo.setPosition(1);
+        counter++;
+        
+    }
+    
+    
     public void motors (String direction, int distance) {
         if (direction.equals("front")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
@@ -249,6 +296,7 @@ public class AutonMethods_Copy {
         }
         
         else if (direction.equals("stop")) {
+            while(motorFR.isBusy()||motorFL.isBusy());
             motorFL.setTargetPosition(0);
             motorBL.setTargetPosition(0);
             motorFR.setTargetPosition(0);
@@ -670,7 +718,7 @@ public class AutonMethods_Copy {
     }
     
     //Function to open or close the clamp
-    public void servoClamp() {
+   /* public void servoClamp() {
         if (clampDown) {
             servoLS.setPosition(.6);
             servoRS.setPosition(.4);
@@ -683,22 +731,16 @@ public class AutonMethods_Copy {
         
         clampDown = !clampDown;
         counter++;
-    }
+    }*/
     
     //Function to turn on the intake
     public void intake(String direction) {
         if (direction.equals("in")) {
             intakeFL.setPower(-1);
-            intakeFR.setPower(-1);
-            intakeM.setPower(-.7);
-            intakeB.setPower(-.7);
         }
         
         else {
             intakeFL.setPower(1);
-            intakeFR.setPower(1);
-            intakeM.setPower(.7);
-            intakeB.setPower(.7);
         }
         
         counter++;
@@ -707,15 +749,12 @@ public class AutonMethods_Copy {
     //Function to turn off the intake
     public void intakeOff() {
         intakeFL.setPower(0);
-        intakeFR.setPower(0);
-        intakeM.setPower(0);
-        intakeB.setPower(0);
         
         counter++;
     }
     
     //Function to raise or lower the clamp for the block
-    public void skyClamp(String direction) {
+   /* public void skyClamp(String direction) {
         if (direction.equals("up")) {
             clamp.setPosition(0);
         }
@@ -725,7 +764,7 @@ public class AutonMethods_Copy {
         }
         
         counter++;
-    }
+    }*/
     
     //Function to raise or lower the clamp for the block
     public void marker() {
@@ -733,7 +772,7 @@ public class AutonMethods_Copy {
     }
     
     //Function to find which block is black
-    public void checkBlocks(String side) {
+   /* public void checkBlocks(String side) {
         Color.RGBToHSV((int) (sensorColor1.red() * SCALE_FACTOR),
             (int) (sensorColor1.green() * SCALE_FACTOR),
             (int) (sensorColor1.blue() * SCALE_FACTOR),
@@ -1565,5 +1604,5 @@ public class AutonMethods_Copy {
     //Function to acess the block read by the color sensors
     public int block() {
         return block;
-    }
+    }*/
 }
