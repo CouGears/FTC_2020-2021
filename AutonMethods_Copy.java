@@ -180,10 +180,10 @@ public class AutonMethods_Copy {
         
         
     }
-    public void intake(double time) {
-    	robot.intakeFL.setPower(1);
+    public void intake(int time) {
+    	intakeFL.setPower(1);
     	sleep(time);
-    	robot.intakeFL.setPower(0);
+    	intakeFL.setPower(0);
     	
     }
     
