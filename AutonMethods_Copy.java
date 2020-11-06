@@ -157,8 +157,8 @@ public class AutonMethods_Copy {
 //    	while(motorFR.isBusy()||motorFL.isBusy());
          lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
          lifter.setTargetPosition(pos);
-         speed(.6);
-//        lifter.setPower(-1);
+         
+         lifter.setPower(-1);
         shooter.setPower(-1);
         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         sleep(1100);
@@ -168,7 +168,7 @@ public class AutonMethods_Copy {
         sleep(2000);
         shooterServo.setPosition(beginServPos);
         sleep(250);
-//        lifter.setPower(1);
+        lifter.setPower(1);
 //        sleep(850);
 //        lifter.setPower(0);
         lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

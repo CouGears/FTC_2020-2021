@@ -70,14 +70,17 @@ public class BlueLeft extends OpMode{
         	counter++;
         	break;
         case 7:
+        	robot.sleep(1000);
+        	break;
+        case 8:
         	robot.drive(-.5*feet,0, .6);
         	counter++;
         	break;
-        case 8:
+        case 9:
         	robot.shootServ(.7);
         	counter++;
         	break;
-        case 9:
+        case 10:
         	robot.shoot(600, 0, 1);
         	counter++;
         	break;
