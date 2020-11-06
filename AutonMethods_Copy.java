@@ -120,7 +120,7 @@ public class AutonMethods_Copy {
     
     //Function to move the robot in any direction
     public void drive(double x, double y, double spee){
-//        while(motorFR.isBusy()||motorFL.isBusy());
+        while(motorFR.isBusy()||motorFL.isBusy());
         changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FRtpos = x+y;
         BRtpos = x-y;
@@ -136,31 +136,31 @@ public class AutonMethods_Copy {
         
     }
     public void shootServ(double pos){
-//        while(motorFR.isBusy()||motorFL.isBusy());
+        while(motorFR.isBusy()||motorFL.isBusy());
         shooterServo.setPosition(pos);
         
         
     }
     public void armServ(double pos){
-//         while(motorFR.isBusy()||motorFL.isBusy());
+         while(motorFR.isBusy()||motorFL.isBusy());
          armServo.setPosition(pos);
          
     }
     public void arm(int pos){
-//         while(motorFR.isBusy()||motorFL.isBusy());
+         while(motorFR.isBusy()||motorFL.isBusy());
          arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
          arm.setTargetPosition(pos);
          arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          
     }
     public void shoot(int pos, double beginServPos, double endServPos){
-//    	while(motorFR.isBusy()||motorFL.isBusy());
+   	while(motorFR.isBusy()||motorFL.isBusy());
          lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-         lifter.setTargetPosition(pos);
-         
-         lifter.setPower(-1);
-        shooter.setPower(-1);
-        lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         lifter.setTargetPosition(-pos);
+         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         lifter.setPower(1);
+         shooter.setPower(-1);
+       
         sleep(1100);
 //        lifter.setPower(0);
         
@@ -172,17 +172,18 @@ public class AutonMethods_Copy {
 //        sleep(850);
 //        lifter.setPower(0);
         lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lifter.setTargetPosition(-pos);
+        lifter.setTargetPosition(pos);
         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        lifter.setPower(1);
         shooter.setPower(0);
         shooterServo.setPosition(endServPos);
         
         
     }
-    public void intake(int time) {
-    	intakeFL.setPower(1);
+    public void intake(double time) {
+    	robot.intakeFL.setPower(1);
     	sleep(time);
-    	intakeFL.setPower(0);
+    	robot.intakeFL.setPower(0);
     	
     }
     
