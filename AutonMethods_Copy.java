@@ -149,42 +149,35 @@ public class AutonMethods_Copy {
     public void arm(int pos){
          while(motorFR.isBusy()||motorFL.isBusy());
          arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-         arm.setTargetPosition(pos);
+         arm.setTargetPosition(-pos);
          arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         arm.setPower(1);
          
     }
     public void shoot(int pos, double beginServPos, double endServPos){
-   	while(motorFR.isBusy()||motorFL.isBusy());
-         lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-         lifter.setTargetPosition(-pos);
-         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         lifter.setPower(1);
-         shooter.setPower(-1);
-       
-        sleep(1100);
-//        lifter.setPower(0);
-        
-        //speed(1);
-        sleep(2000);
-        shooterServo.setPosition(beginServPos);
-        sleep(250);
-        lifter.setPower(1);
-//        sleep(850);
-//        lifter.setPower(0);
-        lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lifter.setTargetPosition(pos);
+       while(motorFR.isBusy()||motorFL.isBusy());
+        lifter.setTargetPosition(lifter.getCurrentPosition()-pos);
         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         lifter.setPower(1);
+        shooter.setPower(-1);
+        sleep(1500);
+        shooterServo.setPosition(beginServPos);
+        sleep(500);
         shooter.setPower(0);
+        lifter.setTargetPosition(lifter.getCurrentPosition()+pos);
+        lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        lifter.setPower(1);
         shooterServo.setPosition(endServPos);
+        sleep(1500);
+        //while(lifter.isBusy());
         
         
     }
     public void intake(int time) {
-    	intakeFL.setPower(1);
-    	sleep(time);
-    	intakeFL.setPower(0);
-    	
+        intakeFL.setPower(1);
+        sleep(time);
+        intakeFL.setPower(0);
+        
     }
     
     
