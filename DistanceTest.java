@@ -21,11 +21,6 @@ import android.graphics.Color;
 
 public class DistanceTest extends LinearOpMode{
     private DistanceSensor bottomSensor, topSensor;
-    
-    
-    int x = 0;
-    boolean latch1 = true, test1 = false, latch2 = true, test2 = false, latch3 = true, test3 = false, latch4 = true, test4 = false, in = false;
-    
     @Override
     public void runOpMode() {
         bottomSensor = hardwareMap.get(DistanceSensor.class, "bottomSensor");
