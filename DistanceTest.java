@@ -38,9 +38,21 @@ public class DistanceTest extends LinearOpMode{
         waitForStart();
         
         while (opModeIsActive()) {
-            telemetry.addData("Top Distance", topSensor.getDistance(DistanceUnit.CM));
-             telemetry.addData("Bottom Distance", bottomSensor.getDistance(DistanceUnit.CM));
-            telemetry.update();
+//            telemetry.addData("Top Distance", topSensor.getDistance(DistanceUnit.CM));
+//             telemetry.addData("Bottom Distance", bottomSensor.getDistance(DistanceUnit.CM));
+//            telemetry.update();
+            if (bottomSensor.getDistance(DistanceUnit.CM) < 3) {
+            	telemetry.addData("One ring", bottomSensor.getDistance(DistanceUnit.CM));
+            	telemetry.update();
+            }
+            else if(bottomSensor.getDistance(DistanceUnit.CM) < 3 && bottomSensor.getDistance(DistanceUnit.CM) < 3) {
+            	telemetry.addData("Four rings", topSensor.getDistance(DistanceUnit.CM));
+            	telemetry.update();
+            }
+            else {
+            	telemetry.addData("No rings", bottomSensor.getDistance(DistanceUnit.CM));
+            	telemetry.update();
+            }
         }
     }
 }
