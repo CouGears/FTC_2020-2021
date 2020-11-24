@@ -20,14 +20,7 @@ import android.graphics.Color;
 @TeleOp
 
 public class MotorTest extends LinearOpMode{
-    
-    private DcMotor motor;
-    
-    
-    
-    
    
-    
     @Override
     public void runOpMode() {
         motor = hardwareMap.get(DcMotor.class, "motor");
@@ -47,16 +40,7 @@ public class MotorTest extends LinearOpMode{
         waitForStart();
         
         while (opModeIsActive()) {
-            /*(Color.RGBToHSV((int) (sensorColor.red() * 255),
-                (int) (sensorColor.green() * 255),
-                (int) (sensorColor.blue() * 255),
-                hsvValues);
-            
-            telemetry.addData("Hue", hsvValues[0]);
-            telemetry.addData("Distance", sensorDistance.getDistance(DistanceUnit.CM));
-            telemetry.addData("In", in);
-            telemetry.update();
-            */
+         
            
             if(gamepad2.x) {
                 motor.setPower(1);
