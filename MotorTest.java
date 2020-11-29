@@ -19,8 +19,8 @@ import android.graphics.Color;
 
 @TeleOp
 
-public class MotorTest extends LinearOpMode{
-   
+public class MotorTest extends LinearOpMode {
+public DcMotor motor;
     @Override
     public void runOpMode() {
         motor = hardwareMap.get(DcMotor.class, "motor");
@@ -45,13 +45,15 @@ public class MotorTest extends LinearOpMode{
             if(gamepad2.x) {
                 motor.setPower(1);
             } 
-            } else {
-                intakeFL.setPower(0);
+            else if(gamepad2.y) {
+                motor.setPower(-1);
+            }
+            else {
+                motor.setPower(0);
             }
             
             
         
        
         }
-    }
-}
+}}
