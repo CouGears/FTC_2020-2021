@@ -43,7 +43,7 @@ public class AutonMethods_Copy {
     //Declare and initial variables
     double FRtpos, BRtpos, FLtpos, BLtpos;
     private static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, lifter, arm;
-    private static Servo shooterServo, armServo, marker;
+    private static Servo shooterServo, armServo, marker, frontScissor, backScissor;
     private static DistanceSensor sensorDistance;
     private static ColorSensor sensorColor1, sensorColor2;
     HardwareMap map;
@@ -74,6 +74,10 @@ public class AutonMethods_Copy {
         lifter = map.get(DcMotor.class, "lifter");
         armServo = map.get(Servo.class, "armServo");
         shooterServo = map.get(Servo.class, "shooterServo");
+        //note - this is according to front orientation - front is in the front and back is in the back 
+        //also these should be configured accordingly
+        frontScissor = map.get(Servo.class, "frontScissor");
+        backScissor = map.get(Servo.class,  "backScissor");
         
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -134,6 +138,31 @@ public class AutonMethods_Copy {
         speed(spee);
         
         
+    }
+
+    //takes state
+    //state of false resets
+    //state of true lifts
+    public void scissorServ(boolean state){
+        public void shootServ(double pos){
+        while(motorFR.isBusy()||motorFL.isBusy());
+        private double fStart;
+        private double bStart;
+        private double fAdd = 30;
+        private double bAdd = 53;
+        if(state == false)
+        {
+            frontScissor.setPosition(fStart);
+            backScissor.setPosition(bStart);
+        }
+        else
+        {
+            frontScissor.setPosition(fStart + fAdd);
+            backScissor.setPosition(bStart + bAdd);
+        }    
+        
+        
+    }
     }
     public void shootServ(double pos){
         while(motorFR.isBusy()||motorFL.isBusy());
