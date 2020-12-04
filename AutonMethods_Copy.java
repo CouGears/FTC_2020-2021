@@ -152,13 +152,13 @@ public class AutonMethods_Copy {
         private double bAdd = 53;
         if(state == false)
         {
-            frontScissor.setPosition(fStart);
-            backScissor.setPosition(bStart);
+            frontScissor.setPosition(double(fStart / double(180)));
+            backScissor.setPosition(double(bStart / double(180)));
         }
         else
         {
-            frontScissor.setPosition(fStart + fAdd);
-            backScissor.setPosition(bStart + bAdd);
+            frontScissor.setPosition(double((fStart + fAdd) / double(180)));
+            backScissor.setPosition(double((bStart + bAdd) / double(180)));
         }    
         
         
