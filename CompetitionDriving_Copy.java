@@ -21,8 +21,8 @@ import android.graphics.Color;
 
 public class CompetitionDriving_Copy extends LinearOpMode{
     private boolean serv = false;
-    private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, lifter, arm;
-    private Servo shooterServo, armServo;
+    private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
+    private Servo shooterServo, armServo, frontScissor;
     private DistanceSensor sensorDistance;
     private ColorSensor sensorColor1, sensorColor2;
     
@@ -31,7 +31,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
     final double SCALE_FACTOR = 255;
     
     int x = 0;
-    boolean latch1 = true, test1 = false, latch2 = true, test2 = false, latch3 = true, test3 = false, latch4 = true, test4 = false, in = false;
+    boolean latch1 = true, test1 = false, latch2 = true, test2 = false, latch3 = true, test3 = false, latch4 = true, test4 = false, in = false, s = false;
     
     @Override
     public void runOpMode() {
@@ -42,7 +42,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         intakeFL = hardwareMap.get(DcMotor.class, "intake");
         arm = hardwareMap.get(DcMotor.class, "arm");
         shooter = hardwareMap.get(DcMotor.class, "shooter");
-        lifter = hardwareMap.get(DcMotor.class, "lifter");
+        scissorMotor = hardwareMap.get(DcMotor.class, "scissorMotor");
         armServo = hardwareMap.get(Servo.class, "armServo");
         shooterServo = hardwareMap.get(Servo.class, "shooterServo");
         
@@ -53,6 +53,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         motorFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         intakeFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        scissorMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         
         motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -61,6 +62,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         motorBR.setDirection(DcMotorSimple.Direction.FORWARD);
         intakeFL.setDirection(DcMotorSimple.Direction.FORWARD);
         arm.setDirection(DcMotorSimple.Direction.FORWARD);
+        scissorMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -68,6 +70,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         waitForStart();
         
         while (opModeIsActive()) {
+            AutonMethods_Copy competition = new AutonMethods_Copy();
             /*(Color.RGBToHSV((int) (sensorColor.red() * 255),
                 (int) (sensorColor.green() * 255),
                 (int) (sensorColor.blue() * 255),
@@ -100,7 +103,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 motorFR.setPower(((this.gamepad1.right_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))/4);
             }
             if(gamepad2.right_bumper) {
-                shooter.setPower(-1);
+                shooter.setPower(1);
             }else{
                 shooter.setPower(0);
             }
@@ -111,19 +114,31 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             } else {
                 intakeFL.setPower(0);
             }
+            
+            if(gamepad2.a && s == false) {
+                frontScissor.setPosition(1);
+                competition.sleep(100);
+                scissorMotor.setPower(1);
+                competition.sleep(160);
+                scissorMotor.setPower(0);
+                telemetry.addData("Status", "x");
+        
+                telemetry.update();
+                s = true;
+            } 
+            else if(gamepad2.b && s == true) {
+                frontScissor.setPosition(.75);
+                competition.sleep(100);
+                scissorMotor.setPower(-1);
+                competition.sleep(160);
+                scissorMotor.setPower(0);
+                telemetry.addData("Status", "y");
+            }
             if(gamepad2.a){
             shooter.setPower(0);
             intakeFL.setPower(0);
             }
-            if (gamepad2.dpad_up) {
-                lifter.setPower(-1);
-            }
-            else if(gamepad2.dpad_down){
-                lifter.setPower(1);
-            }
-            else {
-                lifter.setPower(0);
-            }
+            
             if(gamepad2.dpad_left){
                 shooterServo.setPosition(.1);
             }
@@ -141,6 +156,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 catch (InterruptedException e) {
                 }   
             }
+            
             if (serv == false){
                 armServo.setPosition(.5);
             }else {
