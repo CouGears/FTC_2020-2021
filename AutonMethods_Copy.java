@@ -22,46 +22,50 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import android.graphics.Color;
 import android.app.Activity;
 import android.view.View;
+
 import java.lang.annotation.Target;
 import java.util.Timer;
+
 import com.qualcomm.robotcore.hardware.Blinker;
 import com.qualcomm.robotcore.hardware.CRServo;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import com.qualcomm.robotcore.hardware.Gyroscope;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
 import java.util.Locale;
+
 import android.app.Activity;
 
 public class AutonMethods_Copy {
-    
+
     //Constructor
     public AutonMethods_Copy() {
-        
+
     }
-    
+
     //Declare and initial variables
     double FRtpos, BRtpos, FLtpos, BLtpos;
-    private static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, lifter, arm;
+    private static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, lifter, arm, scissorMotor;
     private static Servo shooterServo, armServo, marker, frontScissor, backScissor;
-    private static DistanceSensor sensorDistance;
+    private static DistanceSensor topSensor, bottomSensor;
     private static ColorSensor sensorColor1, sensorColor2;
     HardwareMap map;
     Telemetry tele;
-    
+
     private double speed;
     private boolean clampDown = false;
     public int counter = 0, ColorEncoder = 0, blockCounter = 0;
-    
+
     float hsvValues1[] = {0F, 0F, 0F};
     float hsvValues2[] = {0F, 0F, 0F};
     final double SCALE_FACTOR = 255;
     int block = 1;
-    
+
     public static BNO055IMU imu;
     BNO055IMU.Parameters parameters;
     Orientation angles;
-    
+
     //Initialization
     public void init(HardwareMap map, Telemetry tele, boolean auton) {
         motorFL = map.get(DcMotor.class, "motorFL");
@@ -76,9 +80,11 @@ public class AutonMethods_Copy {
         shooterServo = map.get(Servo.class, "shooterServo");
         //note - this is according to front orientation - front is in the front and back is in the back 
         //also these should be configured accordingly
+        scissorMotor = map.get(DcMotor.class, "scissorMotor");
         frontScissor = map.get(Servo.class, "frontScissor");
-        backScissor = map.get(Servo.class,  "backScissor");
-        
+
+        bottomSensor = hardwareMap.get(DistanceSensor.class, "bottomSensor");
+        topSensor = hardwareMap.get(DistanceSensor.class, "topSensor");
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -86,7 +92,7 @@ public class AutonMethods_Copy {
         intakeFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        
+
         motorFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -94,7 +100,7 @@ public class AutonMethods_Copy {
         intakeFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         lifter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        
+
         motorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -102,7 +108,7 @@ public class AutonMethods_Copy {
         intakeFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        
+        scissorMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
         motorBL.setDirection(DcMotorSimple.Direction.FORWARD);
         motorFR.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -110,107 +116,123 @@ public class AutonMethods_Copy {
         intakeFL.setDirection(DcMotorSimple.Direction.FORWARD);
         arm.setDirection(DcMotorSimple.Direction.FORWARD);
         lifter.setDirection(DcMotorSimple.Direction.FORWARD);
-        
+
         motorFL.setTargetPosition(0);
         motorBL.setTargetPosition(0);
         motorFR.setTargetPosition(0);
         motorBR.setTargetPosition(0);
         lifter.setTargetPosition(0);
         int relativeLayoutId = map.appContext.getResources().getIdentifier("RelativeLayout", "id", map.appContext.getPackageName());
-        
+
         tele.addData(">", "Gyro Calibrating. Do Not Move!");
         tele.update();
     }
-    
+
     //Function to move the robot in any direction
-    public void drive(double x, double y, double spee){
-        while(motorFR.isBusy()||motorFL.isBusy());
+    public void drive(double x, double y, double spee) {
+        while (motorFR.isBusy() || motorFL.isBusy()) ;
         changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        FRtpos = x+y;
-        BRtpos = x-y;
-        FLtpos = x-y;
-        BLtpos = x+y;
-        motorFL.setTargetPosition(-(int)FLtpos);
-        motorBL.setTargetPosition((int)BLtpos);
-        motorFR.setTargetPosition(-(int)FRtpos);
-        motorBR.setTargetPosition((int)BRtpos);
+        FRtpos = x + y;
+        BRtpos = x - y;
+        FLtpos = x - y;
+        BLtpos = x + y;
+        motorFL.setTargetPosition(-(int) FLtpos);
+        motorBL.setTargetPosition((int) BLtpos);
+        motorFR.setTargetPosition(-(int) FRtpos);
+        motorBR.setTargetPosition((int) BRtpos);
         changeRunMode(DcMotor.RunMode.RUN_TO_POSITION);
         speed(spee);
-        
-        
+
+
     }
 
     //takes state
     //state of false resets
     //state of true lifts
-    public void scissorServ(boolean state){
-        public void shootServ(double pos){
-        while(motorFR.isBusy()||motorFL.isBusy());
-        private double fStart;
-        private double bStart;
-        private double fAdd = 30;
-        private double bAdd = 53;
-        if(state == false)
-        {
-            frontScissor.setPosition(double(fStart / double(180)));
-            backScissor.setPosition(double(bStart / double(180)));
+    public void scissorServ(boolean state) {
+
+        if (state == true) {
+            frontScissor.setPosition(.75);
+            sleep(100);
+            scissorMotor.setPower(-1);
+            sleep(160);
+            scissorMotor.setPower(0);
+            telemetry.addData("Status", "y");
+        } else {
+            frontScissor.setPosition(1);
+            sleep(100);
+            scissorMotor.setPower(1);
+            sleep(160);
+            scissorMotor.setPower(0);
+            telemetry.addData("Status", "x");
+
+            telemetry.update();
+            s = true;
         }
-        else
-        {
-            frontScissor.setPosition(double((fStart + fAdd) / double(180)));
-            backScissor.setPosition(double((bStart + bAdd) / double(180)));
-        }    
-        
-        
+
     }
-    }
-    public void shootServ(double pos){
-        while(motorFR.isBusy()||motorFL.isBusy());
+
+    public void shootServ(double pos) {
+        while (motorFR.isBusy() || motorFL.isBusy()) ;
         shooterServo.setPosition(pos);
-        
-        
+
+
     }
-    public void armServ(double pos){
-         while(motorFR.isBusy()||motorFL.isBusy());
-         armServo.setPosition(pos);
-         
+
+    public void armServ(double pos) {
+        while (motorFR.isBusy() || motorFL.isBusy()) ;
+        armServo.setPosition(pos);
+
     }
-    public void arm(int pos){
-         while(motorFR.isBusy()||motorFL.isBusy());
-         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-         arm.setTargetPosition(-pos);
-         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         arm.setPower(1);
-         
+
+    public void arm(int pos) {
+        while (motorFR.isBusy() || motorFL.isBusy()) ;
+        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm.setTargetPosition(-pos);
+        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        arm.setPower(1);
+
     }
-    public void shoot(int pos, double beginServPos, double endServPos){
-       while(motorFR.isBusy()||motorFL.isBusy());
-        lifter.setTargetPosition(lifter.getCurrentPosition()-pos);
-        lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        lifter.setPower(1);
-        shooter.setPower(-1);
-        sleep(1500);
-        shooterServo.setPosition(beginServPos);
-        sleep(500);
+
+    public void shoot() {
+        while (motorFR.isBusy() || motorFL.isBusy()) ;
+        shooter.setPower(1);
+        sleep(1000);
+        shooterServo.setPosition(1);
+        sleep(250);
+        shooterServo.setPosition(0);
         shooter.setPower(0);
-        lifter.setTargetPosition(lifter.getCurrentPosition()+pos);
-        lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        lifter.setPower(1);
-        shooterServo.setPosition(endServPos);
-        sleep(1500);
-        //while(lifter.isBusy());
-        
-        
     }
+    public int distance(){
+        int rings = 0;
+        if (bottomSensor.getDistance(DistanceUnit.CM) < 3) {
+            telemetry.addData("One ring", bottomSensor.getDistance(DistanceUnit.CM));
+            telemetry.update();
+            rings = 1;
+        }
+        else if(bottomSensor.getDistance(DistanceUnit.CM) < 3 && bottomSensor.getDistance(DistanceUnit.CM) < 3) {
+            telemetry.addData("Four rings", topSensor.getDistance(DistanceUnit.CM));
+            telemetry.update();
+            rings = 4;
+        }
+        else {
+            telemetry.addData("No rings", bottomSensor.getDistance(DistanceUnit.CM));
+            telemetry.update();
+            rings = 0;
+        }
+        return rings;
+    }
+
+
     public void intake(int time) {
         intakeFL.setPower(1);
         sleep(time);
         intakeFL.setPower(0);
-        
+
     }
-    
-    
-    public void motors (String direction, int distance) {
+
+
+    public void motors(String direction, int distance) {
         if (direction.equals("front")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(-distance - 50);
@@ -218,7 +240,7 @@ public class AutonMethods_Copy {
                 motorFR.setTargetPosition(distance + 50);
                 motorBR.setTargetPosition(distance + 50);
                 speed(speed);
-                
+
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
                 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -229,16 +251,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("back")) {
+        } else if (direction.equals("back")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(distance + 50);
                 motorBL.setTargetPosition(distance + 50);
                 motorFR.setTargetPosition(-distance - 50);
                 motorBR.setTargetPosition(-distance - 50);
                 speed(speed);
-                
+
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
                 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -249,16 +269,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("right")) {
+        } else if (direction.equals("right")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(distance + 50);
                 motorBL.setTargetPosition(-distance - 50);
                 motorFR.setTargetPosition(distance + 50);
                 motorBR.setTargetPosition(-distance - 50);
                 speed(speed * 1.2);
-                
+
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
                 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -269,16 +287,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("left")) {
+        } else if (direction.equals("left")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(-distance - 50);
                 motorBL.setTargetPosition(distance + 50);
                 motorFR.setTargetPosition(-distance - 50);
                 motorBR.setTargetPosition(distance + 50);
                 speed(speed * 1.2);
-                
+
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -289,16 +305,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("turn_left")) {
+        } else if (direction.equals("turn_left")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(-distance - 50);
                 motorBL.setTargetPosition(-distance - 50);
                 motorFR.setTargetPosition(-distance - 50);
                 motorBR.setTargetPosition(-distance - 50);
                 speed(0.6);
-                
+
                 //speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -309,16 +323,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("turn_right")) {
+        } else if (direction.equals("turn_right")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(distance + 50);
                 motorBL.setTargetPosition(distance + 50);
                 motorFR.setTargetPosition(distance + 50);
                 motorBR.setTargetPosition(distance + 50);
                 speed(0.6);
-                
+
                 //speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -329,32 +341,28 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("stop")) {
-            while(motorFR.isBusy()||motorFL.isBusy());
+        } else if (direction.equals("stop")) {
+            while (motorFR.isBusy() || motorFL.isBusy()) ;
             motorFL.setTargetPosition(0);
             motorBL.setTargetPosition(0);
             motorFR.setTargetPosition(0);
             motorBR.setTargetPosition(0);
             speed(0);
-        }
-        
-        else if (direction.equals("go")) {
+        } else if (direction.equals("go")) {
             motorFL.setTargetPosition(1000);
             motorFR.setTargetPosition(1000);
             motorFL.setPower(1);
             motorBL.setPower(1);
         }
-        
+
         changeRunMode(DcMotor.RunMode.RUN_TO_POSITION);
-        
+
         if (!(Math.abs(motorFL.getCurrentPosition()) < distance)) {
             counter++;
             changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
     }
-    
+
     //Function to slow down the robot as it approaches its destination
     public void speedIncrement(int distance) {
         if (distance < 100) speed = .2;
@@ -364,7 +372,7 @@ public class AutonMethods_Copy {
         else if (distance < 500) speed = .4;
         else speed = .5;
     }
-    
+
     //Function to set the speed of all the motors
     public void speed(double in) {
         motorFL.setPower(in);
@@ -372,9 +380,9 @@ public class AutonMethods_Copy {
         motorFR.setPower(in);
         motorBR.setPower(in);
     }
-    
+
     //Function to move the robot in any direction (fast)
-    public void motorsFast (String direction, int distance) {
+    public void motorsFast(String direction, int distance) {
         if (direction.equals("front")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(-distance - 50);
@@ -382,7 +390,7 @@ public class AutonMethods_Copy {
                 motorFR.setTargetPosition(distance + 50);
                 motorBR.setTargetPosition(distance + 50);
                 speed(speed);
-                
+
                 speedIncrementFast(distance - (Math.abs(motorFL.getCurrentPosition())));
                 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -393,16 +401,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("back")) {
+        } else if (direction.equals("back")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(distance + 50);
                 motorBL.setTargetPosition(distance + 50);
                 motorFR.setTargetPosition(-distance - 50);
                 motorBR.setTargetPosition(-distance - 50);
                 speed(speed);
-                
+
                 speedIncrementFast(distance - (Math.abs(motorFL.getCurrentPosition())));
                 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -413,16 +419,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("right")) {
+        } else if (direction.equals("right")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(distance + 50);
                 motorBL.setTargetPosition(-distance - 50);
                 motorFR.setTargetPosition(distance + 50);
                 motorBR.setTargetPosition(-distance - 50);
                 speed(speed * 1.2);
-                
+
                 speedIncrementFast(distance - (Math.abs(motorFL.getCurrentPosition())));
                 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -433,16 +437,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("left")) {
+        } else if (direction.equals("left")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(-distance - 50);
                 motorBL.setTargetPosition(distance + 50);
                 motorFR.setTargetPosition(-distance - 50);
                 motorBR.setTargetPosition(distance + 50);
                 speed(speed * 1.2);
-                
+
                 speedIncrementFast(distance - (Math.abs(motorFL.getCurrentPosition())));
 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -453,16 +455,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("turn_left")) {
+        } else if (direction.equals("turn_left")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(-distance - 50);
                 motorBL.setTargetPosition(-distance - 50);
                 motorFR.setTargetPosition(-distance - 50);
                 motorBR.setTargetPosition(-distance - 50);
                 speed(0.8);
-                
+
                 //speedIncrementFast(distance - (Math.abs(motorFL.getCurrentPosition())));
 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -473,16 +473,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("turn_right")) {
+        } else if (direction.equals("turn_right")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(distance + 50);
                 motorBL.setTargetPosition(distance + 50);
                 motorFR.setTargetPosition(distance + 50);
                 motorBR.setTargetPosition(distance + 50);
                 speed(0.8);
-                
+
                 //speedIncrementFast(distance - (Math.abs(motorFL.getCurrentPosition())));
 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -493,24 +491,22 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("stop")) {
+        } else if (direction.equals("stop")) {
             motorFL.setTargetPosition(motorFL.getCurrentPosition());
             motorBL.setTargetPosition(motorBL.getCurrentPosition());
             motorFR.setTargetPosition(motorFR.getCurrentPosition());
             motorBR.setTargetPosition(motorBR.getCurrentPosition());
             speed(0);
         }
-        
+
         changeRunMode(DcMotor.RunMode.RUN_TO_POSITION);
-        
+
         if (!(Math.abs(motorFL.getCurrentPosition()) < distance)) {
             counter++;
             changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
     }
-    
+
     //Function to slow down the robot as it approaches its destination
     public void speedIncrementFast(int distance) {
         if (distance < 100) speed = .2;
@@ -523,9 +519,9 @@ public class AutonMethods_Copy {
         else if (distance < 1000) speed = .9;
         else speed = 1;
     }
-    
+
     //Function to move the robot in any direction (large buffer)
-    public void motorsBuff (String direction, int distance) {
+    public void motorsBuff(String direction, int distance) {
         if (direction.equals("front")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(-distance - 100);
@@ -533,7 +529,7 @@ public class AutonMethods_Copy {
                 motorFR.setTargetPosition(distance + 100);
                 motorBR.setTargetPosition(distance + 100);
                 speed(speed);
-                
+
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
                 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -544,16 +540,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("back")) {
+        } else if (direction.equals("back")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(distance + 100);
                 motorBL.setTargetPosition(distance + 100);
                 motorFR.setTargetPosition(-distance - 100);
                 motorBR.setTargetPosition(-distance - 100);
                 speed(speed);
-                
+
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
                 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -564,16 +558,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("right")) {
+        } else if (direction.equals("right")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(distance + 100);
                 motorBL.setTargetPosition(-distance - 100);
                 motorFR.setTargetPosition(distance + 100);
                 motorBR.setTargetPosition(-distance - 100);
                 speed(speed * 1.2);
-                
+
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
                 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -584,16 +576,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("left")) {
+        } else if (direction.equals("left")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(-distance - 100);
                 motorBL.setTargetPosition(distance + 100);
                 motorFR.setTargetPosition(-distance - 100);
                 motorBR.setTargetPosition(distance + 100);
                 speed(speed * 1.2);
-                
+
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -604,16 +594,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("turn_left")) {
+        } else if (direction.equals("turn_left")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(-distance - 100);
                 motorBL.setTargetPosition(-distance - 100);
                 motorFR.setTargetPosition(-distance - 100);
                 motorBR.setTargetPosition(-distance - 100);
                 speed(1);
-                
+
                 //speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -624,16 +612,14 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("turn_right")) {
+        } else if (direction.equals("turn_right")) {
             if ((Math.abs(motorFL.getCurrentPosition()) < distance)) {
                 motorFL.setTargetPosition(distance + 100);
                 motorBL.setTargetPosition(distance + 100);
                 motorFR.setTargetPosition(distance + 100);
                 motorBR.setTargetPosition(distance + 100);
                 speed(1);
-                
+
                 //speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
 
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
@@ -644,24 +630,22 @@ public class AutonMethods_Copy {
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
-        }
-        
-        else if (direction.equals("stop")) {
+        } else if (direction.equals("stop")) {
             motorFL.setTargetPosition(0);
             motorBL.setTargetPosition(0);
             motorFR.setTargetPosition(0);
             motorBR.setTargetPosition(0);
             speed(0);
         }
-        
+
         changeRunMode(DcMotor.RunMode.RUN_TO_POSITION);
-        
+
         if (!(Math.abs(motorFL.getCurrentPosition()) < distance)) {
             counter++;
             changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
     }
-    
+
     //Function to change the run mode of all the motors
     public static void changeRunMode(DcMotor.RunMode runMode) {
         motorFL.setMode(runMode);
@@ -669,7 +653,7 @@ public class AutonMethods_Copy {
         motorFR.setMode(runMode);
         motorBR.setMode(runMode);
     }
-    
+
     //Function to turn with the imu
     public void runWithImu(int angle, String direction) {
         if (angle < Math.abs(imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle)) {
@@ -679,80 +663,69 @@ public class AutonMethods_Copy {
                 motorFR.setTargetPosition(motorFR.getCurrentPosition() + 400);
                 motorBR.setTargetPosition(motorBR.getCurrentPosition() + 400);
                 speed(.3);
-            }
-            
-            else if (direction.equals("turn_left")) {
+            } else if (direction.equals("turn_left")) {
                 motorFL.setTargetPosition(motorFL.getCurrentPosition() - 400);
                 motorBL.setTargetPosition(motorBL.getCurrentPosition() - 400);
                 motorFR.setTargetPosition(motorFR.getCurrentPosition() - 400);
                 motorBR.setTargetPosition(motorBR.getCurrentPosition() - 400);
                 speed(.3);
             }
-        }
-        
-        else {
+        } else {
             motorFL.setTargetPosition(motorFL.getCurrentPosition());
             motorBL.setTargetPosition(motorBL.getCurrentPosition());
             motorFR.setTargetPosition(motorFR.getCurrentPosition());
             motorBR.setTargetPosition(motorBR.getCurrentPosition());
             speed(0);
-            
+
             counter++;
             changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
     }
-    
+
     //Function to run until the robot detects a black block
     public void runTillColor(String direction) {
         if (direction.equals("right")) {
             Color.RGBToHSV((int) (sensorColor1.red() * 255),
-                (int) (sensorColor1.green() * 255),
-                (int) (sensorColor1.blue() * 255),
-                hsvValues1);
-            
+                    (int) (sensorColor1.green() * 255),
+                    (int) (sensorColor1.blue() * 255),
+                    hsvValues1);
+
             if (hsvValues1[0] < 100) {
                 motors("right", 200 + Math.abs(motorFL.getCurrentPosition()));
                 ColorEncoder++;
-            }
-            
-            else {
+            } else {
                 motors("stop", 50);
                 changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 counter++;
             }
-        }
-        
-        else if (direction.equals("left")) {
+        } else if (direction.equals("left")) {
             Color.RGBToHSV((int) (sensorColor1.red() * 255),
-                (int) (sensorColor1.green() * 255),
-                (int) (sensorColor1.blue() * 255),
-                hsvValues1);
-            
+                    (int) (sensorColor1.green() * 255),
+                    (int) (sensorColor1.blue() * 255),
+                    hsvValues1);
+
             if (hsvValues1[0] < 100) {
                 motors("left", 200 + Math.abs(motorFL.getCurrentPosition()));
                 ColorEncoder++;
-            }
-            
-            else {
+            } else {
                 motors("stop", 50);
                 changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             }
         }
     }
-    
+
     //Function to have the robot sleep
     public void sleep(long sleep) {
         try {
             Thread.sleep(sleep);
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             tele.addLine("Failed Sleep");
             tele.update();
         }
-        
+
         counter++;
     }
-    
+
     //Function to open or close the clamp
    /* public void servoClamp() {
         if (clampDown) {
@@ -768,27 +741,25 @@ public class AutonMethods_Copy {
         clampDown = !clampDown;
         counter++;
     }*/
-    
+
     //Function to turn on the intake
     public void intake(String direction) {
         if (direction.equals("in")) {
             intakeFL.setPower(-1);
-        }
-        
-        else {
+        } else {
             intakeFL.setPower(1);
         }
-        
+
         counter++;
     }
-    
+
     //Function to turn off the intake
     public void intakeOff() {
         intakeFL.setPower(0);
-        
+
         counter++;
     }
-    
+
     //Function to raise or lower the clamp for the block
    /* public void skyClamp(String direction) {
         if (direction.equals("up")) {
@@ -801,12 +772,12 @@ public class AutonMethods_Copy {
         
         counter++;
     }*/
-    
+
     //Function to raise or lower the clamp for the block
     public void marker() {
         marker.setPosition(.5);
     }
-    
+
     //Function to find which block is black
    /* public void checkBlocks(String side) {
         Color.RGBToHSV((int) (sensorColor1.red() * SCALE_FACTOR),
