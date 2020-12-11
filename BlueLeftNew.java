@@ -40,20 +40,37 @@ public class BlueLeftNew extends OpMode {
 
     @Override
     public void loop() {
-
+int rings = 0;
         switch (robot.counter) {
             case 0:
                 robot.drive(2 * feet, 2 * feet, 5);
                 robot.counter++;
                 break;
             case 1:
-                robot.drive(2 * feet, 0, 5);
+                rings = robot.distance();
+                robot.counter++;
                 break;
             case 2:
-                robot.shoot();
+                robot.drive(2 * feet, 0, 5);
+                robot.counter++;
                 break;
             case 3:
-                int rings = robot.distance();
+                robot.shoot();
+                robot.counter++;
+                break;
+            case 4:
+                robot.drive(1*feet, 0, 5);
+                robot.counter++;
+                break;
+            case 5:
+                robot.shoot();
+                robot.counter++;
+                break;
+            case 6:
+                robot.drive(1*feet, 0, 5);
+                robot.counter++;
+                break;
+            case 7:
                 if (rings == 4) {
                     robot.drive(-1 * feet, 4 * feet, 5);
                 } else if (rings == 1) {
@@ -61,7 +78,10 @@ public class BlueLeftNew extends OpMode {
                 } else {
                     robot.drive(-1 * feet, 1 * feet, 5);
                 }
+                robot.counter++;
                 break;
+            case 8:
+
 
 
                 telemetry.addData("Case:", robot.counter);

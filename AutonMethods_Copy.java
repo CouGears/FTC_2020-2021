@@ -185,12 +185,15 @@ public class AutonMethods_Copy {
 
     }
 
-    public void arm(int pos) {
+    public void arm(int onOff) {
         while (motorFR.isBusy() || motorFL.isBusy()) ;
-        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        arm.setTargetPosition(-pos);
-        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        arm.setPower(1);
+        if (onOff == 1) arm.setPower(1);
+        else if (onOff == 0) arm.setPower(0);
+        else if (onOff == -1) arm.setPower(-1);
+//        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        arm.setTargetPosition(-pos);
+//        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        arm.setPower(1);
 
     }
 
@@ -203,19 +206,18 @@ public class AutonMethods_Copy {
         shooterServo.setPosition(0);
         shooter.setPower(0);
     }
-    public int distance(){
+
+    public int distance() {
         int rings = 0;
         if (bottomSensor.getDistance(DistanceUnit.CM) < 3) {
             telemetry.addData("One ring", bottomSensor.getDistance(DistanceUnit.CM));
             telemetry.update();
             rings = 1;
-        }
-        else if(bottomSensor.getDistance(DistanceUnit.CM) < 3 && bottomSensor.getDistance(DistanceUnit.CM) < 3) {
+        } else if (bottomSensor.getDistance(DistanceUnit.CM) < 3 && bottomSensor.getDistance(DistanceUnit.CM) < 3) {
             telemetry.addData("Four rings", topSensor.getDistance(DistanceUnit.CM));
             telemetry.update();
             rings = 4;
-        }
-        else {
+        } else {
             telemetry.addData("No rings", bottomSensor.getDistance(DistanceUnit.CM));
             telemetry.update();
             rings = 0;
