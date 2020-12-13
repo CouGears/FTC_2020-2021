@@ -122,7 +122,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 scissorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 frontScissor.setPosition(.4);
                 competition.sleep(150);
-                while(scissorMotor.GetCurrentPosition() < 430){
+                while(scissorMotor.getCurrentPosition() < 430){
                     scissorMotor.setPower(1);
                 }
                 scissorMotor.setPower(0);
