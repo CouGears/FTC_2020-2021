@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="hello there">
+    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="finish CompetitionDriving_Copy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompetitionDriving_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/CompetitionDriving_Copy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlueLeftNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueLeftNew.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +37,14 @@
       <option name="presentableId" value="Default" />
       <updated>1607552139473</updated>
     </task>
+    <task id="LOCAL-00001" summary="finish CompetitionDriving_Copy">
+      <created>1607887065040</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607887065040</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -53,6 +61,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hello there" />
-    <option name="LAST_COMMIT_MESSAGE" value="hello there" />
+    <MESSAGE value="finish CompetitionDriving_Copy" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish CompetitionDriving_Copy" />
   </component>
 </project>
