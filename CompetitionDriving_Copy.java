@@ -119,17 +119,20 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             }
 
             if(gamepad2.a && s == false) {
+                scissorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 frontScissor.setPosition(.4);
                 competition.sleep(150);
-                scissorMotor.setTargetPosition(420);
-                scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                scissorMotor.setPower(1);
+                while(scissorMotor.GetCurrentPosition() < 430){
+                    scissorMotor.setPower(1);
+                }
+                scissorMotor.setPower(0);
                 telemetry.addData("Status", "x");
 
                 telemetry.update();
                 s = true;
             }
             else if(gamepad2.b && s == true) {
+                scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 frontScissor.setPosition(.1);
                 scissorMotor.setTargetPosition(0);
                 scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
