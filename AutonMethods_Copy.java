@@ -46,7 +46,7 @@ public class AutonMethods_Copy {
 
     //Declare and initial variables
     double FRtpos, BRtpos, FLtpos, BLtpos;
-    private static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, lifter, arm, scissorMotor;
+    private static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private static Servo shooterServo, armServo, marker, frontScissor, backScissor;
     private static DistanceSensor topSensor, bottomSensor;
     private static ColorSensor sensorColor1, sensorColor2;
@@ -75,31 +75,33 @@ public class AutonMethods_Copy {
         intakeFL = map.get(DcMotor.class, "intake");
         arm = map.get(DcMotor.class, "arm");
         shooter = map.get(DcMotor.class, "shooter");
-        lifter = map.get(DcMotor.class, "lifter");
+
         armServo = map.get(Servo.class, "armServo");
         shooterServo = map.get(Servo.class, "shooterServo");
-        //note - this is according to front orientation - front is in the front and back is in the back 
+        //note - this is according to front orientation - front is in the front and back is in the back
         //also these should be configured accordingly
         scissorMotor = map.get(DcMotor.class, "scissorMotor");
         frontScissor = map.get(Servo.class, "frontScissor");
 
-        bottomSensor = hardwareMap.get(DistanceSensor.class, "bottomSensor");
-        topSensor = hardwareMap.get(DistanceSensor.class, "topSensor");
+        bottomSensor = map.get(DistanceSensor.class, "bottomSensor");
+        topSensor = map.get(DistanceSensor.class, "topSensor");
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         intakeFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        scissorMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         motorFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorFR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         intakeFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        lifter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         motorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -107,7 +109,7 @@ public class AutonMethods_Copy {
         motorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         intakeFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        lifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         scissorMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
         motorBL.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -115,30 +117,31 @@ public class AutonMethods_Copy {
         motorBR.setDirection(DcMotorSimple.Direction.FORWARD);
         intakeFL.setDirection(DcMotorSimple.Direction.FORWARD);
         arm.setDirection(DcMotorSimple.Direction.FORWARD);
-        lifter.setDirection(DcMotorSimple.Direction.FORWARD);
+
 
         motorFL.setTargetPosition(0);
         motorBL.setTargetPosition(0);
         motorFR.setTargetPosition(0);
         motorBR.setTargetPosition(0);
-        lifter.setTargetPosition(0);
+
+        scissorMotor.setTargetPosition(0);
         int relativeLayoutId = map.appContext.getResources().getIdentifier("RelativeLayout", "id", map.appContext.getPackageName());
 
-        tele.addData(">", "Gyro Calibrating. Do Not Move!");
-        tele.update();
+        // tele.addData(">", "Gyro Calibrating. Do Not Move!");
+        // tele.update();
     }
 
     //Function to move the robot in any direction
     public void drive(double x, double y, double spee) {
         while (motorFR.isBusy() || motorFL.isBusy()) ;
         changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        FRtpos = x + y;
-        BRtpos = x - y;
-        FLtpos = x - y;
-        BLtpos = x + y;
+        FRtpos = y - x;
+        BRtpos = y + x;
+        FLtpos = y + x;
+        BLtpos = y - x;
         motorFL.setTargetPosition(-(int) FLtpos);
         motorBL.setTargetPosition((int) BLtpos);
-        motorFR.setTargetPosition(-(int) FRtpos);
+        motorFR.setTargetPosition((int) FRtpos);
         motorBR.setTargetPosition((int) BRtpos);
         changeRunMode(DcMotor.RunMode.RUN_TO_POSITION);
         speed(spee);
@@ -149,28 +152,23 @@ public class AutonMethods_Copy {
     //takes state
     //state of false resets
     //state of true lifts
-    public void scissorServ(boolean state) {
-
-        if (state == true) {
-            frontScissor.setPosition(.75);
-            sleep(100);
-            scissorMotor.setPower(-1);
-            sleep(160);
-            scissorMotor.setPower(0);
-            telemetry.addData("Status", "y");
-        } else {
-            frontScissor.setPosition(1);
-            sleep(100);
-            scissorMotor.setPower(1);
-            sleep(160);
-            scissorMotor.setPower(0);
-            telemetry.addData("Status", "x");
-
-            telemetry.update();
-            s = true;
-        }
+    public void scissorServUp() {
+        frontScissor.setPosition(.4);
+        frontScissor.setPosition(.4);
+        sleep(150);
+        scissorMotor.setTargetPosition(390);
+        scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        scissorMotor.setPower(.3);
 
     }
+
+    public void scissorServDown(){
+        frontScissor.setPosition(.1);
+        scissorMotor.setTargetPosition(0);
+        scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        scissorMotor.setPower(1);
+    }
+
 
     public void shootServ(double pos) {
         while (motorFR.isBusy() || motorFL.isBusy()) ;
@@ -197,29 +195,28 @@ public class AutonMethods_Copy {
 
     }
 
-    public void shoot() {
+    public void shoot(boolean onOff) {
         while (motorFR.isBusy() || motorFL.isBusy()) ;
-        shooter.setPower(1);
-        sleep(1000);
-        shooterServo.setPosition(1);
-        sleep(250);
-        shooterServo.setPosition(0);
-        shooter.setPower(0);
+        if(onOff) shooter.setPower(1);
+        else shooter.setPower(0);
+
+
+
     }
 
     public int distance() {
         int rings = 0;
         if (bottomSensor.getDistance(DistanceUnit.CM) < 3) {
-            telemetry.addData("One ring", bottomSensor.getDistance(DistanceUnit.CM));
-            telemetry.update();
+            // tele.addData("One ring", bottomSensor.getDistance(DistanceUnit.CM));
+            // tele.update();
             rings = 1;
         } else if (bottomSensor.getDistance(DistanceUnit.CM) < 3 && bottomSensor.getDistance(DistanceUnit.CM) < 3) {
-            telemetry.addData("Four rings", topSensor.getDistance(DistanceUnit.CM));
-            telemetry.update();
+            // tele.addData("Four rings", topSensor.getDistance(DistanceUnit.CM));
+            // tele.update();
             rings = 4;
         } else {
-            telemetry.addData("No rings", bottomSensor.getDistance(DistanceUnit.CM));
-            telemetry.update();
+            // tele.addData("No rings", bottomSensor.getDistance(DistanceUnit.CM));
+            // tele.update();
             rings = 0;
         }
         return rings;

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="autonMethods" />
+    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="autonMethods">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutonMethods_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/AutonMethods_Copy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlueLeftNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueLeftNew.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607894193870</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="auton">
+      <created>1607918479766</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1607918479766</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -88,6 +99,7 @@
     <MESSAGE value="hello there" />
     <MESSAGE value="finish CompetitionDriving_Copy" />
     <MESSAGE value="autonMethods" />
-    <option name="LAST_COMMIT_MESSAGE" value="autonMethods" />
+    <MESSAGE value="auton" />
+    <option name="LAST_COMMIT_MESSAGE" value="auton" />
   </component>
 </project>
