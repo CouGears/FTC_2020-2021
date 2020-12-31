@@ -135,6 +135,10 @@ public class AutonMethods_Copy {
     public void drive(double x, double y, double spee) {
         while (motorFR.isBusy() || motorFL.isBusy()) ;
         changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // motorFL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        // motorBL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        // motorBR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        // motorFR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         FRtpos = y - x;
         BRtpos = y + x;
         FLtpos = y + x;
@@ -144,6 +148,18 @@ public class AutonMethods_Copy {
         motorFR.setTargetPosition((int) FRtpos);
         motorBR.setTargetPosition((int) BRtpos);
         changeRunMode(DcMotor.RunMode.RUN_TO_POSITION);
+        // while(Math.abs(motorFL.getCurrentPosition()) < Math.abs((int)FLtpos)){
+        //     motorFL.setPower(-FLtpos/ Math.abs(FLtpos));
+        // }
+        // while(Math.abs(motorBL.getCurrentPosition()) < Math.abs((int)BLtpos)){
+        //     motorBL.setPower(BLtpos/ Math.abs(BLtpos));
+        // }
+        // while(Math.abs(motorFR.getCurrentPosition()) < Math.abs((int)FRtpos)){
+        //     motorFR.setPower(FRtpos/ Math.abs(FRtpos));
+        // }
+        // while(Math.abs(motorBR.getCurrentPosition()) < Math.abs((int)BRtpos)){
+        //     motorBR.setPower(BRtpos/ Math.abs(BRtpos));
+        // }
         speed(spee);
 
 
@@ -197,8 +213,11 @@ public class AutonMethods_Copy {
 
     public void shoot(boolean onOff) {
         while (motorFR.isBusy() || motorFL.isBusy()) ;
-        if(onOff) shooter.setPower(1);
-        else shooter.setPower(0);
+        if(onOff){
+            shooter.setPower(1);
+        } else {
+            shooter.setPower(0);
+        }
 
 
 
@@ -241,12 +260,12 @@ public class AutonMethods_Copy {
                 speed(speed);
 
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
-                
+
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -259,12 +278,12 @@ public class AutonMethods_Copy {
                 speed(speed);
 
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
-                
+
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -277,12 +296,12 @@ public class AutonMethods_Copy {
                 speed(speed * 1.2);
 
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
-                
+
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -300,7 +319,7 @@ public class AutonMethods_Copy {
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -318,7 +337,7 @@ public class AutonMethods_Copy {
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -336,7 +355,7 @@ public class AutonMethods_Copy {
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -391,12 +410,12 @@ public class AutonMethods_Copy {
                 speed(speed);
 
                 speedIncrementFast(distance - (Math.abs(motorFL.getCurrentPosition())));
-                
+
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -409,12 +428,12 @@ public class AutonMethods_Copy {
                 speed(speed);
 
                 speedIncrementFast(distance - (Math.abs(motorFL.getCurrentPosition())));
-                
+
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -427,12 +446,12 @@ public class AutonMethods_Copy {
                 speed(speed * 1.2);
 
                 speedIncrementFast(distance - (Math.abs(motorFL.getCurrentPosition())));
-                
+
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -450,7 +469,7 @@ public class AutonMethods_Copy {
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -468,7 +487,7 @@ public class AutonMethods_Copy {
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -486,7 +505,7 @@ public class AutonMethods_Copy {
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -530,12 +549,12 @@ public class AutonMethods_Copy {
                 speed(speed);
 
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
-                
+
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -548,12 +567,12 @@ public class AutonMethods_Copy {
                 speed(speed);
 
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
-                
+
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -566,12 +585,12 @@ public class AutonMethods_Copy {
                 speed(speed * 1.2);
 
                 speedIncrement(distance - (Math.abs(motorFL.getCurrentPosition())));
-                
+
                 /*Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -589,7 +608,7 @@ public class AutonMethods_Copy {
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -607,7 +626,7 @@ public class AutonMethods_Copy {
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -625,7 +644,7 @@ public class AutonMethods_Copy {
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
-                
+
                 telemetry.addData("Hue", hsvValues[0]);
                 telemetry.update();*/
             }
@@ -722,7 +741,7 @@ public class AutonMethods_Copy {
             tele.update();
         }
 
-        counter++;
+
     }
 
     //Function to open or close the clamp

@@ -69,37 +69,19 @@ public class BlueLeftNew extends OpMode {
             //         break;
 
             case 0:
-                robot.drive(6*feet,3*feet, 5);
+                robot.drive(6*feet,3*feet, 1);
                 robot.counter++;
                 break;
             case 1:
                 robot.shoot(true);
-                robot.sleep(2000);
-
-
+                runtime.reset();
+                while(runtime.seconds()<2);
                 robot.counter++;
                 break;
             case 2:
-
                 robot.shoot(false);
                 robot.counter++;
                 break;
-            //     case 2:
-            //           robot.drive(0,-2*feet, 5);
-            //         robot.counter++;
-            //         break;
-            //     case 3:
-            //         robot.shoot();
-            //         robot.counter++;
-            //         break;
-            //     case 4:
-            //             robot.scissorServDown();
-            //             robot.counter++;
-            //             break;
-            //  case 5:
-            //      robot.drive(1*feet, 0, 5);
-            //      robot.counter++;
-            //      break;
 
             /*case 1:
                 rings = robot.distance();
