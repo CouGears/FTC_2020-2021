@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.robot.Robot;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
@@ -69,16 +70,19 @@ public class BlueLeftNew extends OpMode {
             //         break;
 
             case 0:
-                robot.drive(6*feet,3*feet, 1);
+                robot.drive(6*feet,0*feet, 1);
                 robot.counter++;
                 break;
             case 1:
                 robot.shoot(true);
-                runtime.reset();
-                while(runtime.seconds()<2);
                 robot.counter++;
                 break;
             case 2:
+                runtime.reset();
+                while(runtime.seconds()<5);
+                robot.counter++;
+                break;
+            case 3:
                 robot.shoot(false);
                 robot.counter++;
                 break;
