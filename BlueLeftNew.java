@@ -29,7 +29,7 @@ public class BlueLeftNew extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
     private DigitalChannel DigChannel;
     AutonMethods_Copy robot = new AutonMethods_Copy();
-
+    int diamond = 0;
     public void init() {
         robot.init(hardwareMap, telemetry, false);
         telemetry.addData("Status", "Initialized");
@@ -47,84 +47,134 @@ public class BlueLeftNew extends OpMode {
     public void loop() {
         int rings = 0;
         switch (robot.counter) {
+
             // case 0:
-            //     robot.arm(1);
-            //     robot.sleep(250);
-            //     robot.arm(0);
+            //     robot.drive(6*feet,0*feet, 1);
             //     robot.counter++;
             //     break;
             // case 1:
-            //     robot.armServ(.5);
+            //     robot.shoot(true);
             //     robot.counter++;
             //     break;
             // case 2:
-            //     robot.arm(1);
-            //     robot.sleep(300);
-            //     robot.arm(0);
+            //     runtime.reset();
+            //     while(runtime.seconds()<5);
+            //     robot.counter++;
+            //     break;
+            // case 3:
+            //     robot.shoot(false);
             //     robot.counter++;
             //     break;
 
-            // case 0:
-            //       robot.scissorServUp();
-            //         robot.counter++;
-            //         break;
-
             case 0:
-                robot.drive(6*feet,0*feet, 1);
+                robot.drive(1*feet,1*feet,1);
                 robot.counter++;
                 break;
             case 1:
+                diamond = robot.distance();
+                robot.counter++;
+                break;
+            case 2:
+                robot.drive(3*feet, -1*feet,1);
+                robot.counter++;
+                break;
+            case 3:
                 robot.shoot(true);
                 robot.counter++;
                 break;
-            case 2:
-                runtime.reset();
-                while(runtime.seconds()<5);
-                robot.counter++;
-                break;
-            case 3:
-                robot.shoot(false);
-                robot.counter++;
-                break;
-
-            /*case 1:
-                rings = robot.distance();
-                robot.counter++;
-                break;*/
-            /*case 1:
-                robot.drive(-2 * feet, 0, 5);
-                robot.counter++;
-                break;
-            case 2:
-                robot.shoot();
-                robot.counter++;
-                break;
-            case 3:
-                robot.drive(-1 * feet, 0, 5);
-                robot.counter++;
-                break;
             case 4:
-                robot.shoot();
+                runtime.reset();
+                while(runtime.seconds()<2);
                 robot.counter++;
                 break;
             case 5:
-                robot.drive(-1 * feet, 0, 5);
+                robot.shootServ(.8);
                 robot.counter++;
-                break;*/
-            /*case 7:
-                if (rings == 4) {
-                    robot.drive(-1 * feet, 4 * feet, 5);
-                } else if (rings == 1) {
-                    robot.drive(0, 3 * feet, 5);
-                } else {
-                    robot.drive(-1 * feet, 1 * feet, 5);
+                break;
+            case 6:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 7:
+                robot.shootServ(0);
+                robot.counter++;
+                break;
+            case 8:
+                robot.drive(0,5*inch, 1);
+                robot.counter++;
+                break;
+            case 9:
+                robot.shootServ(.8);
+                robot.counter++;
+                break;
+            case 10:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 11:
+                robot.shootServ(0);
+                robot.counter++;
+                break;
+
+            case 12:
+                robot.drive(0,5*inch, 1);
+                robot.counter++;
+                break;
+
+            case 13:
+                robot.shootServ(.8);
+                robot.counter++;
+                break;
+            case 14:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 15:
+                robot.shootServ(0);
+                robot.counter++;
+                break;
+
+            case 16:
+                robot.drive(0,5*inch, 1);
+                robot.counter++;
+                break;
+
+            case 17:
+                robot.shootServ(.8);
+                robot.counter++;
+                break;
+            case 18:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 19:
+                robot.shootServ(0);
+                robot.counter++;
+                break;
+            case 20:
+                robot.shoot(false);
+                robot.counter++;
+                break;
+            case 21:
+                robot.drive(0,5*inch, 1);
+                robot.counter++;
+                break;
+            case 22:
+                if(diamond == 1){
+                    robot.drive(0,-1*feet,1);
+                }
+                else if(diamond == 4){
+                    robot.drive(2*feet,0,1);
+                }
+                else if(diamond == 0){
+                    robot.drive(3*feet,-3*feet,1);
                 }
                 robot.counter++;
-                break;*/
-            // case 11:
-            //     robot.armServ(1);
-            //     robot.counter++;
-            //     break;
+                break;
         }
     }
 }
