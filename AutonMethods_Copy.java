@@ -75,6 +75,8 @@ public class AutonMethods_Copy {
         intakeFL = map.get(DcMotor.class, "intake");
         arm = map.get(DcMotor.class, "arm");
         shooter = map.get(DcMotor.class, "shooter");
+        bottomSensor = map.get(DistanceSensor.class, "bottomSensor");
+        topSensor = map.get(DistanceSensor.class, "topSensor");
 
         armServo = map.get(Servo.class, "armServo");
         shooterServo = map.get(Servo.class, "shooterServo");
@@ -225,11 +227,11 @@ public class AutonMethods_Copy {
 
     public int distance() {
         int rings = 0;
-        if (bottomSensor.getDistance(DistanceUnit.CM) < 3) {
+        if (bottomSensor.getDistance(DistanceUnit.CM) < 24 && topSensor.getDistance(DistanceUnit.CM) > 24) {
             // tele.addData("One ring", bottomSensor.getDistance(DistanceUnit.CM));
             // tele.update();
             rings = 1;
-        } else if (bottomSensor.getDistance(DistanceUnit.CM) < 3 && bottomSensor.getDistance(DistanceUnit.CM) < 3) {
+        } else if (bottomSensor.getDistance(DistanceUnit.CM) < 24 && bottomSensor.getDistance(DistanceUnit.CM) < 24) {
             // tele.addData("Four rings", topSensor.getDistance(DistanceUnit.CM));
             // tele.update();
             rings = 4;
