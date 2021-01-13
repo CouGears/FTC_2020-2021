@@ -48,7 +48,7 @@ public class AutonMethods_Copy {
     double FRtpos, BRtpos, FLtpos, BLtpos;
     private static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private static Servo shooterServo, armServo, marker, frontScissor, backScissor;
-    private static DistanceSensor topSensor, bottomSensor;
+    public static DistanceSensor topSensor, bottomSensor;
     private static ColorSensor sensorColor1, sensorColor2;
     HardwareMap map;
     Telemetry tele;
@@ -179,7 +179,6 @@ public class AutonMethods_Copy {
             scissorMotor.setPower(1);
         }
         scissorMotor.setPower(0);
-        telemetry.addData("Status", "x");
 
     }
 
