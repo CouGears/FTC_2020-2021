@@ -83,50 +83,33 @@ public class BlueLeftNew extends OpMode {
                 robot.arm(0);
                 robot.counter++;
                 break;
-            case 0:
+            case 4:
                 robot.drive(1.5*feet,-3*inch,1);
                 robot.counter++;
                 break;
-            case 1:
+            case 5:
                 runtime.reset();
                 while(runtime.seconds()<1);
                 robot.counter++;
                 break;
-            case 2:
+            case 6:
                 diamond = robot.distance();
                 telemetry.addData("rings:", diamond);
                 telemetry.update();
                 robot.counter++;
                 break;
 
-            case 3:
+            case 7:
                 robot.drive(3*feet, 0,1);
                 robot.counter++;
                 break;
-            case 4:
+            case 8:
                 robot.shoot(true);
                 robot.counter++;
                 break;
-            case 5:
+            case 9:
                 runtime.reset();
                 while(runtime.seconds()<2);
-                robot.counter++;
-                break;
-            case 6:
-                robot.shootServ(.8);
-                robot.counter++;
-                break;
-            case 7:
-                runtime.reset();
-                while(runtime.seconds()<1);
-                robot.counter++;
-                break;
-            case 8:
-                robot.shootServ(0);
-                robot.counter++;
-                break;
-            case 9:
-                robot.drive(0,5*inch, 1);
                 robot.counter++;
                 break;
             case 10:
@@ -142,12 +125,10 @@ public class BlueLeftNew extends OpMode {
                 robot.shootServ(0);
                 robot.counter++;
                 break;
-
             case 13:
                 robot.drive(0,5*inch, 1);
                 robot.counter++;
                 break;
-
             case 14:
                 robot.shootServ(.8);
                 robot.counter++;
@@ -180,15 +161,34 @@ public class BlueLeftNew extends OpMode {
                 robot.shootServ(0);
                 robot.counter++;
                 break;
+
             case 21:
-                robot.shoot(false);
-                robot.counter++;
-                break;
-            case 22:
                 robot.drive(0,5*inch, 1);
                 robot.counter++;
                 break;
+
+            case 22:
+                robot.shootServ(.8);
+                robot.counter++;
+                break;
             case 23:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 24:
+                robot.shootServ(0);
+                robot.counter++;
+                break;
+            case 25:
+                robot.shoot(false);
+                robot.counter++;
+                break;
+            case 26:
+                robot.drive(0,5*inch, 1);
+                robot.counter++;
+                break;
+            case 27:
                 if(diamond == 1){
                     robot.drive(0,-1*feet,1);
                 }
@@ -200,7 +200,20 @@ public class BlueLeftNew extends OpMode {
                 }
                 robot.counter++;
                 break;
-
+            case 28:
+                robot.arm(-1);
+                robot.counter++;
+                break;
+            case 29:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 30:
+                robot.arm(0);
+                robot.armServ(1);
+                robot.counter++;
+                break;
         }
     }
 }
