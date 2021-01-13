@@ -171,16 +171,20 @@ public class AutonMethods_Copy {
     //state of false resets
     //state of true lifts
     public void scissorServUp() {
-        frontScissor.setPosition(.4);
+
+        scissorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontScissor.setPosition(.4);
         sleep(150);
-        scissorMotor.setTargetPosition(390);
-        scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        scissorMotor.setPower(.3);
+        while(scissorMotor.getCurrentPosition() < 430){
+            scissorMotor.setPower(1);
+        }
+        scissorMotor.setPower(0);
+        telemetry.addData("Status", "x");
 
     }
 
     public void scissorServDown(){
+        scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontScissor.setPosition(.1);
         scissorMotor.setTargetPosition(0);
         scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -220,9 +224,6 @@ public class AutonMethods_Copy {
         } else {
             shooter.setPower(0);
         }
-
-
-
     }
 
     public int distance() {
