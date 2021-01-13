@@ -142,12 +142,10 @@ public class BlueLeftNew extends OpMode {
                 robot.shootServ(0);
                 robot.counter++;
                 break;
-
             case 17:
                 robot.drive(0,5*inch, 1);
                 robot.counter++;
                 break;
-
             case 18:
                 robot.shootServ(.8);
                 robot.counter++;
@@ -161,12 +159,10 @@ public class BlueLeftNew extends OpMode {
                 robot.shootServ(0);
                 robot.counter++;
                 break;
-
             case 21:
                 robot.drive(0,5*inch, 1);
                 robot.counter++;
                 break;
-
             case 22:
                 robot.shootServ(.8);
                 robot.counter++;
