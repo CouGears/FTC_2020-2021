@@ -103,7 +103,7 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 8:
-                robot.drive(3*feet, 0,1);
+                robot.drive(3.08399*feet, 1*feet,1);
                 robot.counter++;
                 break;
             case 9:
@@ -189,13 +189,13 @@ public class BlueLeftNew extends OpMode {
                 break;
             case 28:
                 if(diamond == 1){
-                    robot.drive(0,-1*feet,1);
+                    robot.drive(0,-4*feet,1);
                 }
                 else if(diamond == 4){
-                    robot.drive(2*feet,0,1);
+                    robot.drive(2*feet,-3*feet,1);
                 }
                 else if(diamond == 0){
-                    robot.drive(3*feet,-3*feet,1);
+                    robot.drive(4*feet,-4*feet,1);
                 }
                 robot.counter++;
                 break;
