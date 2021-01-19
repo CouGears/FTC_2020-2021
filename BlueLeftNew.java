@@ -195,39 +195,34 @@ public class BlueLeftNew extends OpMode {
                     robot.drive(0,-4*feet,1);
                 }
                 else if(diamond == 4){
-                    robot.drive(2*feet,-3*feet,1);
+                    robot.drive(2*feet,-2*feet,1);
                 }
                 else if(diamond == 0){
-                    robot.drive(4*feet,-4*feet,1);
+                    robot.drive(4*feet,-3.5*feet,1);
                 }
                 robot.counter++;
                 break;
             case 29:
-                robot.arm(1);
+                robot.armServ(1);
                 robot.counter++;
                 break;
             case 30:
                 runtime.reset();
-                while(runtime.seconds()<0.05);
+                while(runtime.seconds()<1);
                 robot.counter++;
                 break;
             case 31:
-                robot.arm(0);
-                robot.armServ(1);
-                robot.counter++;
-                break;
-            case 32:
                 robot.scissorServDown();
                 robot.counter++;
                 break;
-            case 33:
+            case 32:
                 if(diamond ==1){
                 }
                 else if (diamond == 4){
-                    robot.drive(-2*feet,0*feet,1);
+                    robot.drive(-1.5*feet,0*feet,1);
                 }
                 else if (diamond == 0) {
-                    robot.drive(-4*feet,0*feet,1);
+                    robot.drive(-3*feet,0*feet,1);
                 }
                 robot.counter++;
                 break;

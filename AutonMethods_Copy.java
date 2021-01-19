@@ -1622,6 +1622,7 @@ public class AutonMethods_Copy {
     //Function to acess the first color sensor's value
     public float color2() {
         Color.RGBToHSV((int) (sensorColor2.red() * SCALE_FACTOR),
+        Color.RGBToHSV((int) (sensorColor2.red() * SCALE_FACTOR),
             (int) (sensorColor2.green() * SCALE_FACTOR),
             (int) (sensorColor2.blue() * SCALE_FACTOR),
             hsvValues2);
