@@ -49,23 +49,6 @@ public class BlueLeftNew extends OpMode {
         int rings = 0;
         switch (robot.counter) {
 
-            // case 0:
-            //     robot.drive(6*feet,0*feet, 1);
-            //     robot.counter++;
-            //     break;
-            // case 1:
-            //     robot.shoot(true);
-            //     robot.counter++;
-            //     break;
-            // case 2:
-            //     runtime.reset();
-            //     while(runtime.seconds()<5);
-            //     robot.counter++;
-            //     break;
-            // case 3:
-            //     robot.shoot(false);
-            //     robot.counter++;
-            //     break;
             case 0:
                 telemetry.addData("Top Distance", robot.topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom Distance", robot.bottomSensor.getDistance(DistanceUnit.CM));
@@ -119,7 +102,7 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 11:
-                robot.shootServ(.4);
+                robot.shootServ(.8);
                 robot.counter++;
                 break;
             case 12:
@@ -128,7 +111,7 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 13:
-                robot.shootServ(0);
+                robot.shootServ(.6);
                 robot.counter++;
                 break;
             case 14:
@@ -136,7 +119,7 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 15:
-                robot.shootServ(.4);
+                robot.shootServ(.8);
                 robot.counter++;
                 break;
             case 16:
@@ -145,7 +128,7 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 17:
-                robot.shootServ(0);
+                robot.shootServ(.6);
                 robot.counter++;
                 break;
             case 18:
@@ -153,7 +136,7 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 19:
-                robot.shootServ(.4);
+                robot.shootServ(.8);
                 robot.counter++;
                 break;
             case 20:
@@ -162,7 +145,7 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 21:
-                robot.shootServ(0);
+                robot.shootServ(.6);
                 robot.counter++;
                 break;
             case 22:
@@ -170,7 +153,7 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 23:
-                robot.shootServ(.4);
+                robot.shootServ(.8);
                 robot.counter++;
                 break;
             case 24:
@@ -179,7 +162,7 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 25:
-                robot.shootServ(0);
+                robot.shootServ(.6);
                 robot.counter++;
                 break;
             case 26:
@@ -191,13 +174,13 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 28:
-                if(diamond == 1){
+                if(diamond == 0){
                     robot.drive(0,-4*feet,1);
                 }
-                else if(diamond == 4){
+                else if(diamond == 1){
                     robot.drive(2*feet,-2*feet,1);
                 }
-                else if(diamond == 0){
+                else if(diamond == 4){
                     robot.drive(4*feet,-3.5*feet,1);
                 }
                 robot.counter++;
@@ -216,12 +199,12 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 32:
-                if(diamond ==1){
+                if(diamond ==0){
                 }
-                else if (diamond == 4){
+                else if (diamond == 1){
                     robot.drive(-1.5*feet,0*feet,1);
                 }
-                else if (diamond == 0) {
+                else if (diamond == 4) {
                     robot.drive(-3*feet,0*feet,1);
                 }
                 robot.counter++;
