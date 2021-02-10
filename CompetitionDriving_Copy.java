@@ -20,9 +20,10 @@ import android.graphics.Color;
 @TeleOp
 
 public class CompetitionDriving_Copy extends LinearOpMode{
-    private boolean serv = false, shoot = false;
+    private boolean serv = false, shoot = false, shooterServoToggle = false, lift = false;
+    private double armHeight = 0.0;
     private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
-    private Servo shooterServo, armServo, frontScissor;
+    private Servo shooterServo, armServo, frontScissor, armRaise;
     private DistanceSensor sensorDistance;
     private ColorSensor sensorColor1, sensorColor2;
 
@@ -46,6 +47,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         armServo = hardwareMap.get(Servo.class, "armServo");
         shooterServo = hardwareMap.get(Servo.class, "shooterServo");
         frontScissor = hardwareMap.get(Servo.class, "frontScissor");
+        armRaise = hardwareMap.get(Servo.class, "armRaise");
 
 
 
@@ -93,17 +95,17 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             }
 
             if(x == 0){
-                motorFL.setPower(((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x)));
-                motorBL.setPower(((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x)));
-                motorBR.setPower(-((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x)));
-                motorFR.setPower(((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x)));
+                motorFL.setPower(-((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x)));
+                motorBL.setPower(-((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x)));
+                motorBR.setPower(((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x)));
+                motorFR.setPower(((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x)));
             }
 
             else if(x == 1){
-                motorFL.setPower(((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x))/4);
-                motorBL.setPower(((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x))/4);
-                motorBR.setPower(-((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x))/4);
-                motorFR.setPower(((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x))/4);
+                motorFL.setPower(-((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x))/4);
+                motorBL.setPower(-((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x))/4);
+                motorBR.setPower(((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x))/4);
+                motorFR.setPower(((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x))/4);
             }
             if(gamepad2.right_bumper) {
                 shooter.setPower(1);
@@ -118,28 +120,29 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 intakeFL.setPower(0);
             }
 
-            if(gamepad2.a && s == false) {
-                scissorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                frontScissor.setPosition(.4);
-                competition.sleep(150);
-                while(scissorMotor.getCurrentPosition() < 430){
+            if(gamepad2.a) {
+                if (lift == false){
+                    competition.sleep(150);
+                    scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                    scissorMotor.setTargetPosition(-3300);
+                    scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     scissorMotor.setPower(1);
-                }
-                scissorMotor.setPower(0);
-                telemetry.addData("Status", "x");
+                    telemetry.addData("Status", "x");
 
-                telemetry.update();
-                s = true;
-            }
-            else if(gamepad2.b && s == true) {
-                scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                frontScissor.setPosition(.1);
-                scissorMotor.setTargetPosition(0);
-                scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                scissorMotor.setPower(1);
-                telemetry.addData("Status", "y");
-                telemetry.update();
-                s = false;
+                    telemetry.update();
+                    competition.sleep(500);
+                    lift = !lift;
+                }
+                else if(lift == true) {
+                    scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                    scissorMotor.setTargetPosition(0);
+                    scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    scissorMotor.setPower(1);
+                    telemetry.addData("Status", "y");
+                    telemetry.update();
+                    competition.sleep(500);
+                    lift = !lift;
+                }
             }
             /*if(gamepad2.a){
             shooter.setPower(0);
@@ -153,12 +156,12 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 catch (InterruptedException e) {
                 }
             }
+
             if(gamepad2.dpad_down){
-                shooterServo.setPosition(.6);
+                if (shooterServoToggle == true) { shooterServo.setPosition(0); competition.sleep(500); shooterServoToggle = !shooterServoToggle; }
+                else if (shooterServoToggle == false) {  shooterServo.setPosition(.2); competition.sleep(500);  shooterServoToggle = !shooterServoToggle;}
             }
-            else if(gamepad2.dpad_up){
-                shooterServo.setPosition(.8);
-            }
+
             if (serv == false){
                 armServo.setPosition(.5);
             }else {
@@ -170,8 +173,14 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             // }
 
 
-
-            arm.setPower(.25*gamepad2.right_stick_y);
+            if (gamepad1.dpad_up) {
+                armRaise.setPosition(1);
+                // armHeight+= .1;
+            } else if (gamepad1.dpad_down) {
+                armRaise.setPosition(0);
+                // armHeight-= .1;
+            }
+            arm.setPower(.75* gamepad2.right_stick_y);
         }
     }
 }
