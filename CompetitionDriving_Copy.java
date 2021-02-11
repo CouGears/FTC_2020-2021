@@ -20,19 +20,15 @@ import android.graphics.Color;
 @TeleOp
 
 public class CompetitionDriving_Copy extends LinearOpMode{
-    private boolean serv = false, shoot = false, shooterServoToggle = false, lift = false;
-    private double armHeight = 0.0;
+    private boolean serv = true, shoot = false, shooterServoToggle = false, lift = false, armToggle = false;
     private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private Servo shooterServo, armServo, frontScissor, armRaise;
-    private DistanceSensor sensorDistance;
-    private ColorSensor sensorColor1, sensorColor2;
 
-    float hsvValues[] = {0F, 0F, 0F};
-    final float values[] = hsvValues;
-    final double SCALE_FACTOR = 255;
+
+
 
     int x = 0;
-    boolean latch1 = true, test1 = false, latch2 = true, test2 = false, latch3 = true, test3 = false, latch4 = true, test4 = false, in = false, s = false;
+
 
     @Override
     public void runOpMode() {
@@ -46,8 +42,8 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         scissorMotor = hardwareMap.get(DcMotor.class, "scissorMotor");
         armServo = hardwareMap.get(Servo.class, "armServo");
         shooterServo = hardwareMap.get(Servo.class, "shooterServo");
-        frontScissor = hardwareMap.get(Servo.class, "frontScissor");
-        armRaise = hardwareMap.get(Servo.class, "armRaise");
+
+
 
 
 
@@ -67,6 +63,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         arm.setDirection(DcMotorSimple.Direction.FORWARD);
 
         scissorMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         scissorMotor.setTargetPosition(0);
         telemetry.addData("Status", "Initialized");
@@ -86,69 +83,69 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             telemetry.addData("In", in);
             telemetry.update();
             */
-            if(gamepad1.a){
+            if(gamepad1.dpad_left){
                 x = 0;
             }
 
-            else if(gamepad1.b){
+            else if(gamepad1.dpad_right){
                 x = 1;
             }
 
             if(x == 0){
-                motorFL.setPower(-((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x)));
-                motorBL.setPower(-((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x)));
-                motorBR.setPower(((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x)));
-                motorFR.setPower(((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x)));
+                motorFL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x)));
+                motorBL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x)));
+                motorBR.setPower(-((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x)));
+                motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x)));
             }
 
             else if(x == 1){
-                motorFL.setPower(-((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x))/4);
-                motorBL.setPower(-((this.gamepad1.right_stick_y) + (-this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x))/4);
-                motorBR.setPower(((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_x) + (-this.gamepad1.right_stick_x))/4);
-                motorFR.setPower(((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_x) + (this.gamepad1.right_stick_x))/4);
+                motorFL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))/4);
+                motorBL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))/4);
+                motorBR.setPower(-((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))/4);
+                motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))/4);
             }
-            if(gamepad2.right_bumper) {
+            if(gamepad1.right_bumper) {
                 shooter.setPower(1);
             }else{
                 shooter.setPower(0);
             }
-            if(gamepad2.x) {
-                intakeFL.setPower(1);
-            } else if(gamepad2.y){
+            if(gamepad1.right_trigger > 0) {
+                intakeFL.setPower(gamepad1.right_trigger);
+            } else if(gamepad1.left_bumper){
                 intakeFL.setPower(-1);
             } else {
                 intakeFL.setPower(0);
             }
 
-            if(gamepad2.a) {
-                if (lift == false){
-                    competition.sleep(150);
-                    scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                    scissorMotor.setTargetPosition(-3300);
-                    scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    scissorMotor.setPower(1);
-                    telemetry.addData("Status", "x");
+            if(gamepad1.dpad_up && lift == false) {
 
-                    telemetry.update();
-                    competition.sleep(500);
-                    lift = !lift;
-                }
-                else if(lift == true) {
-                    scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                    scissorMotor.setTargetPosition(0);
-                    scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                    scissorMotor.setPower(1);
-                    telemetry.addData("Status", "y");
-                    telemetry.update();
-                    competition.sleep(500);
-                    lift = !lift;
-                }
+                competition.sleep(150);
+                scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                scissorMotor.setTargetPosition(-3300);
+                scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                scissorMotor.setPower(1);
+                telemetry.addData("Status", "x");
+
+                telemetry.update();
+                competition.sleep(500);
+                lift = !lift;
             }
+            if(gamepad1.dpad_down && lift == true){
+                scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                scissorMotor.setTargetPosition(0);
+                scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                scissorMotor.setPower(1);
+                telemetry.addData("Status", "y");
+                telemetry.update();
+                competition.sleep(500);
+                lift = !lift;
+            }
+
             /*if(gamepad2.a){
             shooter.setPower(0);
             intakeFL.setPower(0);
             }*/
-            if(gamepad2.dpad_right){
+            if(gamepad1.b){
                 serv = !serv;
                 try {
                     Thread.sleep(250);
@@ -156,31 +153,41 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 catch (InterruptedException e) {
                 }
             }
-
-            if(gamepad2.dpad_down){
-                if (shooterServoToggle == true) { shooterServo.setPosition(0); competition.sleep(500); shooterServoToggle = !shooterServoToggle; }
-                else if (shooterServoToggle == false) {  shooterServo.setPosition(.2); competition.sleep(500);  shooterServoToggle = !shooterServoToggle;}
-            }
-
             if (serv == false){
                 armServo.setPosition(.5);
             }else {
                 armServo.setPosition(1); }
-            //  if (shoot == false){
-            //     shooterServo.setPosition(.2);
-            // }else {
-            //     shooterServo.setPosition(1);
+            // if(gamepad2.dpad_down){
+            //     if (shooterServoToggle == true) { shooterServo.setPosition(0); competition.sleep(500); shooterServoToggle = !shooterServoToggle; }
+            //     else if (shooterServoToggle == false) {  shooterServo.setPosition(.2); competition.sleep(500);  shooterServoToggle = !shooterServoToggle;}
             // }
+            shooterServo.setPosition(gamepad1.left_trigger*.2);
 
+            if (gamepad1.x){
 
-            if (gamepad1.dpad_up) {
-                armRaise.setPosition(1);
-                // armHeight+= .1;
-            } else if (gamepad1.dpad_down) {
-                armRaise.setPosition(0);
-                // armHeight-= .1;
+                arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                while (arm.getCurrentPosition() < 2000){
+                    arm.setPower(1);
+                }
+                while (arm.getCurrentPosition() > 2000){
+                    arm.setPower(-1);
+                }
+                arm.setPower(0);
+                serv = false;
             }
-            arm.setPower(.75* gamepad2.right_stick_y);
+
+
+
+            if (gamepad1.y) {
+                arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                arm.setPower(1);
+            }
+            else if (gamepad1.a) {
+                arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                arm.setPower(-1);
+            }
+            else arm.setPower(0);
+
         }
     }
 }
