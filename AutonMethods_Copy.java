@@ -55,12 +55,9 @@ public class AutonMethods_Copy {
 
     private double speed;
     private boolean clampDown = false;
-    public int counter = 0, ColorEncoder = 0, blockCounter = 0;
+    public int counter = 0;
 
-    float hsvValues1[] = {0F, 0F, 0F};
-    float hsvValues2[] = {0F, 0F, 0F};
-    final double SCALE_FACTOR = 255;
-    int block = 1;
+
 
     public static BNO055IMU imu;
     BNO055IMU.Parameters parameters;
@@ -140,60 +137,47 @@ public class AutonMethods_Copy {
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        // motorFL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        // motorBL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        // motorBR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        // motorFR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        FRtpos = y - x;
+
+        FRtpos = y + x;
         BRtpos = y + x;
         FLtpos = y + x;
         BLtpos = y - x;
-        motorFL.setTargetPosition(-(int) FLtpos);
+        motorFL.setTargetPosition((int) FLtpos);
         motorBL.setTargetPosition((int) BLtpos);
         motorFR.setTargetPosition((int) FRtpos);
-        motorBR.setTargetPosition((int) BRtpos);
+        motorBR.setTargetPosition(-(int) BRtpos);
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        // while(Math.abs(motorFL.getCurrentPosition()) < Math.abs((int)FLtpos)){
-        //     motorFL.setPower(-FLtpos/ Math.abs(FLtpos));
-        // }
-        // while(Math.abs(motorBL.getCurrentPosition()) < Math.abs((int)BLtpos)){
-        //     motorBL.setPower(BLtpos/ Math.abs(BLtpos));
-        // }
-        // while(Math.abs(motorFR.getCurrentPosition()) < Math.abs((int)FRtpos)){
-        //     motorFR.setPower(FRtpos/ Math.abs(FRtpos));
-        // }
-        // while(Math.abs(motorBR.getCurrentPosition()) < Math.abs((int)BRtpos)){
-        //     motorBR.setPower(BRtpos/ Math.abs(BRtpos));
-        // }
+
         speed(spee);
 
 
     }
 
-    //takes state
-    //state of false resets
-    //state of true lifts
+
     public void scissorServUp() {
 
-        scissorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
         sleep(150);
-        while(scissorMotor.getCurrentPosition() < 430){
-            scissorMotor.setPower(1);
-        }
-        scissorMotor.setPower(0);
+        scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        scissorMotor.setTargetPosition(-3300);
+        scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        scissorMotor.setPower(1);
+
+
+
+        sleep(500);
 
     }
 
     public void scissorServDown(){
         scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
         scissorMotor.setTargetPosition(0);
         scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         scissorMotor.setPower(1);
+
+        sleep(500);
     }
 
 
@@ -210,15 +194,14 @@ public class AutonMethods_Copy {
 
     }
 
-    public void arm(int onOff) {
-        while (motorFR.isBusy() || motorFL.isBusy()) ;
-        if (onOff == 1) arm.setPower(1);
-        else if (onOff == 0) arm.setPower(0);
-        else if (onOff == -1) arm.setPower(-1);
-//        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        arm.setTargetPosition(-pos);
-//        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        arm.setPower(1);
+    public void arm(int pos) {
+        while (arm.getCurrentPosition() < pos){
+            arm.setPower(1);
+        }
+        while (arm.getCurrentPosition() > pos){
+            arm.setPower(-1);
+        }
+        arm.setPower(0);
 
     }
 
@@ -271,7 +254,7 @@ public class AutonMethods_Copy {
 
     }
 
-    public static void speed (double spee){
+    public void speed (double spee){
         motorFL.setPower(spee);
         motorBL.setPower(spee);
         motorFR.setPower(spee);

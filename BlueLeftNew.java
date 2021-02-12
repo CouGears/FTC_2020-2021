@@ -23,9 +23,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous
 
-public class BlueLeftNew extends OpMode {
+public class BlueLeft extends OpMode {
     double rev = 383.6;
-    double inch = 2 * rev / (3.78 * 3.14);
+    double inch = rev / (3.78 * 3.14);
     double feet = inch * 12;
     private ElapsedTime runtime = new ElapsedTime();
     private DigitalChannel DigChannel;
@@ -36,7 +36,7 @@ public class BlueLeftNew extends OpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        robot.changeRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
     }
 
     @Override
@@ -48,8 +48,74 @@ public class BlueLeftNew extends OpMode {
     public void loop() {
         int rings = 0;
         switch (robot.counter) {
-
             case 0:
+                robot.scissorServUp();
+                robot.counter++;
+                break;
+            case 1:
+                robot.shoot(true);
+                robot.counter++;
+                break;
+            case 2:
+                runtime.reset();
+                while(runtime.seconds()<3);
+                robot.counter++;
+                break;
+            case 3:
+                robot.shootServ(.8);
+                robot.counter++;
+                break;
+            case 4:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 5:
+                robot.shootServ(.6);
+                robot.counter++;
+                break;
+            case 6:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 7:
+                robot.shootServ(.8);
+                robot.counter++;
+                break;
+            case 8:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 9:
+                robot.shootServ(.6);
+                robot.counter++;
+                break;
+            case 10:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 11:
+                robot.shootServ(.8);
+                robot.counter++;
+                break;
+            case 12:
+                runtime.reset();
+                while(runtime.seconds()<1);
+                robot.counter++;
+                break;
+            case 13:
+                robot.shootServ(.6);
+                robot.counter++;
+                break;
+            case 14:
+                robot.scissorServDown();
+                robot.counter++;
+                break;
+
+         /*   case 0:
                 telemetry.addData("Top Distance", robot.topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom Distance", robot.bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
@@ -57,20 +123,19 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 1:
-                robot.armServ(.5);
+                robot.arm(1000);
                 robot.counter++;
                 break;
             case 2:
-                robot.arm(-1);
+                robot.armServ(.5);
                 robot.counter++;
                 break;
             case 3:
-                runtime.reset();
-                while(runtime.seconds()<0.3);
+                robot.arm(1000);
                 robot.counter++;
                 break;
             case 4:
-                robot.arm(0);
+                robot.armServ(1);
                 robot.counter++;
                 break;
             case 5:
@@ -190,15 +255,10 @@ public class BlueLeftNew extends OpMode {
                 robot.counter++;
                 break;
             case 30:
-                runtime.reset();
-                while(runtime.seconds()<1);
-                robot.counter++;
-                break;
-            case 31:
                 robot.scissorServDown();
                 robot.counter++;
                 break;
-            case 32:
+            case 31:
                 if(diamond ==0){
                 }
                 else if (diamond == 1){
@@ -209,6 +269,7 @@ public class BlueLeftNew extends OpMode {
                 }
                 robot.counter++;
                 break;
+                */
         }
     }
 }
