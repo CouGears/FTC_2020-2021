@@ -131,21 +131,23 @@ public class AutonMethods_Copy {
     }
 
     //Function to move the robot in any direction
-    public void drive(double x, double y, double spee) {
+    public void drive(double forward, double sideways, double spee) {
         while (motorFR.isBusy() || motorFL.isBusy()) ;
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        FRtpos = y + x;
-        BRtpos = y + x;
-        FLtpos = y + x;
-        BLtpos = y - x;
-        motorFL.setTargetPosition((int) FLtpos);
-        motorBL.setTargetPosition((int) BLtpos);
-        motorFR.setTargetPosition((int) FRtpos);
-        motorBR.setTargetPosition(-(int) BRtpos);
+        FRtpos = forward + sideways;
+        BRtpos = forward - sideways;
+        FLtpos = forward - sideways;
+        BLtpos = forward + sideways;
+
+        motorFL.setTargetPosition((int)FLtpos);
+        motorBL.setTargetPosition((int)BLtpos);
+        motorFR.setTargetPosition(-(int)FRtpos);
+        motorBR.setTargetPosition((int)BRtpos);
+
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);

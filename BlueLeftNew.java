@@ -48,82 +48,17 @@ public class BlueLeft extends OpMode {
     public void loop() {
         int rings = 0;
         switch (robot.counter) {
-            case 0:
-                robot.scissorServUp();
-                robot.counter++;
-                break;
-            case 1:
-                robot.shoot(true);
-                robot.counter++;
-                break;
-            case 2:
-                runtime.reset();
-                while(runtime.seconds()<3);
-                robot.counter++;
-                break;
-            case 3:
-                robot.shootServ(.8);
-                robot.counter++;
-                break;
-            case 4:
-                runtime.reset();
-                while(runtime.seconds()<1);
-                robot.counter++;
-                break;
-            case 5:
-                robot.shootServ(.6);
-                robot.counter++;
-                break;
-            case 6:
-                runtime.reset();
-                while(runtime.seconds()<1);
-                robot.counter++;
-                break;
-            case 7:
-                robot.shootServ(.8);
-                robot.counter++;
-                break;
-            case 8:
-                runtime.reset();
-                while(runtime.seconds()<1);
-                robot.counter++;
-                break;
-            case 9:
-                robot.shootServ(.6);
-                robot.counter++;
-                break;
-            case 10:
-                runtime.reset();
-                while(runtime.seconds()<1);
-                robot.counter++;
-                break;
-            case 11:
-                robot.shootServ(.8);
-                robot.counter++;
-                break;
-            case 12:
-                runtime.reset();
-                while(runtime.seconds()<1);
-                robot.counter++;
-                break;
-            case 13:
-                robot.shootServ(.6);
-                robot.counter++;
-                break;
-            case 14:
-                robot.scissorServDown();
-                robot.counter++;
-                break;
 
-         /*   case 0:
+
+            case 0:
                 telemetry.addData("Top Distance", robot.topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom Distance", robot.bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
-                robot.scissorServUp();
+                //robot.scissorServUp();
                 robot.counter++;
                 break;
             case 1:
-                robot.arm(1000);
+                robot.arm(700);
                 robot.counter++;
                 break;
             case 2:
@@ -131,14 +66,22 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 3:
-                robot.arm(1000);
+                robot.arm(1200);
                 robot.counter++;
                 break;
             case 4:
+                runtime.reset();
+                while(runtime.seconds()<.5);
                 robot.armServ(1);
                 robot.counter++;
                 break;
             case 5:
+                runtime.reset();
+                while(runtime.seconds()<.5);
+                robot.arm(4000);
+                robot.counter++;
+                break;
+            /*case 5:
                 robot.drive(1.5*feet,-3*inch,1);
                 robot.counter++;
                 break;
@@ -167,7 +110,7 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 11:
-                robot.shootServ(.8);
+                robot.shootServ(.2);
                 robot.counter++;
                 break;
             case 12:
@@ -176,7 +119,7 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 13:
-                robot.shootServ(.6);
+                robot.shootServ(0);
                 robot.counter++;
                 break;
             case 14:
@@ -184,7 +127,7 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 15:
-                robot.shootServ(.8);
+                robot.shootServ(.2);
                 robot.counter++;
                 break;
             case 16:
@@ -193,7 +136,7 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 17:
-                robot.shootServ(.6);
+                robot.shootServ(0);
                 robot.counter++;
                 break;
             case 18:
@@ -201,7 +144,7 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 19:
-                robot.shootServ(.8);
+                robot.shootServ(.2);
                 robot.counter++;
                 break;
             case 20:
@@ -210,7 +153,7 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 21:
-                robot.shootServ(.6);
+                robot.shootServ(0);
                 robot.counter++;
                 break;
             case 22:
@@ -218,27 +161,14 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 23:
-                robot.shootServ(.8);
-                robot.counter++;
-                break;
-            case 24:
-                runtime.reset();
-                while(runtime.seconds()<1);
-                robot.counter++;
-                break;
-            case 25:
-                robot.shootServ(.6);
-                robot.counter++;
-                break;
-            case 26:
                 robot.shoot(false);
                 robot.counter++;
                 break;
-            case 27:
+            case 24:
                 robot.drive(0,5*inch, 1);
                 robot.counter++;
                 break;
-            case 28:
+            case 25:
                 if(diamond == 0){
                     robot.drive(0,-4*feet,1);
                 }
@@ -250,15 +180,15 @@ public class BlueLeft extends OpMode {
                 }
                 robot.counter++;
                 break;
-            case 29:
-                robot.armServ(1);
+            case 26:
+                robot.armServ(0.5);
                 robot.counter++;
                 break;
-            case 30:
+            case 27:
                 robot.scissorServDown();
                 robot.counter++;
                 break;
-            case 31:
+            case 28:
                 if(diamond ==0){
                 }
                 else if (diamond == 1){
@@ -268,8 +198,7 @@ public class BlueLeft extends OpMode {
                     robot.drive(-3*feet,0*feet,1);
                 }
                 robot.counter++;
-                break;
-                */
+                break; */
         }
     }
 }
