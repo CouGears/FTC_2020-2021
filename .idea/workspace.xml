@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="blueLeftNew">
+    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="all the things">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlueLeftNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueLeftNew.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613088029471</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="all the things">
+      <created>1613482926727</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1613482926727</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -191,6 +199,7 @@
     <MESSAGE value="autonMethods" />
     <MESSAGE value="auton" />
     <MESSAGE value="blueLeftNew" />
-    <option name="LAST_COMMIT_MESSAGE" value="blueLeftNew" />
+    <MESSAGE value="all the things" />
+    <option name="LAST_COMMIT_MESSAGE" value="all the things" />
   </component>
 </project>
