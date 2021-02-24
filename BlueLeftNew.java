@@ -67,165 +67,169 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 1:
-                robot.scissorServUp();
-                robot.counter++;
-                break;
-            case 2:
                 robot.arm(500);
                 robot.counter++;
                 break;
-            case 3:
+            case 2:
                 robot.armServ(0);
                 robot.counter++;
                 break;
-            case 4:
+            case 3:
                 robot.arm(2000);
                 robot.counter++;
                 break;
-            case 5:
+            case 4:
                 runtime.reset();
                 while(runtime.seconds()<1);
                 robot.armServ(1);
                 robot.counter++;
                 break;
-            case 6:
+            case 5:
                 runtime.reset();
                 while(runtime.seconds()<1);
                 robot.arm(4000);
                 robot.counter++;
                 break;
-            case 7:
-                robot.drive(2*feet,-6*inch,1);
+            case 6:
+                robot.drive(2*feet,-6*inch,0.5);
                 robot.counter++;
                 break;
-            case 8:
+            case 7:
                 runtime.reset();
                 while(runtime.seconds()<1);
                 robot.counter++;
                 break;
-            case 9:
+            case 8:
                 diamond = robot.distance();
                 telemetry.addData("rings:", diamond);
                 telemetry.update();
                 robot.counter++;
                 break;
+            case 9:
+                robot.drive(0*feet, 2*feet,1);
+                robot.counter++;
+                break;
             case 10:
-                robot.drive(0*feet, 1.5*feet,1);
+                robot.drive(3.5*feet, 0*feet,.3);
                 robot.counter++;
                 break;
             case 11:
-                robot.drive(3.5*feet, 0*feet,1);
+                robot.drive(0*feet, -1.4*feet,1);
                 robot.counter++;
                 break;
             case 12:
-                robot.shoot(true);
+                robot.turn(200);
                 robot.counter++;
                 break;
             case 13:
-                runtime.reset();
-                while(runtime.seconds()<2);
+                robot.scissorServUp();
                 robot.counter++;
                 break;
             case 14:
-                robot.shootServ(.2);
+                robot.shoot(true);
                 robot.counter++;
                 break;
             case 15:
                 runtime.reset();
-                while(runtime.seconds()<0.5);
+                while(runtime.seconds()<4);
                 robot.counter++;
                 break;
             case 16:
-                robot.shootServ(0);
+                robot.shootServ(.2);
                 robot.counter++;
                 break;
             case 17:
                 runtime.reset();
-                while(runtime.seconds()<0.8);
+                while(runtime.seconds()<0.5);
                 robot.counter++;
                 break;
             case 18:
-                robot.drive(0,5*inch, 1);
+                robot.shootServ(0);
                 robot.counter++;
                 break;
-
             case 19:
                 runtime.reset();
-                while(runtime.seconds()<0.7);
+                while(runtime.seconds()<0.8);
                 robot.counter++;
                 break;
             case 20:
-                robot.shootServ(.2);
+                robot.drive(0,3*inch, 1);
                 robot.counter++;
                 break;
             case 21:
                 runtime.reset();
-                while(runtime.seconds()<0.5);
+                while(runtime.seconds()<0.7);
                 robot.counter++;
                 break;
             case 22:
-                robot.shootServ(0);
+                robot.shootServ(.2);
                 robot.counter++;
                 break;
             case 23:
                 runtime.reset();
-                while(runtime.seconds()<0.8);
+                while(runtime.seconds()<0.5);
                 robot.counter++;
                 break;
             case 24:
-                robot.drive(0,5*inch, 1);
+                robot.shootServ(0);
+                robot.counter++;
+                break;
+            case 25:
+                runtime.reset();
+                while(runtime.seconds()<0.8);
+                robot.counter++;
+                break;
+            case 26:
+                robot.drive(0,3*inch, 1);
                 robot.counter++;
                 break;
 
-            case 25:
+            case 27:
                 runtime.reset();
                 while(runtime.seconds()<0.7);
                 robot.counter++;
                 break;
-            case 26:
-                robot.shootServ(.2);
-                robot.counter++;
-                break;
-            case 27:
-                runtime.reset();
-                while(runtime.seconds()<0.5);
-                robot.counter++;
-                break;
             case 28:
-                robot.shootServ(0);
+                robot.shootServ(.2);
                 robot.counter++;
                 break;
             case 29:
                 runtime.reset();
-                while(runtime.seconds()<0.7);
+                while(runtime.seconds()<0.5);
                 robot.counter++;
                 break;
             case 30:
-                robot.drive(0,5*inch, 1);
+                robot.shootServ(0);
                 robot.counter++;
                 break;
             case 31:
+                runtime.reset();
+                while(runtime.seconds()<0.7);
+                robot.counter++;
+                break;
+
+            case 32:
                 robot.shootServ(.2);
                 robot.counter++;
                 break;
-            case 32:
+            case 33:
                 runtime.reset();
                 while(runtime.seconds()<0.8);
                 robot.counter++;
                 break;
-            case 33:
+            case 34:
                 robot.shootServ(0);
                 robot.counter++;
                 break;
-            case 34:
+            case 35:
                 robot.shoot(false);
                 robot.counter++;
                 break;
-            case 35:
-                robot.drive(0,5*inch, 1);
+            case 36:
+                robot.drive(0,14*inch, 1);
                 robot.counter++;
                 break;
-            case 36:
+            case 37:
                 if(diamond == 0){
                     robot.drive(0,-4*feet,1);
                 }
@@ -233,38 +237,39 @@ public class BlueLeft extends OpMode {
                     robot.drive(2*feet,-2*feet,1);
                 }
                 else if(diamond == 4){
-                    robot.drive(4*feet,-3.5*feet,1);
+                    robot.drive(4*feet,-4.5*feet,1);
                 }
-                robot.counter++;
-                break;
-            case 37:
-                robot.armServ(0.5);
                 robot.counter++;
                 break;
             case 38:
-                robot.scissorServDown();
+                robot.armServ(0.5);
                 robot.counter++;
                 break;
             case 39:
+                robot.scissorServDown();
+                robot.counter++;
+                break;
+            case 40:
                 if(diamond ==0){
+                    robot.drive(0.4*feet,0*feet,1);
                 }
                 else if (diamond == 1){
-                    robot.drive(-1.2*feet,0*feet,1);
+
                 }
                 else if (diamond == 4) {
                     robot.drive(-3*feet,0*feet,1);
                 }
                 robot.counter++;
                 break;
-            case 40:
+            case 41:
                 robot.scissorServDown();
                 robot.counter++;
                 break;
-            case 41:
+            case 42:
                 robot.armServ(1);
                 robot.counter++;
                 break;
-            case 42:
+            case 43:
                 robot.arm(0);
                 robot.counter++;
                 break;

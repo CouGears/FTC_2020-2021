@@ -136,7 +136,7 @@ public class AutonMethods_Copy {
     public void drive(double forward, double sideways, double spee) {
         runtime.reset();
         while (motorFR.isBusy() || motorFL.isBusy()){
-            if(runtime.seconds > 3) break;
+            if(runtime.seconds() > 3) break;
         }
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -163,12 +163,23 @@ public class AutonMethods_Copy {
 
     }
 
+    public void turn(int pos){
+        while (motorFR.isBusy() || motorFL.isBusy()){
+            if(runtime.seconds() > 3) break;
+        }
+        motorFL.setTargetPosition(pos);
+        motorBL.setTargetPosition(pos);
+        motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFL.setPower(0.5);
+        motorBL.setPower(0.5);
 
+    }
     public void scissorServUp() {
 
         sleep(150);
         scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        scissorMotor.setTargetPosition(-3300);
+        scissorMotor.setTargetPosition(-3200);
         scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         scissorMotor.setPower(1);
         sleep(500);
@@ -186,14 +197,18 @@ public class AutonMethods_Copy {
 
 
     public void shootServ(double pos) {
-        while (motorFR.isBusy() || motorFL.isBusy());
+        while (motorFR.isBusy() || motorFL.isBusy()){
+            if(runtime.seconds() > 3) break;
+        }
         shooterServo.setPosition(pos);
 
 
     }
 
     public void armServ(double pos) {
-        while (motorFR.isBusy() || motorFL.isBusy());
+        while (motorFR.isBusy() || motorFL.isBusy()){
+            if(runtime.seconds() > 3) break;
+        }
         armServo.setPosition(pos);
 
     }
@@ -210,7 +225,9 @@ public class AutonMethods_Copy {
     }
 
     public void shoot(boolean onOff) {
-        while (motorFR.isBusy() || motorFL.isBusy()) ;
+        while (motorFR.isBusy() || motorFL.isBusy()){
+            if(runtime.seconds() > 3) break;
+        }
         if(onOff){
             shooter.setPower(1);
         } else {
