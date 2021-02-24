@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
@@ -22,7 +23,7 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import android.graphics.Color;
 import android.app.Activity;
 import android.view.View;
-
+import com.qualcomm.robotcore.util.ElapsedTime;
 import java.lang.annotation.Target;
 import java.util.Timer;
 
@@ -46,10 +47,11 @@ public class AutonMethods_Copy {
 
     //Declare and initial variables
     double FRtpos, BRtpos, FLtpos, BLtpos;
-    private static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
+    public static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private static Servo shooterServo, armServo, marker, frontScissor, backScissor;
     public static DistanceSensor topSensor, bottomSensor;
-
+    public TouchSensor armTouch, scissorTouch;
+    private ElapsedTime runtime = new ElapsedTime();
     HardwareMap map;
     Telemetry tele;
 
@@ -132,21 +134,24 @@ public class AutonMethods_Copy {
 
     //Function to move the robot in any direction
     public void drive(double forward, double sideways, double spee) {
-        while (motorFR.isBusy() || motorFL.isBusy()) ;
+        runtime.reset();
+        while (motorFR.isBusy() || motorFL.isBusy()){
+            if(runtime.seconds > 3) break;
+        }
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        FRtpos = forward + sideways;
-        BRtpos = forward - sideways;
-        FLtpos = forward - sideways;
-        BLtpos = forward + sideways;
+        FRtpos = forward - sideways;
+        BRtpos = forward + sideways;
+        FLtpos = forward + sideways;
+        BLtpos = forward - sideways;
 
         motorFL.setTargetPosition((int)FLtpos);
         motorBL.setTargetPosition((int)BLtpos);
         motorFR.setTargetPosition(-(int)FRtpos);
-        motorBR.setTargetPosition((int)BRtpos);
+        motorBR.setTargetPosition(-(int)BRtpos);
 
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -166,9 +171,6 @@ public class AutonMethods_Copy {
         scissorMotor.setTargetPosition(-3300);
         scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         scissorMotor.setPower(1);
-
-
-
         sleep(500);
 
     }
@@ -184,14 +186,14 @@ public class AutonMethods_Copy {
 
 
     public void shootServ(double pos) {
-        while (motorFR.isBusy() || motorFL.isBusy()) ;
+        while (motorFR.isBusy() || motorFL.isBusy());
         shooterServo.setPosition(pos);
 
 
     }
 
     public void armServ(double pos) {
-        while (motorFR.isBusy() || motorFL.isBusy()) ;
+        while (motorFR.isBusy() || motorFL.isBusy());
         armServo.setPosition(pos);
 
     }

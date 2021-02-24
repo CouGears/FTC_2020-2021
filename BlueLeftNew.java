@@ -90,12 +90,12 @@ public class BlueLeft extends OpMode {
                 break;
             case 6:
                 runtime.reset();
-                while(runtime.seconds()<.5);
+                while(runtime.seconds()<1);
                 robot.arm(4000);
                 robot.counter++;
                 break;
             case 7:
-                robot.drive(1.5*feet,-3*inch,1);
+                robot.drive(2*feet,-6*inch,1);
                 robot.counter++;
                 break;
             case 8:
