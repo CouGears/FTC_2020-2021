@@ -114,7 +114,7 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 11:
-                robot.drive(0*feet, -1.4*feet,1);
+                robot.drive(0*feet, -1*feet,1);
                 robot.counter++;
                 break;
             case 12:
@@ -266,10 +266,14 @@ public class BlueLeft extends OpMode {
                 robot.counter++;
                 break;
             case 42:
-                robot.armServ(1);
+                robot.drive(0, 1*feet, 1);
                 robot.counter++;
                 break;
             case 43:
+                robot.armServ(1);
+                robot.counter++;
+                break;
+            case 44:
                 robot.arm(0);
                 robot.counter++;
                 break;
