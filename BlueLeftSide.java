@@ -93,7 +93,7 @@ public class BlueLeftSide extends OpMode {
                 robot.counter++;
                 break;
             case 6:
-                robot.drive(2 * feet,0, 0.5);
+                robot.drive(2 * feet,2.5*feet, 0.5);
                 robot.counter++;
                 break;
             case 7:
@@ -108,7 +108,7 @@ public class BlueLeftSide extends OpMode {
                 robot.counter++;
                 break;
             case 9:
-                robot.drive(0 * feet, 2.5 * feet, 1);
+                robot.drive(0 * feet, 0, 1);
                 robot.counter++;
                 break;
             case 10:
