@@ -72,6 +72,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         waitForStart();
 
         while (opModeIsActive()) {
+            arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             AutonMethods_Copy competition = new AutonMethods_Copy();
             /*(Color.RGBToHSV((int) (sensorColor.red() * 255),
                 (int) (sensorColor.green() * 255),
@@ -166,27 +167,24 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             if (gamepad1.x){
 
                 arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                while (arm.getCurrentPosition() < 2000){
+                while (arm.getCurrentPosition() < 1750) {
                     arm.setPower(1);
                 }
-                while (arm.getCurrentPosition() > 2000){
-                    arm.setPower(-1);
-                }
                 arm.setPower(0);
-                serv = false;
+                armServo.setPosition(.7);
+                competition.sleep(300);
+                armServo.setPosition(1);
             }
-
-
-
             if (gamepad1.y) {
-                arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                arm.setPower(1);
+
+                arm.setPower(0.5);
             }
             else if (gamepad1.a) {
-                arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                arm.setPower(-1);
+
+                arm.setPower(-0.5);
             }
             else arm.setPower(0);
+            if (arm.getCurrentPosition() < 300) serv = true;
 
         }
     }
