@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="all the things">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlueLeft.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlueLeftNew.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueLeftNew.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlueLeftSide.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +233,28 @@
       <option name="project" value="LOCAL" />
       <updated>1614266533141</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="things">
+      <created>1614867622479</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1614867622479</updated>
+    </task>
+    <task id="LOCAL-00030" summary="things">
+      <created>1614867685875</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1614867685875</updated>
+    </task>
+    <task id="LOCAL-00031" summary="things">
+      <created>1614867734305</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1614867734305</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -256,11 +275,11 @@
     <MESSAGE value="autonMethods" />
     <MESSAGE value="blueLeftNew" />
     <MESSAGE value="all the things" />
-    <MESSAGE value="things" />
     <MESSAGE value="auton methods and blue left new" />
     <MESSAGE value="auton" />
     <MESSAGE value="blue left new" />
     <MESSAGE value="blueleft" />
-    <option name="LAST_COMMIT_MESSAGE" value="blueleft" />
+    <MESSAGE value="things" />
+    <option name="LAST_COMMIT_MESSAGE" value="things" />
   </component>
 </project>
