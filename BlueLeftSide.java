@@ -72,7 +72,7 @@ public class BlueLeftSide extends OpMode {
                 robot.counter++;
                 break;
             case 2:
-                robot.armServ(0);
+                robot.armServ(0.55);
                 robot.counter++;
                 break;
             case 3:
@@ -82,7 +82,7 @@ public class BlueLeftSide extends OpMode {
             case 4:
                 runtime.reset();
                 while (runtime.seconds() < 1) ;
-                robot.armServ(1);
+                robot.armServ(.8);
                 robot.counter++;
                 break;
             case 5:
@@ -93,7 +93,8 @@ public class BlueLeftSide extends OpMode {
                 robot.counter++;
                 break;
             case 6:
-                robot.drive(2 * feet,2.5*feet, 0.5);
+                robot.drive(0,1.7*feet, 0.5);
+                robot.drive(3.2 * feet,0, 0.5);
                 robot.counter++;
                 break;
             case 7:
@@ -112,7 +113,7 @@ public class BlueLeftSide extends OpMode {
                 robot.counter++;
                 break;
             case 10:
-                robot.drive(3 * feet, 0 * feet, 1);
+                robot.drive(2.5 * feet, 0 * feet, 1);
                 robot.counter++;
                 break;
             case 11:
@@ -238,7 +239,7 @@ public class BlueLeftSide extends OpMode {
                 break;
             case 37:
                 robot.arm.setPower(0);
-                robot.armServ(0.5);
+                robot.armServ(0.55);
                 robot.counter++;
                 break;
             case 38:
@@ -264,7 +265,7 @@ public class BlueLeftSide extends OpMode {
                 robot.counter++;
                 break;
             case 42:
-                robot.armServ(1);
+                robot.armServ(.8);
                 robot.counter++;
                 break;
             case 43:
