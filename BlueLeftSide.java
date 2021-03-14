@@ -65,6 +65,7 @@ public class BlueLeftSide extends OpMode {
                 telemetry.addData("Bottom Distance", robot.bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
                 //robot.scissorServUp();
+                robot.armBlock.setPosition(.5);
                 robot.counter++;
                 break;
             case 1:
@@ -270,6 +271,7 @@ public class BlueLeftSide extends OpMode {
                 break;
             case 43:
                 robot.arm(0);
+                robot.armBlock.setPosition(0);
                 robot.counter++;
                 break;
         }

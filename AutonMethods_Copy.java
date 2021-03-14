@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.util.Hardware;
+import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -49,6 +51,7 @@ public class AutonMethods_Copy {
     double FRtpos, BRtpos, FLtpos, BLtpos;
     public static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private static Servo shooterServo, armServo, marker, frontScissor, backScissor;
+    public static Servo armBlock;
     public static DistanceSensor topSensor, bottomSensor;
     public TouchSensor armTouch, scissorTouch;
     private ElapsedTime runtime = new ElapsedTime();
@@ -82,7 +85,7 @@ public class AutonMethods_Copy {
         //note - this is according to front orientation - front is in the front and back is in the back
         //also these should be configured accordingly
         scissorMotor = map.get(DcMotor.class, "scissorMotor");
-
+        armBlock = map.get(Servo.class, "armBlock");
 
         bottomSensor = map.get(DistanceSensor.class, "bottomSensor");
         topSensor = map.get(DistanceSensor.class, "topSensor");

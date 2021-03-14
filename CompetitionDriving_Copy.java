@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import java.util.Map;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -20,9 +21,9 @@ import android.graphics.Color;
 @TeleOp
 
 public class CompetitionDriving_Copy extends LinearOpMode{
-    private boolean serv = true, shoot = false, shooterServoToggle = false, lift = false, armToggle = false;
+    private boolean serv = false, shoot = false, shooterServoToggle = false, lift = false, armToggle = false;
     private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
-    private Servo shooterServo, armServo, frontScissor, armRaise;
+    private Servo shooterServo, armServo, frontScissor, armRaise, armBlock;
 
 
 
@@ -42,9 +43,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         scissorMotor = hardwareMap.get(DcMotor.class, "scissorMotor");
         armServo = hardwareMap.get(Servo.class, "armServo");
         shooterServo = hardwareMap.get(Servo.class, "shooterServo");
-
-
-
+        armBlock = hardwareMap.get(Servo.class, "armBlock");
 
 
         motorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -95,14 +94,14 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             if(x == 0){
                 motorFL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x)));
                 motorBL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x)));
-                motorBR.setPower(-((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x)));
+                motorBR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x)));
                 motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x)));
             }
 
             else if(x == 1){
                 motorFL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))/4);
                 motorBL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))/4);
-                motorBR.setPower(-((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))/4);
+                motorBR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))/4);
                 motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))/4);
             }
             if(gamepad1.right_bumper) {
@@ -122,7 +121,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
 
                 competition.sleep(150);
                 scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                scissorMotor.setTargetPosition(-3300);
+                scissorMotor.setTargetPosition(-3150);
                 scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 scissorMotor.setPower(1);
                 telemetry.addData("Status", "x");
@@ -155,9 +154,9 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 }
             }
             if (serv == false){
-                armServo.setPosition(.5);
+                armServo.setPosition(.8);
             }else {
-                armServo.setPosition(1); }
+                armServo.setPosition(0.55); }
             // if(gamepad2.dpad_down){
             //     if (shooterServoToggle == true) { shooterServo.setPosition(0); competition.sleep(500); shooterServoToggle = !shooterServoToggle; }
             //     else if (shooterServoToggle == false) {  shooterServo.setPosition(.2); competition.sleep(500);  shooterServoToggle = !shooterServoToggle;}
@@ -184,10 +183,8 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 arm.setPower(-0.5);
             }
             else arm.setPower(0);
-            if (arm.getCurrentPosition() < 300) serv = true;
+
 
         }
     }
 }
-
-
