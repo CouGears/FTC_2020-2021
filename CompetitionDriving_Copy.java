@@ -125,9 +125,10 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 scissorMotor.setPower(1);
                 telemetry.addData("Status", "x");
+
                 telemetry.update();
                 competition.sleep(500);
-                armBlock.setPosition(.5);
+                armBlock.setPosition(0.5);
                 lift = !lift;
             }
             if(gamepad1.dpad_down && lift == true){
@@ -138,7 +139,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 telemetry.addData("Status", "y");
                 telemetry.update();
                 competition.sleep(500);
-                armBlock.setPosition(1);
+                armBlock.setPosition(0.7);
                 lift = !lift;
             }
 

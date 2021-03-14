@@ -271,7 +271,7 @@ public class BlueLeftSide extends OpMode {
                 break;
             case 43:
                 robot.arm(0);
-                robot.armBlock.setPosition(1);
+                robot.armBlock.setPosition(0);
                 robot.counter++;
                 break;
         }
