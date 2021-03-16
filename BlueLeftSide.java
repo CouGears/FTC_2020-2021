@@ -69,11 +69,12 @@ public class BlueLeftSide extends OpMode {
                 robot.counter++;
                 break;
             case 1:
-                robot.arm(100);
+                robot.arm(200);
                 robot.counter++;
                 break;
             case 2:
                 robot.armServ(0.55);
+                robot.sleep(250);
                 robot.counter++;
                 break;
             case 3:
@@ -89,13 +90,13 @@ public class BlueLeftSide extends OpMode {
             case 5:
                 runtime.reset();
                 while (runtime.seconds() < 1) ;
-                robot.arm(1200);
+                robot.arm(2300);
                 robot.arm.setPower(0.001);
                 robot.counter++;
                 break;
             case 6:
                 robot.drive(0,1.7*feet, 0.5);
-                robot.drive(3.2 * feet,0, 0.5);
+                robot.drive(2.95 * feet,0, 0.5);
                 robot.counter++;
                 break;
             case 7:
@@ -114,7 +115,7 @@ public class BlueLeftSide extends OpMode {
                 robot.counter++;
                 break;
             case 10:
-                robot.drive(2.5 * feet, 0 * feet, 1);
+                robot.drive(2 * feet, 0 * feet, 1);
                 robot.counter++;
                 break;
             case 11:
@@ -234,7 +235,7 @@ public class BlueLeftSide extends OpMode {
                 } else if (diamond == 1) {
                     robot.drive(2 * feet, -1 * feet, 1);
                 } else if (diamond == 4) {
-                    robot.drive(4 * feet, -4.5 * feet, 1);
+                    robot.drive(4.2 * feet, -4.1 * feet, 1);
                 }
                 robot.counter++;
                 break;
@@ -271,7 +272,7 @@ public class BlueLeftSide extends OpMode {
                 break;
             case 43:
                 robot.arm(0);
-                robot.armBlock.setPosition(0);
+                robot.armBlock.setPosition(.7);
                 robot.counter++;
                 break;
         }
