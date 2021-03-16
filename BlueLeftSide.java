@@ -231,7 +231,8 @@ public class BlueLeftSide extends OpMode {
                 break;
             case 36:
                 if (diamond == 0) {
-                    robot.drive(0, -4.2 * feet, 1);
+                    robot.drive(0.5*feet, 0, 1);
+                    robot.drive(0,-4.2*feet, 1);
                 } else if (diamond == 1) {
                     robot.drive(2 * feet, -1 * feet, 1);
                 } else if (diamond == 4) {
@@ -250,7 +251,7 @@ public class BlueLeftSide extends OpMode {
                 break;
             case 39:
                 if (diamond == 0) {
-                    robot.drive(1 * feet, 0 * feet, 1);
+                    robot.drive(0, -1 * feet, 1);
                 } else if (diamond == 1) {
                     robot.drive(-1 * feet, 0 * feet, 1);
                 } else if (diamond == 4) {
@@ -263,6 +264,7 @@ public class BlueLeftSide extends OpMode {
                 robot.counter++;
                 break;
             case 41:
+                robot.armBlock.setPosition(.55);
                 robot.drive(0, 1 * feet, 1);
                 robot.counter++;
                 break;
@@ -272,7 +274,6 @@ public class BlueLeftSide extends OpMode {
                 break;
             case 43:
                 robot.arm(0);
-                robot.armBlock.setPosition(.7);
                 robot.counter++;
                 break;
         }
