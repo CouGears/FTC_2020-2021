@@ -278,6 +278,39 @@ public class AutonMethods_Copy {
 
     }
 
+    public driveWithDecel(double forward, double sideways, double spee, double dist) {
+        runtime.reset();
+        while (motorFR.isBusy() || motorFL.isBusy()) {
+            if (runtime.seconds() > 2) break;
+        }
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        motorFL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        FRtpos = forward - sideways;
+        BRtpos = forward + sideways;
+        FLtpos = forward + sideways;
+        BLtpos = forward - sideways;
+        while (abs((((int) FLtpos) - motorFL.getCurrentPosition())) < 10 && abs((-(int) FRtpos) - motorFR.getCurrentPosition())) < 10) {
+            motorFL.setPower(spee * (((int) FLtpos) - motorFL.getCurrentPosition()) / dist);
+            motorBL.setPower(spee * (((int) BLtpos) - motorBL.getCurrentPosition()) / dist);
+            motorFR.setPower(spee * ((-(int) FRtpos) - motorFR.getCurrentPosition()) / dist);
+            motorBR.setPower(spee * ((-(int) BRtpos) - motorBR.getCurrentPosition()) / dist);
+        }
+        motorFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+    }
+
     public void speed (double spee){
         motorFL.setPower(spee);
         motorBL.setPower(spee);
