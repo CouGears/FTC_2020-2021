@@ -264,6 +264,16 @@ public class AutonMethods_Copy {
 
     }
 
+    public void topGoal() {
+        runtime.reset();
+        while (runtime.seconds() < 4) ;
+        robot.shootServ(.2);
+        runtime.reset();
+        while (runtime.seconds() < 0.5) ;
+        robot.shootServ(0);
+        runtime.reset();
+        while (runtime.seconds() < 1) ;
+    }
 
 
     //Function to have the robot sleep
