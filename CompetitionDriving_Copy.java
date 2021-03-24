@@ -92,17 +92,17 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             }
 
             if(x == 0){
-                motorFL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x)));
-                motorBL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x)));
-                motorBR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x)));
-                motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x)));
+                motorFL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))*.75);
+                motorBL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.75);
+                motorBR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))*.75);
+                motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.75);
             }
 
             else if(x == 1){
-                motorFL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))/4);
-                motorBL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))/4);
-                motorBR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))/4);
-                motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))/4);
+                motorFL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))*.25);
+                motorBL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.25);
+                motorBR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))*.25);
+                motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.25);
             }
             if(gamepad1.right_bumper) {
                 shooter.setPower(1);
@@ -165,7 +165,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             // }
             shooterServo.setPosition(gamepad1.left_trigger*.2);
 
-            if (gamepad1.x){
+            /*if (gamepad1.x){
 
                 arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 while (arm.getCurrentPosition() < 1750) {
@@ -175,7 +175,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 armServo.setPosition(.7);
                 competition.sleep(300);
                 armServo.setPosition(1);
-            }
+            }*/
             if (gamepad1.y) {
 
                 arm.setPower(0.5);

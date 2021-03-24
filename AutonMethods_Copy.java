@@ -178,6 +178,12 @@ public class AutonMethods_Copy {
         motorBL.setPower(0.5);
 
     }
+    public void armTime(Double time, int dir){
+        arm.setPower(dir);
+        runtime.reset();
+        while (runtime.seconds() < time) ;
+        arm.setPower(0);
+    }
     public void scissorServUp() {
 
         sleep(150);
@@ -240,11 +246,11 @@ public class AutonMethods_Copy {
 
     public int distance() {
         int rings = 0;
-        if (bottomSensor.getDistance(DistanceUnit.CM) < 23 && topSensor.getDistance(DistanceUnit.CM) > 23) {
+        if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) > 25) {
             // tele.addData("One ring", bottomSensor.getDistance(DistanceUnit.CM));
             // tele.update();
             rings = 1;
-        } else if (bottomSensor.getDistance(DistanceUnit.CM) < 23 && topSensor.getDistance(DistanceUnit.CM) < 23) {
+        } else if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) < 25) {
             // tele.addData("Four rings", topSensor.getDistance(DistanceUnit.CM));
             // tele.update();
             rings = 4;
@@ -266,13 +272,13 @@ public class AutonMethods_Copy {
 
     public void topGoal() {
         runtime.reset();
-        while (runtime.seconds() < 4) ;
-        robot.shootServ(.2);
+        while (runtime.seconds() < 2) ;
+        shootServ(.2);
         runtime.reset();
         while (runtime.seconds() < 0.5) ;
-        robot.shootServ(0);
-        runtime.reset();
-        while (runtime.seconds() < 1) ;
+        shootServ(0);
+        // runtime.reset();
+        // while (runtime.seconds() < 1) ;
     }
 
 
@@ -288,39 +294,39 @@ public class AutonMethods_Copy {
 
     }
 
-    public driveWithDecel(double forward, double sideways, double spee, double dist) {
-        runtime.reset();
-        while (motorFR.isBusy() || motorFL.isBusy()) {
-            if (runtime.seconds() > 2) break;
-        }
-        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    /*  public driveWithDecel(double forward, double sideways, double spee, double dist) {
+          runtime.reset();
+          while (motorFR.isBusy() || motorFL.isBusy()) {
+              if (runtime.seconds() > 2) break;
+          }
+          motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+          motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+          motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+          motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        motorFL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorBL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorBR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+          motorFL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+          motorBL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+          motorBR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+          motorFR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        FRtpos = forward - sideways;
-        BRtpos = forward + sideways;
-        FLtpos = forward + sideways;
-        BLtpos = forward - sideways;
-        while (abs((((int) FLtpos) - motorFL.getCurrentPosition())) < 10 && abs((-(int) FRtpos) - motorFR.getCurrentPosition())) < 10) {
-            motorFL.setPower(spee * (((int) FLtpos) - motorFL.getCurrentPosition()) / dist);
-            motorBL.setPower(spee * (((int) BLtpos) - motorBL.getCurrentPosition()) / dist);
-            motorFR.setPower(spee * ((-(int) FRtpos) - motorFR.getCurrentPosition()) / dist);
-            motorBR.setPower(spee * ((-(int) BRtpos) - motorBR.getCurrentPosition()) / dist);
-        }
-        motorFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+          FRtpos = forward - sideways;
+          BRtpos = forward + sideways;
+          FLtpos = forward + sideways;
+          BLtpos = forward - sideways;
+          while (abs((((int) FLtpos) - motorFL.getCurrentPosition())) < 10 && abs((-(int) FRtpos) - motorFR.getCurrentPosition())) < 10) {
+              motorFL.setPower(spee * (((int) FLtpos) - motorFL.getCurrentPosition()) / dist);
+              motorBL.setPower(spee * (((int) BLtpos) - motorBL.getCurrentPosition()) / dist);
+              motorFR.setPower(spee * ((-(int) FRtpos) - motorFR.getCurrentPosition()) / dist);
+              motorBR.setPower(spee * ((-(int) BRtpos) - motorBR.getCurrentPosition()) / dist);
+          }
+          motorFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+          motorBL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+          motorBR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+          motorFR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
-    }
-
+      }
+  */
     public void speed (double spee){
         motorFL.setPower(spee);
         motorBL.setPower(spee);
