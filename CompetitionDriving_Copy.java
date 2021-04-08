@@ -105,11 +105,22 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.25);
             }
             if(gamepad1.right_bumper) {
-                shooter.setPower(1);
+                shooter.setPower(.70);
             }else{
                 shooter.setPower(0);
             }
             if(gamepad1.right_trigger > 0) {
+                if (lift == true) {
+                    scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                    scissorMotor.setTargetPosition(0);
+                    scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    scissorMotor.setPower(1);
+                    telemetry.addData("Status", "y");
+                    telemetry.update();
+                    competition.sleep(500);
+                    armBlock.setPosition(0.7);
+                    lift = !lift;
+                }
                 intakeFL.setPower(gamepad1.right_trigger);
             } else if(gamepad1.left_bumper){
                 intakeFL.setPower(-1);
@@ -125,7 +136,6 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 scissorMotor.setPower(1);
                 telemetry.addData("Status", "x");
-
                 telemetry.update();
                 competition.sleep(500);
                 armBlock.setPosition(0.5);
@@ -136,7 +146,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 scissorMotor.setTargetPosition(0);
                 scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 scissorMotor.setPower(1);
-                telemetry.addData("Status", "y");
+                telemetry.addData("Status:", "true");
                 telemetry.update();
                 competition.sleep(500);
                 armBlock.setPosition(0.7);

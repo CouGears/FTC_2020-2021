@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="all the things">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutonMethods_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/AutonMethods_Copy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlueLeftSide2.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueLeftSide2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CompetitionDriving_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/CompetitionDriving_Copy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +21,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.updates" />
   </component>
@@ -306,7 +305,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616539756165</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="all the things">
+      <created>1616603074211</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1616603074211</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
