@@ -24,6 +24,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
     private boolean serv = false, shoot = false, shooterServoToggle = false, lift = false, armToggle = false;
     private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private Servo shooterServo, armServo, frontScissor, armRaise, armBlock;
+    
 
 
 

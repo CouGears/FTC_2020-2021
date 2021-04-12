@@ -270,6 +270,7 @@ public class BlueLeft extends OpMode {
             case 43:
                 robot.arm(0);
                 robot.counter++;
+                robot.shootServ(.2); // have shooting servo reset at the end of auton - Oran
                 break;
         }
     }
