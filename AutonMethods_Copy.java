@@ -130,7 +130,7 @@ public class AutonMethods_Copy {
 
         scissorMotor.setTargetPosition(0);
         int relativeLayoutId = map.appContext.getResources().getIdentifier("RelativeLayout", "id", map.appContext.getPackageName());
-//hello there how are you doing
+
         // tele.addData(">", "Gyro Calibrating. Do Not Move!");
         // tele.update();
     }
