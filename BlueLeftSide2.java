@@ -165,8 +165,7 @@ public class BlueLeftSide2 extends OpMode {
                 break;
             case 20:
                 robot.armServ(.8);
-                robot.counter++;
-                break;
+                 break;
         }
     }
 }

@@ -21,10 +21,19 @@ import android.graphics.Color;
 
 public class DistanceTest extends LinearOpMode{
     private DistanceSensor bottomSensor, topSensor;
+    private ColorSensor sensorColor;
     @Override
     public void runOpMode() {
         bottomSensor = hardwareMap.get(DistanceSensor.class, "bottomSensor");
-        topSensor = hardwareMap.get(DistanceSensor.class, "topSensor");
+//        topSensor = hardwareMap.get(DistanceSensor.class, "topSensor");
+        sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
+
+        float hsvValues[] = {0F, 0F, 0F};
+        // values is a reference to the hsvValues array.
+        final float values[] = hsvValues;
+        // sometimes it helps to multiply the raw RGB values with a scale factor
+        // to amplify/attentuate the measured values.
+        final double SCALE_FACTOR = 255;
 
 
         telemetry.addData("Status", "Initialized");
@@ -51,6 +60,16 @@ public class DistanceTest extends LinearOpMode{
                 telemetry.addData("Bottom:", bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
             }
+            Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
+                    (int) (sensorColor.green() * SCALE_FACTOR),
+                    (int) (sensorColor.blue() * SCALE_FACTOR),
+                    hsvValues);
+            telemetry.addData("Alpha", sensorColor.alpha());
+            telemetry.addData("Red  ", sensorColor.red());
+            telemetry.addData("Green", sensorColor.green());
+            telemetry.addData("Blue ", sensorColor.blue());
+            telemetry.addData("Hue", hsvValues[0]);
+            telemetry.update();
         }
     }
 }
