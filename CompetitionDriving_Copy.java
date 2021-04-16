@@ -106,7 +106,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.25);
             }
             if(gamepad1.right_bumper) {
-                shooter.setPower(.70);
+                shooter.setPower(-.70);
             }else{
                 shooter.setPower(0);
             }
