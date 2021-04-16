@@ -52,14 +52,14 @@ public class AutonMethods_Copy {
     public static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private static Servo shooterServo, armServo, marker, frontScissor, backScissor;
     public static Servo armBlock;
-    public static DistanceSensor topSensor, bottomSensor;
+    public static DistanceSensor topSensor, bottomSensor, sensorDistance;
     public TouchSensor armTouch, scissorTouch;
     private ElapsedTime runtime = new ElapsedTime();
     HardwareMap map;
     Telemetry tele;
 
     private double speed;
-    private boolean clampDown = false;
+
     public int counter = 0;
 
 
@@ -77,8 +77,7 @@ public class AutonMethods_Copy {
         intakeFL = map.get(DcMotor.class, "intake");
         arm = map.get(DcMotor.class, "arm");
         shooter = map.get(DcMotor.class, "shooter");
-        bottomSensor = map.get(DistanceSensor.class, "bottomSensor");
-        topSensor = map.get(DistanceSensor.class, "topSensor");
+
 
         armServo = map.get(Servo.class, "armServo");
         shooterServo = map.get(Servo.class, "shooterServo");
@@ -86,7 +85,7 @@ public class AutonMethods_Copy {
         //also these should be configured accordingly
         scissorMotor = map.get(DcMotor.class, "scissorMotor");
         armBlock = map.get(Servo.class, "armBlock");
-
+        sensorDistance = map.get(DistanceSensor.class, "sensor_color_distance");
         bottomSensor = map.get(DistanceSensor.class, "bottomSensor");
         topSensor = map.get(DistanceSensor.class, "topSensor");
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -246,11 +245,11 @@ public class AutonMethods_Copy {
 
     public int distance() {
         int rings = 0;
-        if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) > 25) {
+        if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && sensorDistance.getDistance(DistanceUnit.CM) > 4) {
             // tele.addData("One ring", bottomSensor.getDistance(DistanceUnit.CM));
             // tele.update();
             rings = 1;
-        } else if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) < 25) {
+        } else if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && sensorDistance.getDistance(DistanceUnit.CM) < 4) {
             // tele.addData("Four rings", topSensor.getDistance(DistanceUnit.CM));
             // tele.update();
             rings = 4;

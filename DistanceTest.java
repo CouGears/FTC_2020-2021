@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import java.util.Locale;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -20,14 +21,14 @@ import android.graphics.Color;
 @TeleOp
 
 public class DistanceTest extends LinearOpMode{
-    private DistanceSensor bottomSensor, topSensor;
+    private DistanceSensor bottomSensor, topSensor, sensorDistance;
     private ColorSensor sensorColor;
     @Override
     public void runOpMode() {
         bottomSensor = hardwareMap.get(DistanceSensor.class, "bottomSensor");
-//        topSensor = hardwareMap.get(DistanceSensor.class, "topSensor");
+        topSensor = hardwareMap.get(DistanceSensor.class, "topSensor");
         sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
-
+        sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_color_distance");
         float hsvValues[] = {0F, 0F, 0F};
         // values is a reference to the hsvValues array.
         final float values[] = hsvValues;
@@ -45,7 +46,7 @@ public class DistanceTest extends LinearOpMode{
 //            telemetry.addData("Top Distance", topSensor.getDistance(DistanceUnit.CM));
 //             telemetry.addData("Bottom Distance", bottomSensor.getDistance(DistanceUnit.CM));
 //            telemetry.update();
-            if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) > 25) {
+           /* if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) > 25) {
                 telemetry.addData("One ring", topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom:", bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
@@ -59,8 +60,8 @@ public class DistanceTest extends LinearOpMode{
                 telemetry.addData("No rings", topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom:", bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
-            }
-            Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
+            }*/
+        /*    Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
@@ -69,6 +70,9 @@ public class DistanceTest extends LinearOpMode{
             telemetry.addData("Green", sensorColor.green());
             telemetry.addData("Blue ", sensorColor.blue());
             telemetry.addData("Hue", hsvValues[0]);
+            telemetry.update();*/
+            telemetry.addData("Distance (cm)",
+                    String.format(Locale.US, "%.02f", sensorDistance.getDistance(DistanceUnit.CM)));
             telemetry.update();
         }
     }
