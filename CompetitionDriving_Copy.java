@@ -167,9 +167,9 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 }
             }
             if (serv == false){
-                armServo.setPosition(.9);
+                armServo.setPosition(.85);
             }else {
-                armServo.setPosition(0.55); }
+                armServo.setPosition(0.65); }
             // if(gamepad2.dpad_down){
             //     if (shooterServoToggle == true) { shooterServo.setPosition(0); competition.sleep(500); shooterServoToggle = !shooterServoToggle; }
             //     else if (shooterServoToggle == false) {  shooterServo.setPosition(.2); competition.sleep(500);  shooterServoToggle = !shooterServoToggle;}

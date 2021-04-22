@@ -236,7 +236,7 @@ public class AutonMethods_Copy {
             if(runtime.seconds() > 3) break;
         }
         if(onOff){
-            shooter.setPower(-.65);
+            shooter.setPower(-.60);
         } else {
             shooter.setPower(0);
         }

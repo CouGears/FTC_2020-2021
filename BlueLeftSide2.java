@@ -73,7 +73,7 @@ public class BlueLeftSide2 extends OpMode {
                 robot.counter++;
                 break;
             case 2:
-                robot.drive(2.9*feet, -7*inch, 0.5);
+                robot.drive(3.2*feet, -7*inch, 0.35);
                 robot.counter++;
                 break;
             case 3:
@@ -96,7 +96,6 @@ public class BlueLeftSide2 extends OpMode {
             case 6:
                 robot.shoot(true);
                 robot.sleep(2000);
-                //robot.armTime(.45,-1);
                 robot.counter++;
                 break;
             case 7:
@@ -115,57 +114,54 @@ public class BlueLeftSide2 extends OpMode {
                 robot.shoot(false);
                 robot.counter++;
                 break;
-                /*
+            case 11:
+                robot.counter++;
+                break;
             case 12:
-                robot.armTime(.45,1);
+                if (diamond == 0) {
+                    robot.drive(1.1*feet, -3.2*feet, 1);
+                } else if (diamond == 1) {
+                    robot.drive(3 * feet, -1 * feet, 1);
+                } else if (diamond == 4) {
+                    robot.drive(5.6 * feet, -3 * feet, 1);
+                }
                 robot.counter++;
                 break;
             case 13:
-                if (diamond == 0) {
-                    robot.drive(0.5*feet, -4.5*feet, 1);
-                } else if (diamond == 1) {
-                    robot.drive(2.2 * feet, -1 * feet, 1);
-                } else if (diamond == 4) {
-                    robot.drive(5.3 * feet, -4 * feet, 1);
-                }
+                // robot.armTime(.45,-1);
+                robot.arm(-150);
                 robot.counter++;
                 break;
             case 14:
-                robot.armTime(.45,-1);
-                robot.counter++;
-                break;
-            case 15:
-                robot.arm.setPower(0);
                 robot.armServ(0.5);
                 robot.counter++;
                 break;
-            case 16:
+            case 15:
                 robot.scissorServDown();
                 robot.counter++;
                 break;
-            case 17:
+            case 16:
                 if (diamond == 0) {
-                    robot.drive(1*feet, 1 * feet, 1);
+                    robot.drive(1.5*feet, 1 * feet, 1);
                 } else if (diamond == 1) {
                     robot.drive(0, 0 * feet, 1);
                 } else if (diamond == 4) {
-                    robot.drive(-3 * feet, 0 * feet, 1);
+                    robot.drive(-3 * feet, .2 * feet, 1);
                 }
                 robot.counter++;
                 break;
-            case 18:
+            case 17:
                 robot.scissorServDown();
                 robot.counter++;
                 break;
-            case 19:
+            case 18:
                 robot.armBlock.setPosition(.55);
                 robot.counter++;
                 break;
-            case 20:
+            case 19:
                 robot.armServ(.8);
                 robot.counter++;
                 break;
-                */
         }
     }
 }
