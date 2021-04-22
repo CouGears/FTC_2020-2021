@@ -42,15 +42,13 @@ public class DistanceTest extends LinearOpMode{
         waitForStart();
 
         while (opModeIsActive()) {
-            telemetry.addData("Top Distance", topSensor.getDistance(DistanceUnit.CM));
-             telemetry.addData("Bottom Distance", bottomSensor.getDistance(DistanceUnit.CM));
-            telemetry.update();
-           /* if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) > 25) {
+
+            if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) > 4) {
                 telemetry.addData("One ring", topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom:", bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
             }
-            else if(bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) < 25) {
+            else if(bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) <4 ) {
                 telemetry.addData("Four rings", topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom:", bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
@@ -59,7 +57,7 @@ public class DistanceTest extends LinearOpMode{
                 telemetry.addData("No rings", topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom:", bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
-            }*/
+            }
         /*    Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="all the things">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="updated distance test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,13 +35,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607552139473</updated>
-    </task>
-    <task id="LOCAL-00001" summary="finish CompetitionDriving_Copy">
-      <created>1607887065040</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1607887065040</updated>
     </task>
     <task id="LOCAL-00002" summary="autonMethods">
       <created>1607887372180</created>
@@ -381,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619062154087</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="updated distance test">
+      <created>1619109851269</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1619109851270</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -408,6 +406,7 @@
     <MESSAGE value="things" />
     <MESSAGE value="updates" />
     <MESSAGE value="all the things" />
-    <option name="LAST_COMMIT_MESSAGE" value="all the things" />
+    <MESSAGE value="updated distance test" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated distance test" />
   </component>
 </project>
