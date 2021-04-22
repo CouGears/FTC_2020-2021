@@ -73,7 +73,7 @@ public class BlueLeftSide2 extends OpMode {
                 robot.counter++;
                 break;
             case 2:
-                robot.drive(3.1*feet, -3*inch, 0.5);
+                robot.drive(2.9*feet, -7*inch, 0.5);
                 robot.counter++;
                 break;
             case 3:
@@ -94,12 +94,13 @@ public class BlueLeftSide2 extends OpMode {
                 robot.counter++;
                 break;
             case 6:
-                robot.drive(1*feet, 0, 1);
+                robot.shoot(true);
+                robot.sleep(2000);
+                //robot.armTime(.45,-1);
                 robot.counter++;
                 break;
             case 7:
-                robot.shoot(true);
-                robot.armTime(.45,-1);
+                robot.topGoal();
                 robot.counter++;
                 break;
             case 8:
@@ -111,13 +112,10 @@ public class BlueLeftSide2 extends OpMode {
                 robot.counter++;
                 break;
             case 10:
-                robot.topGoal();
-                robot.counter++;
-                break;
-            case 11:
                 robot.shoot(false);
                 robot.counter++;
                 break;
+                /*
             case 12:
                 robot.armTime(.45,1);
                 robot.counter++;
@@ -165,7 +163,9 @@ public class BlueLeftSide2 extends OpMode {
                 break;
             case 20:
                 robot.armServ(.8);
-                 break;
+                robot.counter++;
+                break;
+                */
         }
     }
 }

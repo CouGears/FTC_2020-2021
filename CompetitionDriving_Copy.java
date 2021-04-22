@@ -21,10 +21,10 @@ import android.graphics.Color;
 @TeleOp
 
 public class CompetitionDriving_Copy extends LinearOpMode{
-    private boolean serv = false, shoot = false, shooterServoToggle = false, lift = false, armToggle = false, armPos = false;
+    private boolean serv = false, shoot = false, shooterServoToggle = false, lift = false, armToggle = false, armPos = true;
     private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private Servo shooterServo, armServo, frontScissor, armRaise, armBlock;
-    
+
 
 
 
@@ -68,7 +68,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
         scissorMotor.setTargetPosition(0);
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-
+        armBlock.setPosition(0.7);
         waitForStart();
 
         while (opModeIsActive()) {
@@ -106,7 +106,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.25);
             }
             if(gamepad1.right_bumper) {
-                shooter.setPower(-.70);
+                shooter.setPower(-.65);
             }else{
                 shooter.setPower(0);
             }
@@ -198,22 +198,23 @@ public class CompetitionDriving_Copy extends LinearOpMode{
             else arm.setPower(0);
 
             if (gamepad1.x) {
-                armPos = !armPos;
-            }
-            if (armPos == true){
-                arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                arm.setTargetPosition(-100);
-                arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                arm.setPower(1);
-                armPos = !armPos;
-            }
-            else if (armPos == false){
+                //   if (armPos == true){
+                arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                while (arm.getCurrentPosition() < 10){
+                    arm.setPower(1);
+                }
+
+                // armPos = !armPos;
+                // }
+            /*else if (armPos == false){
                 arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 arm.setTargetPosition(0);
                 arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 arm.setPower(1);
                 armPos = !armPos;
+            }*/
             }
+
         }
     }
 }
