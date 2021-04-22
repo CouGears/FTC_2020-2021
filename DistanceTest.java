@@ -26,9 +26,8 @@ public class DistanceTest extends LinearOpMode{
     @Override
     public void runOpMode() {
         bottomSensor = hardwareMap.get(DistanceSensor.class, "bottomSensor");
-        topSensor = hardwareMap.get(DistanceSensor.class, "topSensor");
-        sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
-        sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_color_distance");
+        topSensor = hardwareMap.get(DistanceSensor.class, "sensor_color_distance");
+
         float hsvValues[] = {0F, 0F, 0F};
         // values is a reference to the hsvValues array.
         final float values[] = hsvValues;
@@ -43,9 +42,9 @@ public class DistanceTest extends LinearOpMode{
         waitForStart();
 
         while (opModeIsActive()) {
-//            telemetry.addData("Top Distance", topSensor.getDistance(DistanceUnit.CM));
-//             telemetry.addData("Bottom Distance", bottomSensor.getDistance(DistanceUnit.CM));
-//            telemetry.update();
+            telemetry.addData("Top Distance", topSensor.getDistance(DistanceUnit.CM));
+             telemetry.addData("Bottom Distance", bottomSensor.getDistance(DistanceUnit.CM));
+            telemetry.update();
            /* if (bottomSensor.getDistance(DistanceUnit.CM) < 25 && topSensor.getDistance(DistanceUnit.CM) > 25) {
                 telemetry.addData("One ring", topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom:", bottomSensor.getDistance(DistanceUnit.CM));
@@ -71,9 +70,9 @@ public class DistanceTest extends LinearOpMode{
             telemetry.addData("Blue ", sensorColor.blue());
             telemetry.addData("Hue", hsvValues[0]);
             telemetry.update();*/
-            telemetry.addData("Distance (cm)",
-                    String.format(Locale.US, "%.02f", sensorDistance.getDistance(DistanceUnit.CM)));
-            telemetry.update();
+//            telemetry.addData("Distance (cm)",
+//                    String.format(Locale.US, "%.02f", sensorDistance.getDistance(DistanceUnit.CM)));
+//            telemetry.update();
         }
     }
 }
