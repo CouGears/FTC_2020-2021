@@ -4,7 +4,7 @@
     <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="all the things">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutonMethods_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/AutonMethods_Copy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlueLeft.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueLeft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlueLeftSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueLeftSide2WithDecel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +28,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="G:\My Drive\GitHub\FTC_2020-2021" />
     </key>
   </component>
@@ -39,13 +40,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607552139473</updated>
-    </task>
-    <task id="LOCAL-00004" summary="autonMethods">
-      <created>1607888096089</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1607888096089</updated>
     </task>
     <task id="LOCAL-00005" summary="autonMethods">
       <created>1607894193870</created>
@@ -383,7 +377,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619133270580</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="all the things">
+      <created>1620337488809</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1620337488811</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

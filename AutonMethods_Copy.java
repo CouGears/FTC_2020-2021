@@ -48,6 +48,9 @@ public class AutonMethods_Copy {
     }
 
     //Declare and initial variables
+    double rev = 383.6;
+    double inch = rev / (3.78 * 3.14);
+    double feet = inch * 12;
     double FRtpos, BRtpos, FLtpos, BLtpos;
     public static DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private static Servo shooterServo, armServo, marker, frontScissor, backScissor;
@@ -293,7 +296,8 @@ public class AutonMethods_Copy {
 
     }
 
-    public void driveWithDecel(double forward, double sideways, double dist) {
+    public void driveWithDecel(double forward, double sideways) {
+        double dist = 8*feet;
         runtime.reset();
         while (motorFR.isBusy() || motorFL.isBusy()) {
             if (runtime.seconds() > 3) break;
