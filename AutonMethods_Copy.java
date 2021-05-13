@@ -224,14 +224,12 @@ public class AutonMethods_Copy {
     }
 
     public void arm(int pos) {
-        arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while (arm.getCurrentPosition() < pos){
-            arm.setPower(1);
+        while (motorFR.isBusy() || motorFL.isBusy()){
+            if(runtime.seconds() > 3) break;
         }
-        while (arm.getCurrentPosition() > pos){
-            arm.setPower(-1);
-        }
-        arm.setPower(0);
+        arm.setTargetPosition(pos);
+        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        arm.setPower(1);
 
     }
 

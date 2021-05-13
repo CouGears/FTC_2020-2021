@@ -23,7 +23,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous
 
-public class BlueLeftSide2WithDecel extends OpMode {
+public class BlueRightSide2WithDecel extends OpMode {
     double rev = 383.6;
     double inch = rev / (3.78 * 3.14);
     double feet = inch * 12;
@@ -71,7 +71,8 @@ public class BlueLeftSide2WithDecel extends OpMode {
                 robot.counter++;
                 break;
             case 2:
-                robot.driveWithDecel(3.2*feet, -7*inch);
+                robot.drive(0, 1.5*feet, 1);
+                robot.driveWithDecel(3.2*feet, 0);
                 robot.counter++;
                 break;
             case 3:
