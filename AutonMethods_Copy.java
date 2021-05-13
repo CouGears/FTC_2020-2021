@@ -336,5 +336,9 @@ public class AutonMethods_Copy {
         motorFR.setPower(spee);
         motorBR.setPower(spee);
     }
+    public void newSleep(int timeinSeconds){
+        runtime.reset();
+        while (runtime.seconds() < timeinSeconds) ;
+    }
 
 }

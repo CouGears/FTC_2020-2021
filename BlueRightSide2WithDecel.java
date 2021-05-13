@@ -80,8 +80,7 @@ public class BlueRightSide2WithDecel extends OpMode {
                 robot.counter++;
                 break;
             case 4:
-                runtime.reset();
-                while (runtime.seconds() < 1) ;
+                robot.newSleep(1);
                 robot.counter++;
                 break;
             case 5:
