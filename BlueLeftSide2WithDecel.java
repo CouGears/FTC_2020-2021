@@ -71,7 +71,8 @@ public class BlueLeftSide2WithDecel extends OpMode {
                 robot.counter++;
                 break;
             case 2:
-                robot.driveWithDecel(3.2*feet, -7*inch);
+                robot.drive(0, 1.5*feet, 1);
+                robot.driveWithDecel(3.2*feet, 0);
                 robot.counter++;
                 break;
             case 3:

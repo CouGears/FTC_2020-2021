@@ -26,6 +26,7 @@ import android.graphics.Color;
 import android.app.Activity;
 import android.view.View;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
 import java.lang.annotation.Target;
 import java.util.Timer;
 
@@ -64,7 +65,6 @@ public class AutonMethods_Copy {
     private double speed;
 
     public int counter = 0;
-
 
 
     public static BNO055IMU imu;
@@ -139,8 +139,8 @@ public class AutonMethods_Copy {
     //Function to move the robot in any direction
     public void drive(double forward, double sideways, double spee) {
         runtime.reset();
-        while (motorFR.isBusy() || motorFL.isBusy()){
-            if(runtime.seconds() > 2) break;
+        while (motorFR.isBusy() || motorFL.isBusy()) {
+            if (runtime.seconds() > 2) break;
         }
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -152,10 +152,10 @@ public class AutonMethods_Copy {
         FLtpos = forward + sideways;
         BLtpos = forward - sideways;
 
-        motorFL.setTargetPosition((int)FLtpos);
-        motorBL.setTargetPosition((int)BLtpos);
-        motorFR.setTargetPosition(-(int)FRtpos);
-        motorBR.setTargetPosition(-(int)BRtpos);
+        motorFL.setTargetPosition((int) FLtpos);
+        motorBL.setTargetPosition((int) BLtpos);
+        motorFR.setTargetPosition(-(int) FRtpos);
+        motorBR.setTargetPosition(-(int) BRtpos);
 
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -167,9 +167,9 @@ public class AutonMethods_Copy {
 
     }
 
-    public void turn(int pos){
-        while (motorFR.isBusy() || motorFL.isBusy()){
-            if(runtime.seconds() > 2) break;
+    public void turn(int pos) {
+        while (motorFR.isBusy() || motorFL.isBusy()) {
+            if (runtime.seconds() > 2) break;
         }
         motorFL.setTargetPosition(pos);
         motorBL.setTargetPosition(pos);
@@ -179,12 +179,14 @@ public class AutonMethods_Copy {
         motorBL.setPower(0.5);
 
     }
-    public void armTime(Double time, int dir){
+
+    public void armTime(Double time, int dir) {
         arm.setPower(dir);
         runtime.reset();
         while (runtime.seconds() < time) ;
         arm.setPower(0);
     }
+
     public void scissorServUp() {
 
         sleep(150);
@@ -196,7 +198,7 @@ public class AutonMethods_Copy {
 
     }
 
-    public void scissorServDown(){
+    public void scissorServDown() {
         scissorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         scissorMotor.setTargetPosition(0);
         scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -207,8 +209,8 @@ public class AutonMethods_Copy {
 
 
     public void shootServ(double pos) {
-        while (motorFR.isBusy() || motorFL.isBusy()){
-            if(runtime.seconds() > 2) break;
+        while (motorFR.isBusy() || motorFL.isBusy()) {
+            if (runtime.seconds() > 2) break;
         }
         shooterServo.setPosition(pos);
 
@@ -216,16 +218,16 @@ public class AutonMethods_Copy {
     }
 
     public void armServ(double pos) {
-        while (motorFR.isBusy() || motorFL.isBusy()){
-            if(runtime.seconds() > 3) break;
+        while (motorFR.isBusy() || motorFL.isBusy()) {
+            if (runtime.seconds() > 3) break;
         }
         armServo.setPosition(pos);
 
     }
 
     public void arm(int pos) {
-        while (motorFR.isBusy() || motorFL.isBusy()){
-            if(runtime.seconds() > 3) break;
+        while (motorFR.isBusy() || motorFL.isBusy()) {
+            if (runtime.seconds() > 3) break;
         }
         arm.setTargetPosition(pos);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -234,10 +236,10 @@ public class AutonMethods_Copy {
     }
 
     public void shoot(boolean onOff) {
-        while (motorFR.isBusy() || motorFL.isBusy()){
-            if(runtime.seconds() > 3) break;
+        while (motorFR.isBusy() || motorFL.isBusy()) {
+            if (runtime.seconds() > 3) break;
         }
-        if(onOff){
+        if (onOff) {
             shooter.setPower(-.60);
         } else {
             shooter.setPower(0);
@@ -295,7 +297,7 @@ public class AutonMethods_Copy {
     }
 
     public void driveWithDecel(double forward, double sideways) {
-        double dist = 8*feet;
+        double dist = 8 * feet;
         runtime.reset();
         while (motorFR.isBusy() || motorFL.isBusy()) {
             if (runtime.seconds() > 3) break;
@@ -310,10 +312,10 @@ public class AutonMethods_Copy {
         FLtpos = forward + sideways;
         BLtpos = forward - sideways;
 
-        motorFL.setTargetPosition((int)FLtpos);
-        motorBL.setTargetPosition((int)BLtpos);
-        motorFR.setTargetPosition(-(int)FRtpos);
-        motorBR.setTargetPosition(-(int)BRtpos);
+        motorFL.setTargetPosition((int) FLtpos);
+        motorBL.setTargetPosition((int) BLtpos);
+        motorFR.setTargetPosition(-(int) FRtpos);
+        motorBR.setTargetPosition(-(int) BRtpos);
 
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -321,22 +323,24 @@ public class AutonMethods_Copy {
         motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         speed(1);
         runtime.reset();
-        while ((motorFR.isBusy() || motorFL.isBusy()) && runtime.seconds() < 3){
-            motorFL.setPower((((int)FLtpos - motorFL.getCurrentPosition()) / dist)+.1);
-            motorBL.setPower((((int)BLtpos - motorBL.getCurrentPosition()) / dist)+.1);
-            motorFR.setPower((((int)FRtpos + motorFR.getCurrentPosition()) / dist)+.1);
-            motorBR.setPower((((int)BRtpos + motorBR.getCurrentPosition()) / dist)+.1);
+        while ((motorFR.isBusy() || motorFL.isBusy()) && runtime.seconds() < 3) {
+            motorFL.setPower((((int) FLtpos - motorFL.getCurrentPosition()) / dist) + .1);
+            motorBL.setPower((((int) BLtpos - motorBL.getCurrentPosition()) / dist) + .1);
+            motorFR.setPower((((int) FRtpos + motorFR.getCurrentPosition()) / dist) + .1);
+            motorBR.setPower((((int) BRtpos + motorBR.getCurrentPosition()) / dist) + .1);
         }
 
 
     }
-    public void speed (double spee){
+
+    public void speed(double spee) {
         motorFL.setPower(spee);
         motorBL.setPower(spee);
         motorFR.setPower(spee);
         motorBR.setPower(spee);
     }
-    public void newSleep(int timeinSeconds){
+
+    public void newSleep(int timeinSeconds) {
         runtime.reset();
         while (runtime.seconds() < timeinSeconds) ;
     }

@@ -23,7 +23,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous
 
-public class BlueRightSide2WithDecel extends OpMode {
+public class BlueLeftSide2WithDecel extends OpMode {
     double rev = 383.6;
     double inch = rev / (3.78 * 3.14);
     double feet = inch * 12;
@@ -71,7 +71,8 @@ public class BlueRightSide2WithDecel extends OpMode {
                 robot.counter++;
                 break;
             case 2:
-                robot.driveWithDecel(3.2*feet, -7*inch);
+                robot.drive(0, 1.5*feet, 1);
+                robot.driveWithDecel(3.2*feet, 0);
                 robot.counter++;
                 break;
             case 3:
@@ -118,11 +119,11 @@ public class BlueRightSide2WithDecel extends OpMode {
                 break;
             case 12:
                 if (diamond == 0) {
-                    robot.driveWithDecel(1.1*feet, -3.2*feet);
+                    robot.driveWithDecel(1.1*feet, 3.2*feet);
                 } else if (diamond == 1) {
-                    robot.driveWithDecel(3 * feet, -1 * feet);
+                    robot.driveWithDecel(3 * feet, 1 * feet);
                 } else if (diamond == 4) {
-                    robot.driveWithDecel(5.6 * feet, -3 * feet);
+                    robot.driveWithDecel(5.6 * feet, 3 * feet);
                 }
                 robot.counter++;
                 break;
@@ -141,11 +142,11 @@ public class BlueRightSide2WithDecel extends OpMode {
                 break;
             case 16:
                 if (diamond == 0) {
-                    robot.driveWithDecel(1.5*feet, 1 * feet);
+                    robot.driveWithDecel(1.5*feet, -1 * feet);
                 } else if (diamond == 1) {
                     robot.driveWithDecel(0, 0 * feet);
                 } else if (diamond == 4) {
-                    robot.driveWithDecel(-3 * feet, .2 * feet);
+                    robot.driveWithDecel(-3 * feet, -.2 * feet);
                 }
                 robot.counter++;
                 break;
