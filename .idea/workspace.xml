@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="blueLeftNew">
+    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="added redLeft, redRight">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RedLeftSide2WithDecel.java" beforeDir="false" afterPath="$PROJECT_DIR$/RedLeftSide2WithDecel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutonMethods_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/AutonMethods_Copy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +23,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.updates" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="G:\My Drive\GitHub\FTC_2020-2021" />
     </key>
   </component>
@@ -38,62 +39,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607552139473</updated>
-    </task>
-    <task id="LOCAL-00001" summary="finish CompetitionDriving_Copy">
-      <created>1607887065040</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1607887065040</updated>
-    </task>
-    <task id="LOCAL-00002" summary="autonMethods">
-      <created>1607887372180</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1607887372180</updated>
-    </task>
-    <task id="LOCAL-00003" summary="autonMethods">
-      <created>1607887480445</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1607887480445</updated>
-    </task>
-    <task id="LOCAL-00004" summary="autonMethods">
-      <created>1607888096089</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1607888096089</updated>
-    </task>
-    <task id="LOCAL-00005" summary="autonMethods">
-      <created>1607894193870</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1607894193870</updated>
-    </task>
-    <task id="LOCAL-00006" summary="auton">
-      <created>1607918479766</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1607918479766</updated>
-    </task>
-    <task id="LOCAL-00007" summary="autonMethods">
-      <created>1608851428378</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1608851428378</updated>
-    </task>
-    <task id="LOCAL-00008" summary="autonMethods">
-      <created>1609456946478</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1609456946478</updated>
     </task>
     <task id="LOCAL-00009" summary="blueLeftNew">
       <created>1609944612078</created>
@@ -312,7 +257,133 @@
       <option name="project" value="LOCAL" />
       <updated>1616603074211</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="all the things">
+      <created>1618442586170</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1618442586170</updated>
+    </task>
+    <task id="LOCAL-00041" summary="all the things">
+      <created>1618442899086</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1618442899086</updated>
+    </task>
+    <task id="LOCAL-00042" summary="all the things">
+      <created>1618518880211</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1618518880211</updated>
+    </task>
+    <task id="LOCAL-00043" summary="all the things">
+      <created>1618520140438</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1618520140439</updated>
+    </task>
+    <task id="LOCAL-00044" summary="all the things">
+      <created>1618520378715</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1618520378715</updated>
+    </task>
+    <task id="LOCAL-00045" summary="all the things">
+      <created>1618524960786</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1618524960786</updated>
+    </task>
+    <task id="LOCAL-00046" summary="all the things">
+      <created>1618578298248</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1618578298248</updated>
+    </task>
+    <task id="LOCAL-00047" summary="all the things">
+      <created>1618580666694</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1618580666694</updated>
+    </task>
+    <task id="LOCAL-00048" summary="all the things">
+      <created>1619051667078</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1619051667078</updated>
+    </task>
+    <task id="LOCAL-00049" summary="all the things">
+      <created>1619062154087</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1619062154087</updated>
+    </task>
+    <task id="LOCAL-00050" summary="updated distance test">
+      <created>1619109851269</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1619109851270</updated>
+    </task>
+    <task id="LOCAL-00051" summary="updated distance test">
+      <created>1619110075228</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1619110075228</updated>
+    </task>
+    <task id="LOCAL-00052" summary="all the things">
+      <created>1619133270579</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1619133270580</updated>
+    </task>
+    <task id="LOCAL-00053" summary="all the things">
+      <created>1620337488809</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1620337488811</updated>
+    </task>
+    <task id="LOCAL-00054" summary="all the things">
+      <created>1620338819121</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1620338819121</updated>
+    </task>
+    <task id="LOCAL-00055" summary="added blueRight">
+      <created>1620939237840</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1620939237841</updated>
+    </task>
+    <task id="LOCAL-00056" summary="added testshoot">
+      <created>1620939350228</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1620939350228</updated>
+    </task>
+    <task id="LOCAL-00057" summary="created method for sleep">
+      <created>1620939655117</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1620939655118</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -338,7 +409,11 @@
     <MESSAGE value="blueleft" />
     <MESSAGE value="things" />
     <MESSAGE value="updates" />
+    <MESSAGE value="updated distance test" />
     <MESSAGE value="all the things" />
-    <option name="LAST_COMMIT_MESSAGE" value="all the things" />
+    <MESSAGE value="added blueRight" />
+    <MESSAGE value="added testshoot" />
+    <MESSAGE value="created method for sleep" />
+    <option name="LAST_COMMIT_MESSAGE" value="created method for sleep" />
   </component>
 </project>

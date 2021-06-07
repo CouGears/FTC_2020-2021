@@ -166,17 +166,28 @@ public class AutonMethods_Copy {
 
 
     }
-
-    public void turn(int pos) {
+    //circumscibed robot has a diameter of 21 inches
+    public void turn(double deg) {
         while (motorFR.isBusy() || motorFL.isBusy()) {
             if (runtime.seconds() > 2) break;
         }
-        motorFL.setTargetPosition(pos);
-        motorBL.setTargetPosition(pos);
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); //for every drive function remember to reset encoder
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        double deltaturn = (deg/360.0)*21.654*3.14*inch*1.5;
+        motorFL.setTargetPosition((int)  deltaturn);
+        motorBL.setTargetPosition((int)  deltaturn);
+        motorFR.setTargetPosition((int)  deltaturn);
+        motorBR.setTargetPosition((int)  deltaturn);
+        motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFL.setPower(0.5);
         motorBL.setPower(0.5);
+        motorFR.setPower(0.5);
+        motorBR.setPower(0.5);
 
     }
 
@@ -324,10 +335,10 @@ public class AutonMethods_Copy {
         speed(1);
         runtime.reset();
         while ((motorFR.isBusy() || motorFL.isBusy()) && runtime.seconds() < 3) {
-            motorFL.setPower((((int) FLtpos - motorFL.getCurrentPosition()) / dist) + .1);
-            motorBL.setPower((((int) BLtpos - motorBL.getCurrentPosition()) / dist) + .1);
-            motorFR.setPower((((int) FRtpos + motorFR.getCurrentPosition()) / dist) + .1);
-            motorBR.setPower((((int) BRtpos + motorBR.getCurrentPosition()) / dist) + .1);
+            motorFL.setPower((((int) FLtpos - motorFL.getCurrentPosition()) / dist) + .2);
+            motorBL.setPower((((int) BLtpos - motorBL.getCurrentPosition()) / dist) + .2);
+            motorFR.setPower((((int) FRtpos + motorFR.getCurrentPosition()) / dist) + .2);
+            motorBR.setPower((((int) BRtpos + motorBR.getCurrentPosition()) / dist) + .2);
         }
 
 
