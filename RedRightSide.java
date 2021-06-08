@@ -23,7 +23,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous
 
-public class RedRightSide extends OpMode { //hello there
+public class RedRightSide extends OpMode {
     double rev = 383.6;
     double inch = rev / (3.78 * 3.14);
     double feet = inch * 12;
