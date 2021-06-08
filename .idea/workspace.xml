@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="added redLeft, redRight">
+    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="modified naming, fixed distances for blue left, right, and red right (possiibly)">
+      <change afterPath="$PROJECT_DIR$/NewCompetitionDriving.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutonMethods_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/AutonMethods_Copy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutonMethods_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/AutonMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlueLeftBackwards.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueLeftBackwards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlueLeftSide2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlueLeftSide2WithDecel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlueRightSide2WithDecel.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueRightSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompetitionDriving_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/CompetitionDriving.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RedLeftSide2WithDecel.java" beforeDir="false" afterPath="$PROJECT_DIR$/RedLeftSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RedRightSide2WithDecel.java" beforeDir="false" afterPath="$PROJECT_DIR$/RedRightSide.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,11 +22,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1lRFkSFS2QIiJM6lvSXrbrOT9ma" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
@@ -39,20 +51,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607552139473</updated>
-    </task>
-    <task id="LOCAL-00009" summary="blueLeftNew">
-      <created>1609944612078</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1609944612078</updated>
-    </task>
-    <task id="LOCAL-00010" summary="blueLeftNew">
-      <created>1610069115266</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1610069115266</updated>
     </task>
     <task id="LOCAL-00011" summary="auton">
       <created>1610298823955</created>
@@ -383,7 +381,21 @@
       <option name="project" value="LOCAL" />
       <updated>1620939655118</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="added redLeft, redRight">
+      <created>1623091284638</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1623091284642</updated>
+    </task>
+    <task id="LOCAL-00059" summary="modified naming, fixed distances for blue left, right, and red right (possiibly)">
+      <created>1623183286621</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1623183286622</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -399,6 +411,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="hello there" />
     <MESSAGE value="finish CompetitionDriving_Copy" />
     <MESSAGE value="autonMethods" />
@@ -414,6 +427,8 @@
     <MESSAGE value="added blueRight" />
     <MESSAGE value="added testshoot" />
     <MESSAGE value="created method for sleep" />
-    <option name="LAST_COMMIT_MESSAGE" value="created method for sleep" />
+    <MESSAGE value="added redLeft, redRight" />
+    <MESSAGE value="modified naming, fixed distances for blue left, right, and red right (possiibly)" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified naming, fixed distances for blue left, right, and red right (possiibly)" />
   </component>
 </project>
