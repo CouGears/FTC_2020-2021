@@ -52,13 +52,6 @@
       <option name="presentableId" value="Default" />
       <updated>1607552139473</updated>
     </task>
-    <task id="LOCAL-00011" summary="auton">
-      <created>1610298823955</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1610298823955</updated>
-    </task>
     <task id="LOCAL-00012" summary="blueLeftNew">
       <created>1610507118207</created>
       <option name="number" value="00012" />
@@ -395,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623183286622</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="modified naming, fixed distances for blue left, right, and red right (possiibly)">
+      <created>1623183505431</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1623183505431</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
