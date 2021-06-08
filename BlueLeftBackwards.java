@@ -29,7 +29,7 @@ public class BlueLeftBackwards extends OpMode {
     double feet = inch * 12;
     private ElapsedTime runtime = new ElapsedTime();
     private DigitalChannel DigChannel;
-    AutonMethods_Copy robot = new AutonMethods_Copy();
+    AutonMethods robot = new AutonMethods();
     int diamond = 0;
 
     public void init() {
@@ -63,28 +63,28 @@ public class BlueLeftBackwards extends OpMode {
                 telemetry.addData("Bottom Distance", robot.bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
                 // robot.turn(180.0);
-                
+
                 //robot.scissorServUp();
                 robot.armBlock.setPosition(.5);
                 robot.counter++;
-                
+
                 break;
-         case 1:
+            case 1:
                 robot.armServ(.9);
                 robot.counter++;
                 break;
             case 2:
                 // robot.driveWithDecel(0, -3.5*feet);
-                robot.drive(-3*feet, 0, .5);
+                robot.drive(-2.7*feet, -4*inch, .3);
                 robot.counter++;
                 break;
             case 3:
-                robot.scissorServUp();
+                // robot.scissorServUp();
                 robot.counter++;
                 break;
             case 4:
                 runtime.reset();
-                while (runtime.seconds() < 1) ;
+                while (runtime.seconds() < 2) ;
                 robot.counter++;
                 break;
             case 5:
@@ -96,12 +96,14 @@ public class BlueLeftBackwards extends OpMode {
                 robot.counter++;
                 break;
             case 6:
-                // robot.driveWithDecel(0, 0.5*feet);
-                robot.turn(180.0);
+                robot.drive(0, 4*inch, .3);
+                robot.drive(.3*feet, 0,.3);
+                robot.newSleep(.5);
+                robot.turn(183.0);
                 robot.counter++;
                 break;
             case 7:
-                robot.shoot(true);
+                robot.shoot(-.6);
                 robot.arm(-1800);
                 robot.sleep(2000);
                 robot.counter++;
@@ -119,26 +121,29 @@ public class BlueLeftBackwards extends OpMode {
                 robot.counter++;
                 break;
             case 11:
-                robot.shoot(false);
+                robot.shoot(0);
                 robot.arm(0);
                 robot.counter++;
                 break;
             case 12:
+                robot.turn(-3);
+                robot.newSleep(1);
                 robot.counter++;
                 break;
             case 13:
                 if (diamond == 0) {
-                    robot.driveWithDecel(1.1*feet, -3.2*feet);
+                    robot.driveWithDecel(1.1*feet, 0);
                 } else if (diamond == 1) {
-                    robot.driveWithDecel(3 * feet, -1 * feet);
+                    robot.driveWithDecel(4 * feet, .7 * feet);
                 } else if (diamond == 4) {
-                    robot.driveWithDecel(5.6 * feet, -3 * feet);
+                    robot.driveWithDecel(5.6 * feet, -2*feet);
                 }
                 robot.counter++;
                 break;
             case 14:
                 // robot.armTime(.45,-1);
                 robot.arm(-1800);
+                robot.newSleep(.5);
                 robot.counter++;
                 break;
             case 15:
@@ -151,11 +156,11 @@ public class BlueLeftBackwards extends OpMode {
                 break;
             case 17:
                 if (diamond == 0) {
-                    robot.driveWithDecel(1.5*feet, 1 * feet);
+                    robot.drive(1.5*feet, 1 * feet, .3);
                 } else if (diamond == 1) {
-                    robot.driveWithDecel(0, 0 * feet);
+                    robot.drive(0, 2 * feet,0.5);
                 } else if (diamond == 4) {
-                    robot.driveWithDecel(-3 * feet, .2 * feet);
+                    robot.drive(-3 * feet, .2 * feet, .3);
                 }
                 robot.counter++;
                 break;
@@ -170,7 +175,7 @@ public class BlueLeftBackwards extends OpMode {
             case 20:
                 robot.armServ(.8);
                 robot.counter++;
-                break; 
+                break;
         }
     }
 }

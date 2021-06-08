@@ -20,11 +20,10 @@ import android.graphics.Color;
 
 @TeleOp
 
-public class CompetitionDriving_Copy extends LinearOpMode{
+public class CompetitionDriving extends LinearOpMode{
     private boolean serv = false, shoot = false, shooterServoToggle = false, lift = false, armToggle = false, armPos = true;
     private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private Servo shooterServo, armServo, frontScissor, armRaise, armBlock;
-
 
 
 
@@ -73,7 +72,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
 
         while (opModeIsActive()) {
             arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            AutonMethods_Copy competition = new AutonMethods_Copy();
+            AutonMethods competition = new AutonMethods();
             /*(Color.RGBToHSV((int) (sensorColor.red() * 255),
                 (int) (sensorColor.green() * 255),
                 (int) (sensorColor.blue() * 255),
@@ -154,6 +153,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 lift = !lift;
             }
 
+
             /*if(gamepad2.a){
             shooter.setPower(0);
             intakeFL.setPower(0);
@@ -167,7 +167,7 @@ public class CompetitionDriving_Copy extends LinearOpMode{
                 }
             }
             if (serv == false){
-                armServo.setPosition(.85);
+                armServo.setPosition(.87);
             }else {
                 armServo.setPosition(0.65); }
             // if(gamepad2.dpad_down){

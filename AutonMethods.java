@@ -23,13 +23,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous
 
-public class BlueLeftSide2 extends OpMode {
+public class RedRightSide extends OpMode {
     double rev = 383.6;
     double inch = rev / (3.78 * 3.14);
     double feet = inch * 12;
     private ElapsedTime runtime = new ElapsedTime();
     private DigitalChannel DigChannel;
-    AutonMethods_Copy robot = new AutonMethods_Copy();
+    AutonMethods robot = new AutonMethods();
     int diamond = 0;
 
     public void init() {
@@ -58,8 +58,6 @@ public class BlueLeftSide2 extends OpMode {
     public void loop() {
         int rings = 0;
         switch (robot.counter) {
-
-
             case 0:
                 telemetry.addData("Top Distance", robot.topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom Distance", robot.bottomSensor.getDistance(DistanceUnit.CM));
@@ -73,7 +71,7 @@ public class BlueLeftSide2 extends OpMode {
                 robot.counter++;
                 break;
             case 2:
-                robot.drive(3.2*feet, -7*inch, 0.35);
+                robot.driveWithDecel(3.2*feet, -12*inch);
                 robot.counter++;
                 break;
             case 3:
@@ -81,8 +79,7 @@ public class BlueLeftSide2 extends OpMode {
                 robot.counter++;
                 break;
             case 4:
-                runtime.reset();
-                while (runtime.seconds() < 1) ;
+                robot.newSleep(1);
                 robot.counter++;
                 break;
             case 5:
@@ -91,10 +88,13 @@ public class BlueLeftSide2 extends OpMode {
                 telemetry.addData("Top Distance", robot.topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom Distance", robot.bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
+                robot.turn(-5.0);
+                robot.sleep(200);
                 robot.counter++;
                 break;
             case 6:
-                robot.shoot(true);
+                robot.shoot(-.6);
+                robot.arm(-1800);
                 robot.sleep(2000);
                 robot.counter++;
                 break;
@@ -111,7 +111,9 @@ public class BlueLeftSide2 extends OpMode {
                 robot.counter++;
                 break;
             case 10:
-                robot.shoot(false);
+                robot.shoot(0);
+                robot.arm(0);
+                robot.turn(5.0);
                 robot.counter++;
                 break;
             case 11:
@@ -119,17 +121,18 @@ public class BlueLeftSide2 extends OpMode {
                 break;
             case 12:
                 if (diamond == 0) {
-                    robot.drive(1.1*feet, -3.2*feet, 1);
+                    robot.driveWithDecel(2.1*feet, 1.2*feet);
                 } else if (diamond == 1) {
-                    robot.drive(3 * feet, -1 * feet, 1);
+                    robot.driveWithDecel(3 * feet, -1 * feet);
                 } else if (diamond == 4) {
-                    robot.drive(5.6 * feet, -3 * feet, 1);
+                    robot.driveWithDecel(5.6 * feet, 1.2 * feet);
                 }
                 robot.counter++;
                 break;
             case 13:
                 // robot.armTime(.45,-1);
-                robot.arm(-150);
+                robot.arm(-1800);
+                robot.sleep(500);
                 robot.counter++;
                 break;
             case 14:
@@ -142,11 +145,11 @@ public class BlueLeftSide2 extends OpMode {
                 break;
             case 16:
                 if (diamond == 0) {
-                    robot.drive(1.5*feet, 1 * feet, 1);
+                    robot.drive(-.5*feet, 0,0.3);
                 } else if (diamond == 1) {
-                    robot.drive(0, 0 * feet, 1);
+                    robot.drive(0, 0 * feet,0.3);
                 } else if (diamond == 4) {
-                    robot.drive(-3 * feet, .2 * feet, 1);
+                    robot.drive(-3 * feet, -.2 * feet,0.3);
                 }
                 robot.counter++;
                 break;

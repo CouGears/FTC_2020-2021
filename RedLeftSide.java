@@ -23,13 +23,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous
 
-public class RedRightSide2WithDecel extends OpMode {
+public class RedLeftSide extends OpMode {
     double rev = 383.6;
     double inch = rev / (3.78 * 3.14);
     double feet = inch * 12;
     private ElapsedTime runtime = new ElapsedTime();
     private DigitalChannel DigChannel;
-    AutonMethods_Copy robot = new AutonMethods_Copy();
+    AutonMethods robot = new AutonMethods();
     int diamond = 0;
 
     public void init() {
@@ -71,7 +71,8 @@ public class RedRightSide2WithDecel extends OpMode {
                 robot.counter++;
                 break;
             case 2:
-                robot.driveWithDecel(3.2*feet, -7*inch);
+                robot.drive(0, 1.8*feet, 1);
+                robot.driveWithDecel(3.2*feet, 0);
                 robot.counter++;
                 break;
             case 3:
@@ -91,7 +92,7 @@ public class RedRightSide2WithDecel extends OpMode {
                 robot.counter++;
                 break;
             case 6:
-                robot.shoot(true);
+                robot.shoot(-.6);
                 robot.arm(-1800);
                 robot.sleep(2000);
                 robot.counter++;
@@ -109,7 +110,7 @@ public class RedRightSide2WithDecel extends OpMode {
                 robot.counter++;
                 break;
             case 10:
-                robot.shoot(false);
+                robot.shoot(0);
                 robot.arm(0);
                 robot.counter++;
                 break;
@@ -118,7 +119,7 @@ public class RedRightSide2WithDecel extends OpMode {
                 break;
             case 12:
                 if (diamond == 0) {
-                    robot.driveWithDecel(1.1*feet, 3.2*feet);
+                    robot.driveWithDecel(.9*feet, 3.2*feet);
                 } else if (diamond == 1) {
                     robot.driveWithDecel(3 * feet, 1 * feet);
                 } else if (diamond == 4) {
@@ -141,7 +142,7 @@ public class RedRightSide2WithDecel extends OpMode {
                 break;
             case 16:
                 if (diamond == 0) {
-                    robot.driveWithDecel(1.5*feet, -1 * feet);
+                    robot.driveWithDecel(1.3*feet, -1 * feet);
                 } else if (diamond == 1) {
                     robot.driveWithDecel(0, 0 * feet);
                 } else if (diamond == 4) {
