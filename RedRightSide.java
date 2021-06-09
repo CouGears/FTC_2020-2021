@@ -88,7 +88,7 @@ public class RedRightSide extends OpMode {
                 telemetry.addData("Top Distance", robot.topSensor.getDistance(DistanceUnit.CM));
                 telemetry.addData("Bottom Distance", robot.bottomSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
-                robot.turn(-5.0);
+                robot.turn(-9.0);
                 robot.sleep(200);
                 robot.counter++;
                 break;
@@ -121,7 +121,7 @@ public class RedRightSide extends OpMode {
                 break;
             case 12:
                 if (diamond == 0) {
-                    robot.driveWithDecel(2.1*feet, 1.2*feet);
+                    robot.driveWithDecel(2.1*feet, .3*feet);
                 } else if (diamond == 1) {
                     robot.driveWithDecel(3 * feet, -1 * feet);
                 } else if (diamond == 4) {
@@ -147,7 +147,7 @@ public class RedRightSide extends OpMode {
                 if (diamond == 0) {
                     robot.drive(-.5*feet, 0,0.3);
                 } else if (diamond == 1) {
-                    robot.drive(0, 0 * feet,0.3);
+                    robot.drive(-.5*feet, 0 * feet,0.3);
                 } else if (diamond == 4) {
                     robot.drive(-3 * feet, -.2 * feet,0.3);
                 }

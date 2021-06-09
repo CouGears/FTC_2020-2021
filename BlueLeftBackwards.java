@@ -79,7 +79,7 @@ public class BlueLeftBackwards extends OpMode {
                 robot.counter++;
                 break;
             case 3:
-                // robot.scissorServUp();
+                robot.scissorServUp();
                 robot.counter++;
                 break;
             case 4:

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="modified naming, fixed distances for blue left, right, and red right (possiibly)">
-      <change afterPath="$PROJECT_DIR$/NewCompetitionDriving.java" afterDir="false" />
+    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutonMethods_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/AutonMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlueLeftBackwards.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueLeftBackwards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlueLeftSide2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlueLeftSide2WithDecel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlueRightSide2WithDecel.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueRightSide.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompetitionDriving_Copy.java" beforeDir="false" afterPath="$PROJECT_DIR$/CompetitionDriving.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RedLeftSide2WithDecel.java" beforeDir="false" afterPath="$PROJECT_DIR$/RedLeftSide.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RedRightSide2WithDecel.java" beforeDir="false" afterPath="$PROJECT_DIR$/RedRightSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RedRightSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/RedRightSide.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,20 +43,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607552139473</updated>
-    </task>
-    <task id="LOCAL-00013" summary="blueLeftNew">
-      <created>1610507386581</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1610507386581</updated>
-    </task>
-    <task id="LOCAL-00014" summary="blueLeftNew">
-      <created>1610507687608</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1610507687608</updated>
     </task>
     <task id="LOCAL-00015" summary="blueLeftNew">
       <created>1610559753166</created>
@@ -395,7 +373,21 @@
       <option name="project" value="LOCAL" />
       <updated>1623185124004</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="test">
+      <created>1623185362872</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1623185362873</updated>
+    </task>
+    <task id="LOCAL-00063" summary="test">
+      <created>1623185384843</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1623185384844</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -429,6 +421,7 @@
     <MESSAGE value="created method for sleep" />
     <MESSAGE value="added redLeft, redRight" />
     <MESSAGE value="modified naming, fixed distances for blue left, right, and red right (possiibly)" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified naming, fixed distances for blue left, right, and red right (possiibly)" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>

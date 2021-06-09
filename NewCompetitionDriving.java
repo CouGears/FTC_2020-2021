@@ -25,7 +25,7 @@ public class NewCompetitionDriving extends LinearOpMode{
     private boolean serv = false, shoot = false, shooterServoToggle = false, lift = false, armToggle = false, armPos = true;
     private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private Servo shooterServo, armServo, frontScissor, armRaise, armBlock;
-    
+
     private double shooterPower = .65;
 
 
@@ -91,14 +91,14 @@ public class NewCompetitionDriving extends LinearOpMode{
             }
 
             else if(gamepad1.dpad_right){
-               armBlock.setPosition(0.7); 
+                armBlock.setPosition(0.7);
             }
 
             if(x == 0){
-                motorFL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))*.75);
-                motorBL.setPower(-((this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.75);
-                motorBR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))*.75);
-                motorFR.setPower(((this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.75);
+                motorFL.setPower(-((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))*.75);
+                motorBL.setPower(-((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_y) + (-this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.75);
+                motorBR.setPower(((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (-this.gamepad1.left_stick_x))*.75);
+                motorFR.setPower(((this.gamepad1.right_stick_y) + (this.gamepad1.left_stick_y) + (this.gamepad1.right_stick_x) + (this.gamepad1.left_stick_x))*.75);
             }
 
             else if(x == 1){
@@ -214,14 +214,14 @@ public class NewCompetitionDriving extends LinearOpMode{
             else arm.setPower(0);
 
             if (gamepad1.x) {
-            //   if (armPos == true){
+                //   if (armPos == true){
                 arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 while (arm.getCurrentPosition() < 10){
-                     arm.setPower(1);
+                    arm.setPower(1);
                 }
-               
+
                 // armPos = !armPos;
-            // }
+                // }
             /*else if (armPos == false){
                 arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 arm.setTargetPosition(0);
@@ -230,7 +230,7 @@ public class NewCompetitionDriving extends LinearOpMode{
                 armPos = !armPos;
             }*/
             }
-            
+
         }
     }
 }
