@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="test">
+    <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="modified autonomous">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RedRightSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/RedRightSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewCompetitionDriving.java" beforeDir="false" afterPath="$PROJECT_DIR$/NewCompetitionDriving.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +47,12 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -43,13 +69,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607552139473</updated>
-    </task>
-    <task id="LOCAL-00015" summary="blueLeftNew">
-      <created>1610559753166</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1610559753166</updated>
     </task>
     <task id="LOCAL-00016" summary="blueLeftNew">
       <created>1610577367516</created>
@@ -387,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623185384844</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="modified autonomous">
+      <created>1623260891311</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1623260891312</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -422,6 +448,27 @@
     <MESSAGE value="added redLeft, redRight" />
     <MESSAGE value="modified naming, fixed distances for blue left, right, and red right (possiibly)" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="modified autonomous" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified autonomous" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="183" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1623346437170">
+      <screen x="0" y="25" width="1440" height="803" />
+    </state>
+    <state x="183" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.800@0.25.1440.800" timestamp="1623343363789" />
+    <state x="183" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.803@0.25.1440.803" timestamp="1623346437170" />
+    <state x="516" y="175" key="AndroidProcessChooserDialog" timestamp="1623345210098">
+      <screen x="0" y="25" width="1440" height="805" />
+    </state>
+    <state x="516" y="175" key="AndroidProcessChooserDialog/0.25.1440.805@0.25.1440.805" timestamp="1623345210098" />
+    <state x="208" y="25" key="SettingsEditor" timestamp="1623345393924">
+      <screen x="0" y="25" width="1440" height="803" />
+    </state>
+    <state x="208" y="25" key="SettingsEditor/0.25.1440.803@0.25.1440.803" timestamp="1623345393924" />
+    <state x="385" y="191" key="run.anything.popup" timestamp="1623345398361">
+      <screen x="0" y="25" width="1440" height="803" />
+    </state>
+    <state x="385" y="191" key="run.anything.popup/0.25.1440.803@0.25.1440.803" timestamp="1623345398361" />
+    <state x="385" y="191" key="run.anything.popup/0.25.1440.805@0.25.1440.805" timestamp="1623345178148" />
   </component>
 </project>

@@ -25,7 +25,7 @@ public class NewCompetitionDriving extends LinearOpMode{
     private boolean serv = false, shoot = false, shooterServoToggle = false, lift = false, armToggle = false, armPos = true;
     private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private Servo shooterServo, armServo, frontScissor, armRaise, armBlock;
-
+adb
     private double shooterPower = .65;
 
 

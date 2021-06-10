@@ -84,7 +84,7 @@ public class RedLeftSide extends OpMode {
                 break;
             case 4:
                 runtime.reset();
-                while (runtime.seconds() < 2) ;
+                while (runtime.seconds() < 1) ;
                 robot.counter++;
                 break;
             case 5:
@@ -95,11 +95,10 @@ public class RedLeftSide extends OpMode {
                 telemetry.update();
                 robot.counter++;
                 break;
-            case 6:
+           /* case 6:
                 robot.drive(0, 4*inch, .3);
                 robot.drive(.3*feet, 0,.3);
-                robot.newSleep(.5);
-                robot.turn(178.0);
+                robot.turn(181.0);
                 robot.counter++;
                 break;
             case 7:
@@ -126,6 +125,7 @@ public class RedLeftSide extends OpMode {
                 break;
             case 12:
                 robot.shoot(0);
+                robot.scissorServDown();
                 robot.arm(0);
                 robot.turn(-3);
                 robot.counter++;
@@ -135,19 +135,20 @@ public class RedLeftSide extends OpMode {
                 break;
             case 14:
                 if (diamond == 0) {
-                    robot.drive(2.5*feet, 0,0.3);
-                    robot.drive(0, 4*feet,0.3);
+                    robot.drive(2.5*feet, 0,0.5);
+                    robot.drive(0, 3.7*feet,0.5);
                 } else if (diamond == 1) {
-                    robot.drive(4.5 * feet, 0,0.3);
-                    robot.drive(0, 1 * feet,0.3);
+                    robot.drive(4.5 * feet, 0,0.5);
+                    robot.drive(0, 1 * feet,0.5);
                 } else if (diamond == 4) {
-                    robot.drive(6.5 * feet, 0,0.3);
-                    robot.drive(0, 2.8 * feet,0.3);
+                    robot.drive(7 * feet, 0,0.5);
+                    robot.drive(0, 2 * feet,0.5);
                 }
                 robot.counter++;
                 break;
             case 15:
                 // robot.armTime(.45,-1);
+                robot.newSleep(.5);
                 robot.arm(-1800);
                 robot.newSleep(.5);
                 robot.counter++;
@@ -157,16 +158,15 @@ public class RedLeftSide extends OpMode {
                 robot.counter++;
                 break;
             case 17:
-                robot.scissorServDown();
                 robot.counter++;
                 break;
             case 18:
                 if (diamond == 0) {
-                    robot.drive(-.5*feet, 0,0.3);
+                    robot.drive(-.5*feet, 0,0.5);
                 } else if (diamond == 1) {
-                    robot.drive(-1 * feet, 0 * feet,0.3);
+                    robot.drive(-1 * feet, 0 * feet,0.5);
                 } else if (diamond == 4) {
-                    robot.drive(-2.5 * feet, -.2 * feet,0.3);
+                    robot.drive(-3 * feet, -.2 * feet,0.5);
                 }
                 robot.counter++;
                 break;
@@ -181,7 +181,7 @@ public class RedLeftSide extends OpMode {
             case 21:
                 robot.armServ(.8);
                 robot.counter++;
-                break;
+                break;*/
         }
     }
 }
