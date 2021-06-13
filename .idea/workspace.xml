@@ -23,9 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="376a09b6-ee74-4aba-8f5f-759b770fd5da" name="Default Changelist" comment="modified autonomous">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_21,_2_02_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_21__2_02_PM__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlueLeftBackwards.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlueLeftBackwards.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NewCompetitionDriving.java" beforeDir="false" afterPath="$PROJECT_DIR$/NewCompetitionDriving.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RedLeftSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/RedLeftSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RedRightSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/RedRightSide.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,13 +73,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607552139473</updated>
-    </task>
-    <task id="LOCAL-00016" summary="blueLeftNew">
-      <created>1610577367516</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1610577367517</updated>
     </task>
     <task id="LOCAL-00017" summary="blueLeftNew">
       <created>1611020489950</created>
@@ -413,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623260891312</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="modified autonomous">
+      <created>1623348107123</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1623348107125</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -450,25 +454,5 @@
     <MESSAGE value="test" />
     <MESSAGE value="modified autonomous" />
     <option name="LAST_COMMIT_MESSAGE" value="modified autonomous" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="183" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1623346437170">
-      <screen x="0" y="25" width="1440" height="803" />
-    </state>
-    <state x="183" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.800@0.25.1440.800" timestamp="1623343363789" />
-    <state x="183" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.803@0.25.1440.803" timestamp="1623346437170" />
-    <state x="516" y="175" key="AndroidProcessChooserDialog" timestamp="1623345210098">
-      <screen x="0" y="25" width="1440" height="805" />
-    </state>
-    <state x="516" y="175" key="AndroidProcessChooserDialog/0.25.1440.805@0.25.1440.805" timestamp="1623345210098" />
-    <state x="208" y="25" key="SettingsEditor" timestamp="1623345393924">
-      <screen x="0" y="25" width="1440" height="803" />
-    </state>
-    <state x="208" y="25" key="SettingsEditor/0.25.1440.803@0.25.1440.803" timestamp="1623345393924" />
-    <state x="385" y="191" key="run.anything.popup" timestamp="1623345398361">
-      <screen x="0" y="25" width="1440" height="803" />
-    </state>
-    <state x="385" y="191" key="run.anything.popup/0.25.1440.803@0.25.1440.803" timestamp="1623345398361" />
-    <state x="385" y="191" key="run.anything.popup/0.25.1440.805@0.25.1440.805" timestamp="1623345178148" />
   </component>
 </project>

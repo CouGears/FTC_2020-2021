@@ -147,6 +147,7 @@ public class RedRightSide extends OpMode {
                 if (diamond == 0) {
                     robot.drive(-.5*feet, 0,0.3);
                 } else if (diamond == 1) {
+                    robot.drive(0, -1 * feet,0.3);
                     robot.drive(-.5*feet, 0 * feet,0.3);
                 } else if (diamond == 4) {
                     robot.drive(-3 * feet, -.2 * feet,0.3);

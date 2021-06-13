@@ -75,7 +75,7 @@ public class BlueLeftBackwards extends OpMode {
                 break;
             case 2:
                 // robot.driveWithDecel(0, -3.5*feet);
-                robot.drive(-2.7*feet, -4*inch, .3);
+                robot.drive(-2.95*feet, -4*inch, .3);
                 robot.counter++;
                 break;
             case 3:
@@ -132,7 +132,7 @@ public class BlueLeftBackwards extends OpMode {
                 break;
             case 13:
                 if (diamond == 0) {
-                    robot.driveWithDecel(1.1*feet, 0);
+                    robot.driveWithDecel(1.4*feet, -.5*feet);
                 } else if (diamond == 1) {
                     robot.driveWithDecel(4 * feet, .7 * feet);
                 } else if (diamond == 4) {
@@ -156,7 +156,7 @@ public class BlueLeftBackwards extends OpMode {
                 break;
             case 17:
                 if (diamond == 0) {
-                    robot.drive(1.5*feet, 1 * feet, .3);
+                    // robot.drive(-.5*feet, 1 * feet, .3);
                 } else if (diamond == 1) {
                     robot.drive(0, 2 * feet,0.5);
                 } else if (diamond == 4) {

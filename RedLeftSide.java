@@ -75,7 +75,7 @@ public class RedLeftSide extends OpMode {
                 break;
             case 2:
                 // robot.driveWithDecel(0, -3.5*feet);
-                robot.drive(-2.7*feet, -5.5*inch, .3);
+                robot.drive(-2.95*feet, -5.5*inch, .3);
                 robot.counter++;
                 break;
             case 3:
@@ -95,7 +95,7 @@ public class RedLeftSide extends OpMode {
                 telemetry.update();
                 robot.counter++;
                 break;
-           /* case 6:
+            case 6:
                 robot.drive(0, 4*inch, .3);
                 robot.drive(.3*feet, 0,.3);
                 robot.turn(181.0);
@@ -181,7 +181,7 @@ public class RedLeftSide extends OpMode {
             case 21:
                 robot.armServ(.8);
                 robot.counter++;
-                break;*/
+                break;
         }
     }
 }

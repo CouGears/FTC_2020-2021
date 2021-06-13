@@ -25,8 +25,8 @@ public class NewCompetitionDriving extends LinearOpMode{
     private boolean serv = false, shoot = false, shooterServoToggle = false, lift = false, armToggle = false, armPos = true;
     private DcMotor motorBR, motorBL, motorFL, motorFR, intakeFL, shooter, arm, scissorMotor;
     private Servo shooterServo, armServo, frontScissor, armRaise, armBlock;
-adb
-    private double shooterPower = .65;
+
+    private double shooterPower = .70;
 
 
 
@@ -118,8 +118,7 @@ adb
                     scissorMotor.setTargetPosition(0);
                     scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     scissorMotor.setPower(1);
-                    telemetry.addData("Status", "y");
-                    telemetry.update();
+
                     competition.sleep(500);
                     armBlock.setPosition(0.7);
                     lift = !lift;
@@ -138,8 +137,7 @@ adb
                 scissorMotor.setTargetPosition(-3150);
                 scissorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 scissorMotor.setPower(1);
-                telemetry.addData("Status", "x");
-                telemetry.update();
+
                 competition.sleep(500);
                 armBlock.setPosition(0.5);
                 lift = !lift;
